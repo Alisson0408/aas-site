@@ -148,7 +148,7 @@
 @media(max-width:760px){.portfolio .projects{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:520px){.portfolio .projects{grid-template-columns:1fr;}}
 
-/* Vitrine ampliada com rotação automática dos cinco sites */
+/* Vitrine ampliada com rotação automática dos seis sites */
 .portfolio .shell{overflow:hidden}
 .portfolio .projects{display:flex!important;grid-template-columns:none!important;gap:24px!important;align-items:stretch!important;transition:transform .85s cubic-bezier(.22,.8,.2,1);will-change:transform;margin-top:30px}
 .portfolio .project{flex:0 0 calc((100% - 48px)/3);min-width:0;opacity:.77;filter:saturate(.85);transition:opacity .6s ease,filter .6s ease,transform .42s ease!important}
@@ -191,7 +191,7 @@
 .portfolio .portfolio-next{touch-action:manipulation;}
 
 /* AAS — Christian Gois: tela vertical sem cortes */
-.phone-viewport .showcase-slide[data-slide="2"] img{object-fit:contain!important;object-position:center center!important;background:#f9f7ef!important}
+.phone-viewport .showcase-slide[data-slide="3"] img{object-fit:contain!important;object-position:center center!important;background:#f9f7ef!important}
 
 /* Links reais em todas as capas do notebook e celular, sincronizados com o projeto exibido. */
 .hero-visual .laptop,.hero-visual .phone{position:relative}
@@ -199,7 +199,7 @@
 .hero-visual .showcase-live-link:focus-visible{outline:3px solid #f1d49a;outline-offset:4px}
 .hero-visual .phone .showcase-live-link{inset:0}
 /* A capa vertical foi composta em 600x1080, para manter a foto e os textos dentro do celular. */
-.hero-visual .phone-viewport .showcase-slide[data-slide="2"] img{object-fit:contain!important;object-position:center center!important}
+.hero-visual .phone-viewport .showcase-slide[data-slide="3"] img{object-fit:contain!important;object-position:center center!important}
 
 /* Correção: o JS não marca nenhum card como .is-featured, então todos ficavam apagados (opacidade .77). */
 .portfolio .project{opacity:1;filter:none}

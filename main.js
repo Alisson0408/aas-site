@@ -46,8 +46,8 @@ updateMessagePreview();
 // Rotação sincronizada das capturas reais nas duas telas (a cada 2,5 segundos).
 (()=>{
  const groups=[...document.querySelectorAll('[data-showcase]')];
- const names=['VANESSA OLIVEIRA','MESA ROSA','CHRISTIAN GOIS','DENISE RESENDE','BRASA BURGER'];
- const urls=['https://aliantsilva10-ctrl.github.io/vanessa-oliveira/','https://mesarosaquitandasartesanais.netlify.app/','https://christian-gois-psicanalista.netlify.app/','https://oficialsacerdotisa.com.br/','https://brasaburguer10.netlify.app/'];
+ const names=['ADÃO ROSA MONTEIRO','VANESSA OLIVEIRA','MESA ROSA','CHRISTIAN GOIS','DENISE RESENDE','BRASA BURGER'];
+ const urls=['https://adaorosamonteiro.art.br/','https://aliantsilva10-ctrl.github.io/vanessa-oliveira/','https://mesarosaquitandasartesanais.netlify.app/','https://christian-gois-psicanalista.netlify.app/','https://oficialsacerdotisa.com.br/','https://brasaburguer10.netlify.app/'];
  const liveLinks=[...document.querySelectorAll('[data-showcase-link]')];
  const label=document.getElementById('showcaseProject');
  if(!groups.length)return;
