@@ -14,6 +14,7 @@ Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"passos","eyebrow":"...","itens":[["Descoberta","texto curto"],...],"dur":5}
   {"t":"mito","eyebrow":"MITO 1 DE 3","mito":"...","destaque":"R$ 600","verdade":["...","..."]}  (destaque opcional)
   {"t":"texto",...,"sub":"linha menor opcional abaixo"}
+  {"t":"versus","eyebrow":"...","lados":[{"rotulo":"...","pre":"a partir de","grande":"R$ 600","itens":["..."],"destaque":false},{...}],"rodape":"...","dur":5.4}
   {"t":"cta","linhas":["Sua marca merece","ser extraordinária."],"botao":"PEÇA SEU ORÇAMENTO","dur":3.4}
 Roteiro de carrossel: {"slides": [ ...mesmos tipos, sem dur; "portfolio" usa 1 projeto: "projeto":"..." ]}
 """
@@ -208,7 +209,46 @@ def cena_mito(T, c, s, dur, fo, cy):
         y += 14
     T.put(L)
 
-CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito}
+def cena_versus(T, c, s, dur, fo, cy):
+    """Comparação lado a lado: dois cartões (rótulo, 'a partir de', preço, itens), o 2º entra depois."""
+    W = T.W; tmp = ImageDraw.Draw(Image.new('RGB', (10, 10)))
+    T.eyebrow(cy - 560, c.get('eyebrow', ''), ease(s / .4) * fo)
+    cw, gap = 450, 40; x0s = [(W - 2 * cw - gap) / 2, (W + gap) / 2]
+    fi = font(MED, c.get('size_itens', 38)); fp = font(SERIF, 112); fr = font(SEMI, 24); fa = font(REG, 30)
+    blocos = []
+    for lado in c['lados']:
+        its = [quebrar(tmp, it, fi, cw - 110) for it in lado.get('itens', [])]
+        blocos.append(its)
+    hi = max(sum(len(x) * fi.size * 1.3 + 26 for x in its) for its in blocos)
+    h = 70 + 50 + fp.size * 1.15 + 40 + hi + 40; top = cy - h / 2 - 20
+    for k, (lado, its) in enumerate(zip(c['lados'], blocos)):
+        a = ease((s - .3 - k * .7) / .5) * fo
+        if a <= 0: continue
+        x0 = x0s[k]; dy = (1 - a) * 50 if fo == 1 else 0
+        L, d = T.layer(); y = top + dy
+        dest = lado.get('destaque', k == 1)
+        d.rounded_rectangle((x0, y, x0 + cw, y + h), 18, fill=(20, 18, 15, int(200 * a)),
+                            outline=(GOLD if dest else (90, 80, 64)) + (int(255 * a),), width=3 if dest else 2)
+        lab = lado['rotulo'].upper(); sp = 5
+        ws = [d.textlength(ch, font=fr) for ch in lab]; tot = sum(ws) + sp * (len(ws) - 1); xx = x0 + (cw - tot) / 2
+        for ch, w in zip(lab, ws): d.text((xx, y + 44), ch, font=fr, fill=GOLD2 + (int(255 * a),)); xx += w + sp
+        yy = y + 100
+        if lado.get('pre'):
+            w = d.textlength(lado['pre'], font=fa); d.text((x0 + (cw - w) / 2, yy), lado['pre'], font=fa, fill=MUTED + (int(255 * a),)); yy += 42
+        w = d.textlength(lado['grande'], font=fp); d.text((x0 + (cw - w) / 2, yy), lado['grande'], font=fp, fill=GOLD + (int(255 * a),))
+        yy += fp.size * 1.15 + 20
+        d.line((x0 + 50, yy, x0 + cw - 50, yy), fill=(255, 255, 255, int(40 * a)), width=2); yy += 34
+        for j, grupo in enumerate(its):
+            ai = ease((s - .7 - k * .7 - j * .25) / .4) * fo
+            d.text((x0 + 44, yy + 2), '✦', font=font(SYM, 30), fill=GOLD + (int(255 * ai),))
+            for q in grupo:
+                d.text((x0 + 92, yy), q, font=fi, fill=CREAM + (int(255 * ai),)); yy += fi.size * 1.3
+            yy += 26
+        T.put(L)
+    if c.get('rodape'):
+        T.centro(top + h + 60, c['rodape'], font(SERIF_I, 56), CREAM, ease((s - 2.2) / .5) * fo)
+
+CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito, 'versus': cena_versus}
 
 # ---------------- REEL ----------------
 def reel(rot, saida):
