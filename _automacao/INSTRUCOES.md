@@ -64,6 +64,27 @@ a criação **e a publicação** automáticas, sem aprovação prévia, no Insta
    histórico e avise o dono na mensagem final que é preciso reconectar o Instagram no vidIQ.
 9. Mensagem final ao dono: o que foi publicado hoje (gancho + link).
 
+## Padrão de excelência (pedido do dono: cada post melhor que o anterior)
+Antes de criar:
+- Leia os últimos 5 itens do `historico.json`, incluindo o campo `aprendizado`.
+- Consulte o desempenho dos posts recentes com `vidiq_instagram_owner_insights`
+  (alcance, retenção, salvamentos, compartilhamentos, visitas ao perfil). Identifique o que
+  funcionou melhor (gancho, tema, formato, duração) e aplique hoje; evite o que performou pior.
+Ao criar, o post de hoje precisa superar o anterior em pelo menos um ponto concreto
+(gancho mais forte, ritmo melhor, ideia mais clara, prova mais visual, CTA mais direto)
+sem repetir estrutura nem frases. Varie as combinações de cena e a ordem.
+Checklist obrigatório antes de publicar (refaça se algum item falhar):
+1. O gancho prende em menos de 2 segundos e fala de uma dor ou desejo real do cliente.
+2. Uma única ideia central, fácil de entender sem som.
+3. Nenhum texto cortado, sobreposto, pequeno demais ou com erro de português.
+4. Visual premium consistente (preto, dourado, serifas), nada genérico.
+5. Chamada final clara para o link da bio ou WhatsApp.
+6. Só fatos reais da seção "Fatos da oferta".
+7. Legenda revisada, com gancho na 1ª linha e hashtags pertinentes.
+Depois de publicar, registre no histórico o campo `aprendizado`: o que foi melhorado hoje e
+o que testar amanhã. Se notar uma melhoria duradoura no motor (nova cena, melhor tipografia,
+animação mais fluida), pode evoluir `motor.py`, desde que teste antes e não quebre os formatos.
+
 ## Restrições
 - Não altere páginas do site (index.html, style.css etc.). Só `midia/` e `_automacao/`.
 - Não publique em outra conta além da indicada.
