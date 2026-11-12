@@ -1,0 +1,9 @@
+{"slides":[
+ {"t":"texto","eyebrow":"MITO OU VERDADE · SITES","linhas":["4 mitos que fazem","você adiar","o seu site."],"ouro":[2],"size":112,"sub":"Salve para lembrar quando for decidir."},
+ {"t":"mito","eyebrow":"MITO 1 DE 4","mito":"“Site profissional é caro.”","destaque":"R$ 600","verdade":["Página de vendas a partir de R$ 600.","Site institucional a partir de R$ 700.","Pix ou cartão de crédito."]},
+ {"t":"mito","eyebrow":"MITO 2 DE 4","mito":"“Um site demora meses para ficar pronto.”","destaque":"7 dias","verdade":["Seu site fica pronto em 1 semana,","com 4 rodadas de alterações","antes da entrega."]},
+ {"t":"mito","eyebrow":"MITO 3 DE 4","mito":"“Preciso entender de tecnologia.”","destaque":"Zero código","verdade":["Você não mexe em nada técnico.","Domínio e hospedagem já vêm inclusos","e a publicação fica por nossa conta."],"size":120},
+ {"t":"mito","eyebrow":"MITO 4 DE 4","mito":"“Se der problema depois, fico na mão.”","destaque":"90 dias","verdade":["Garantia para bugs no código,","links quebrados, falhas de funcionamento","e desvios do escopo combinado."]},
+ {"t":"lista","eyebrow":"A VERDADE, EM RESUMO","itens":["A partir de R$ 600","Pronto em 7 dias","Domínio e hospedagem já inclusos","4 rodadas de alterações","Garantia de 90 dias"]},
+ {"t":"cta","linhas":["Sem mitos.","Só o seu site no ar."],"botao":"PEÇA SEU ORÇAMENTO"}
+]}

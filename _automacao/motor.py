@@ -12,6 +12,8 @@ Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"lista","eyebrow":"...","itens":["...","..."],"dur":4.6}
   {"t":"numero","eyebrow":"...","grande":"R$ 600","linhas":["...","..."],"dur":3.2}
   {"t":"passos","eyebrow":"...","itens":[["Descoberta","texto curto"],...],"dur":5}
+  {"t":"mito","eyebrow":"MITO 1 DE 3","mito":"...","destaque":"R$ 600","verdade":["...","..."]}  (destaque opcional)
+  {"t":"texto",...,"sub":"linha menor opcional abaixo"}
   {"t":"cta","linhas":["Sua marca merece","ser extraordinária."],"botao":"PEÇA SEU ORÇAMENTO","dur":3.4}
 Roteiro de carrossel: {"slides": [ ...mesmos tipos, sem dur; "portfolio" usa 1 projeto: "projeto":"..." ]}
 """
@@ -124,6 +126,8 @@ def cena_texto(T, c, s, dur, fo, cy):
     for k, (ln, g) in enumerate(res):
         a = ease((s - .25 - k * .28) / .55) * fo
         T.centro(y0 + k * lh, ln, f, GOLD2 if g else CREAM, a, dy=(1 - a if fo == 1 else 0) * 36)
+    if c.get('sub'):
+        T.centro(y0 + total + 50, c['sub'], font(MED, c.get('size_sub', 38)), MUTED, ease((s - .9) / .5) * fo)
 
 def cena_lista(T, c, s, dur, fo, cy):
     W = T.W; itens = c['itens']; n = len(itens); gap = 150 if T.H > 1500 else 120
@@ -176,7 +180,35 @@ def cena_cta(T, c, s, dur, fo, cy):
         T.put(L)
         T.centro(cy + 250, c.get('rodape', 'Link na bio  ·  aastecnologiaeditorial.com.br'), font(REG, 34), MUTED, a3)
 
-CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta}
+def cena_mito(T, c, s, dur, fo, cy):
+    """Mito x verdade: mito riscado no alto, verdade com destaque dourado embaixo (bloco centrado em cy)."""
+    W = T.W; a = ease(s / .5) * fo; a2 = ease((s - .5) / .5) * fo
+    tmp = ImageDraw.Draw(Image.new('RGB', (10, 10)))
+    fm = font(SERIF_I, c.get('size_mito', 80)); fv = font(MED, c.get('size_verdade', 42))
+    fd = font(SERIF, c.get('size', 150)) if c.get('destaque') else None
+    lm = quebrar(tmp, c['mito'], fm, W - 200)
+    lv = [quebrar(tmp, ln, fv, W - 220) for ln in c.get('verdade', [])]
+    h = 80 + len(lm) * fm.size * 1.2 + 100 + 60 + (fd.size * 1.3 if fd else 0) + sum(len(x) * fv.size * 1.4 + 14 for x in lv)
+    top = cy - h / 2 + 10
+    T.eyebrow(top, c.get('eyebrow', 'MITO'), a)
+    L, d = T.layer(); y = top + 80
+    for q in lm:
+        w = d.textlength(q, font=fm); x = (W - w) / 2
+        d.text((x, y), q, font=fm, fill=MUTED + (int(235 * a),))
+        d.line((x - 10, y + fm.size * .62, x + w + 10, y + fm.size * .62), fill=GOLD + (int(230 * a),), width=5)
+        y += fm.size * 1.2
+    d.line((W / 2 - 60, y + 50, W / 2 + 60, y + 50), fill=GOLD + (int(160 * a),), width=2)
+    T.put(L); y += 100
+    T.eyebrow(y, c.get('rotulo', 'VERDADE'), a2, cor=GOLD2); y += 60
+    if fd: T.centro(y, c["destaque"], fd, GOLD, a2); y += fd.size * 1.3
+    L, d = T.layer()
+    for grupo in lv:
+        for q in grupo:
+            w = d.textlength(q, font=fv); d.text(((W - w) / 2, y), q, font=fv, fill=CREAM + (int(255 * a2),)); y += fv.size * 1.4
+        y += 14
+    T.put(L)
+
+CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito}
 
 # ---------------- REEL ----------------
 def reel(rot, saida):
