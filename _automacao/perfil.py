@@ -58,19 +58,21 @@ def conheca():
         a = os.path.join(d, f'{i:02d}.jpg'); T.img.convert('RGB').save(a, quality=92); arqs.append(a)
     return arqs
 
-# ---------- Carrossel 2: Portfólio ----------
+# ---------- Carrossel 2: Portfólio (seleção) ----------
 def portfolio():
-    W, H = 1080, 1350; d = os.path.join(OUT, 'portfolio'); os.makedirs(d, exist_ok=True)
-    projs = list(PROJETOS.keys()); n = len(projs) + 2; arqs = []
+    W, H = 1080, 1350; d = os.path.join(OUT, 'portfolio-selecao'); os.makedirs(d, exist_ok=True)
+    projs = list(PROJETOS.keys()); n = len(projs) + 3; arqs = []
     for i in range(1, n + 1):
         T = Tela(fundo(W, H, i))
         if i == 1:
-            CENAS['texto'](T, {'eyebrow': 'PORTFÓLIO AAS', 'linhas': ['6 marcas,', '6 nichos,', 'uma assinatura.'], 'ouro': [2], 'size': 112}, 99, 99, 1, H / 2)
+            CENAS['texto'](T, {'eyebrow': 'SELEÇÃO DO PORTFÓLIO', 'linhas': ['Alguns projetos', 'que levam a', 'assinatura AAS.'], 'ouro': [2], 'size': 108}, 99, 99, 1, H / 2)
+        elif i == n - 1:
+            CENAS['texto'](T, {'eyebrow': 'E NÃO PARA POR AQUI', 'linhas': ['Esses são só', 'alguns destaques.', 'Cada marca ganha', 'um projeto único.'], 'ouro': [1, 3], 'size': 92}, 99, 99, 1, H / 2)
         elif i == n:
-            CENAS['cta'](T, {'linhas': ['A próxima pode', 'ser a sua marca.']}, 99, 99, 1, H / 2 + 40)
+            CENAS['cta'](T, {'linhas': ['O próximo destaque', 'pode ser a sua marca.']}, 99, 99, 1, H / 2 + 40)
         else:
             nome = projs[i - 2]; ph = celular(nome, 440, 786)
-            T.eyebrow(90, 'PORTFÓLIO AAS', 1); T.img.alpha_composite(ph, (int((W - ph.size[0]) / 2), 130))
+            T.eyebrow(90, 'PROJETOS EM DESTAQUE', 1); T.img.alpha_composite(ph, (int((W - ph.size[0]) / 2), 130))
             cat, tit = PROJETOS[nome]; T.eyebrow(1060, cat, 1); T.centro(1100, tit, font(SERIF, 70), CREAM)
         rodape(T, i, n, W, H)
         a = os.path.join(d, f'{i:02d}.jpg'); T.img.convert('RGB').save(a, quality=92); arqs.append(a)
@@ -161,4 +163,7 @@ def stories():
     return arqs
 
 if __name__ == '__main__':
-    for f in (conheca, portfolio, capas, stories): print(f.__name__, len(f()))
+    alvo = sys.argv[3] if len(sys.argv) > 3 else 'tudo'
+    fs = {'conheca': conheca, 'portfolio': portfolio, 'capas': capas, 'stories': stories}
+    for k, f in fs.items():
+        if alvo in ('tudo', k): print(k, len(f()))

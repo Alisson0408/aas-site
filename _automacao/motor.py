@@ -8,7 +8,7 @@ Uso:
 
 Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"texto","eyebrow":"...","linhas":["...","..."],"ouro":[indices],"dur":3.2}
-  {"t":"portfolio","eyebrow":"SITES CRIADOS PELA AAS","projetos":["adao-rosa-monteiro",...],"por":1.4}
+  {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["adao-rosa-monteiro",...],"por":1.4}
   {"t":"lista","eyebrow":"...","itens":["...","..."],"dur":4.6}
   {"t":"numero","eyebrow":"...","grande":"R$ 600","linhas":["...","..."],"dur":3.2}
   {"t":"passos","eyebrow":"...","itens":[["Descoberta","texto curto"],...],"dur":5}
@@ -197,7 +197,7 @@ def reel(rot, saida):
         T = Tela(bases[idx % 2])
         fo = 1 - ease((s - (d - .4)) / .4) if idx < len(tl) - 1 else 1
         if c['t'] == 'portfolio':
-            T.eyebrow(170, c.get('eyebrow', 'SITES CRIADOS PELA AAS'), ease(s / .5) * fo)
+            T.eyebrow(170, c.get('eyebrow', 'PROJETOS EM DESTAQUE'), ease(s / .5) * fo)
             seg = c.get('por', 1.4); projs = c['projetos']
             k = min(len(projs) - 1, int(s / seg)); u = (s - k * seg) / seg; last = k == len(projs) - 1
             ph = celular(projs[k])

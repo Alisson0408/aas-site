@@ -22,7 +22,10 @@ a criação **e a publicação** automáticas, sem aprovação prévia, no Insta
 - **Garantia de 90 dias**: falhas de funcionamento, bugs no código entregue, links quebrados ou desvios do escopo combinado.
 - Método em 4 etapas: Descoberta, Criação, Refinamento, Publicação.
 - Alisson tem **mais de 5 anos na área de tecnologia**.
-- Portfólio real (chaves do motor): adao-rosa-monteiro, vanessa-oliveira, christian-gois, mesa-rosa, denise-resende, brasa-burger.
+- Portfólio (chaves do motor): adao-rosa-monteiro, vanessa-oliveira, christian-gois, mesa-rosa, denise-resende, brasa-burger.
+  **Estes são DESTAQUES, não o total.** O Alisson já criou muitos outros sites. Nunca escreva ou sugira que a AAS
+  criou "6 sites" (nada de "6 marcas", "nossos 6 projetos", "todos os nossos trabalhos"). Use sempre "alguns projetos",
+  "projetos em destaque", "seleção do portfólio". Não informe um total de projetos (não temos esse número confirmado).
 - Slogan: "Sua marca merece ser extraordinária."
 - Nunca prometa resultados financeiros, nunca crie escassez falsa (vagas/prazo inventados), nunca use depoimentos que não existam.
 
@@ -65,6 +68,23 @@ a criação **e a publicação** automáticas, sem aprovação prévia, no Insta
 8. Se a conexão do Instagram falhar ou expirar, não tente outro caminho: registre o erro no
    histórico e avise o dono na mensagem final que é preciso reconectar o Instagram no vidIQ.
 9. Mensagem final ao dono: o que foi publicado hoje (gancho + link).
+
+## Estratégia de conversão (objetivo principal: clique no link da bio e pedido de orçamento)
+Todo post tem dois trabalhos: prender a pessoa no perfil e levá-la ao link da bio.
+- **Gancho (0–2 s / capa):** dor ou desejo concreto do cliente ("Seu cliente pesquisou seu nome e não achou nada"),
+  pergunta direta, número real (preço, 7 dias, 90 dias) ou contraste antes/depois. Nunca comece com o logo.
+- **Retenção:** uma ideia por post; cenas curtas; revelar a resposta no fim (curiosidade aberta no início);
+  no carrossel, cada slide termina pedindo o próximo.
+- **Prova:** mostrar sites reais em tela de celular sempre que couber; fatos (prazo, garantia, preço) em vez de adjetivos.
+- **Objeções:** alternar posts que derrubam objeções: preço, prazo, "não entendo de tecnologia", "já tenho Instagram",
+  "e se der problema" (garantia), "como pago" (Pix/cartão).
+- **CTA único e claro** no último quadro e na legenda: "Peça seu orçamento pelo link na bio" (ou WhatsApp).
+  Variar o motivo do clique: ver o portfólio completo no site, ver preços, falar no WhatsApp.
+- **Legenda:** 1ª linha = gancho que complementa o vídeo; 2–5 linhas de valor; CTA; pergunta que gere comentário
+  (ex.: "Qual é o seu nicho? Comenta aí"); hashtags no fim.
+- **Séries:** criar séries recorrentes que fazem a pessoa seguir para ver a próxima (ex.: "Site x Instagram",
+  "Mito ou verdade", "Bastidores de um site em 7 dias", "Projetos em destaque").
+- **Medir:** priorizar o que gera visitas ao perfil e cliques no link (insights do vidIQ); registrar no `aprendizado`.
 
 ## Padrão de excelência (pedido do dono: cada post melhor que o anterior)
 Antes de criar:
