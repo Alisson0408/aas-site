@@ -8,10 +8,12 @@ a criação **e a publicação** automáticas, sem aprovação prévia, no Insta
 - Site: https://aastecnologiaeditorial.com.br (este repositório, GitHub Pages)
 - WhatsApp: (19) 98952-2187
 
-## O que publicar por dia (fuso America/Sao_Paulo)
-- **Todo dia:** 1 Reel (15–25 s).
-- **Terça, quinta e sábado:** também 1 carrossel (5 a 7 slides).
-- Nunca mais de 1 Reel e 1 carrossel no mesmo dia.
+## O que publicar (fuso America/Sao_Paulo) — duas tarefas agendadas
+- **Turno da manhã (tarefa das 7h10, terça/quinta/sábado):** 1 carrossel (5 a 7 slides), publicado por volta das 7h30,
+  quando as pessoas checam o celular antes do trabalho e salvam conteúdo para ler depois.
+- **Turno da noite (tarefa das 19h10, todos os dias):** 1 Reel (15–25 s), publicado por volta das 19h30, pico de audiência.
+- Cada tarefa faz só o formato do seu turno. Nunca mais de 1 Reel e 1 carrossel no mesmo dia.
+- O carrossel da manhã e o Reel da noite do mesmo dia devem ter temas diferentes.
 
 ## Fatos da oferta (use só estes; não invente números, clientes ou depoimentos)
 - Página de vendas a partir de **R$ 600**; site institucional a partir de **R$ 700**; manutenção **R$ 250–350/mês**.
@@ -46,7 +48,7 @@ a criação **e a publicação** automáticas, sem aprovação prévia, no Insta
    - Carrossel: slide 1 = capa com promessa; último = `cta`; 5–7 slides.
    - Português do Brasil, frases curtas, tom premium, sem emojis no criativo.
 3. Gere: `python3 _automacao/motor.py reel roteiro.json midia/reel-AAAA-MM-DD.mp4`
-   e (ter/qui/sáb) `python3 _automacao/motor.py carrossel roteiro-c.json midia/carrossel-AAAA-MM-DD/`.
+   e (turno da manhã) `python3 _automacao/motor.py carrossel roteiro-c.json midia/carrossel-AAAA-MM-DD/`.
    Confira visualmente 3–5 quadros/slides (texto cortado, sobreposto ou ilegível → ajuste e gere de novo).
 4. Commit e push dos arquivos de `midia/` para `main`. Espere o deploy do Pages concluir
    (`gh run list -R Alisson0408/aas-site -L 1`) — o arquivo fica em
