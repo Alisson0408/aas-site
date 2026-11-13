@@ -10,7 +10,7 @@ a criação **e a publicação** automáticas, sem aprovação prévia, no Insta
 
 ## O que publicar (fuso America/Sao_Paulo) — três tarefas agendadas
 O Alisson pediu DOIS Reels por dia.
-- **Reel da manhã (tarefa das 7h10, todos os dias):** 1 Reel, publicado por volta das 7h30.
+- **Reel da manhã:** seg–sex tarefa às 7h10 (publica ~7h30, deslocamento para o trabalho); sáb–dom tarefa às 9h10 (publica ~9h30, quando o público acorda mais tarde). 1 Reel.
 - **Carrossel (tarefa das 10h10, terça/quinta/sábado):** 1 carrossel (5 a 7 slides), por volta das 10h30.
 - **Reel da noite (tarefa das 19h10, todos os dias):** 1 Reel, publicado por volta das 19h30, pico de audiência.
 - Cada tarefa faz só o formato do seu turno. Os dois Reels do mesmo dia precisam ter temas e ganchos diferentes,
