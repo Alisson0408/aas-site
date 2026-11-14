@@ -15,6 +15,7 @@ Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"mito","eyebrow":"MITO 1 DE 3","mito":"...","destaque":"R$ 600","verdade":["...","..."]}  (destaque opcional)
   {"t":"texto",...,"sub":"linha menor opcional abaixo"}
   {"t":"versus","eyebrow":"...","lados":[{"rotulo":"...","pre":"a partir de","grande":"R$ 600","itens":["..."],"destaque":false},{...}],"rodape":"...","dur":5.4}
+  {"t":"check","eyebrow":"SINAL 1 DE 4","sinal":"frase-sinal","desc":"explicação curta","dica":"linha dourada opcional"}
   {"t":"cta","linhas":["Sua marca merece","ser extraordinária."],"botao":"PEÇA SEU ORÇAMENTO","dur":3.4}
 Roteiro de carrossel: {"slides": [ ...mesmos tipos, sem dur; "portfolio" usa 1 projeto: "projeto":"..." ]}
 """
@@ -248,7 +249,30 @@ def cena_versus(T, c, s, dur, fo, cy):
     if c.get('rodape'):
         T.centro(top + h + 60, c['rodape'], font(SERIF_I, 56), CREAM, ease((s - 2.2) / .5) * fo)
 
-CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito, 'versus': cena_versus}
+def cena_check(T, c, s, dur, fo, cy):
+    """Sinal de checklist: caixa marcada dourada, frase-sinal em serifa, explicação curta e dica (bloco centrado em cy)."""
+    W = T.W; a = ease(s / .5) * fo; a2 = ease((s - .5) / .5) * fo
+    tmp = ImageDraw.Draw(Image.new('RGB', (10, 10)))
+    fs = font(SERIF, c.get('size', 78)); fd = font(MED, c.get('size_desc', 40)); fk = font(SERIF_I, 44)
+    ls = quebrar(tmp, c['sinal'], fs, W - 200); ld = quebrar(tmp, c.get('desc', ''), fd, W - 240) if c.get('desc') else []
+    box = 130
+    h = 70 + box + 70 + len(ls) * fs.size * 1.2 + 70 + len(ld) * fd.size * 1.45 + (110 if c.get('dica') else 0)
+    top = cy - h / 2
+    T.eyebrow(top, c.get('eyebrow', ''), a)
+    L, d = T.layer(); y = top + 70; bx = (W - box) / 2
+    d.rounded_rectangle((bx, y, bx + box, y + box), 14, outline=GOLD + (int(255 * a),), width=5)
+    d.line((bx + 30, y + 68, bx + 56, y + 96, bx + 104, y + 36), fill=GOLD2 + (int(255 * a2),), width=12, joint='curve')
+    y += box + 70
+    for q in ls:
+        w = d.textlength(q, font=fs); d.text(((W - w) / 2, y), q, font=fs, fill=CREAM + (int(255 * a),)); y += fs.size * 1.2
+    d.line((W / 2 - 60, y + 30, W / 2 + 60, y + 30), fill=GOLD + (int(160 * a),), width=2); y += 70
+    for q in ld:
+        w = d.textlength(q, font=fd); d.text(((W - w) / 2, y), q, font=fd, fill=MUTED + (int(255 * a2),)); y += fd.size * 1.45
+    if c.get('dica'):
+        y += 50; w = d.textlength(c['dica'], font=fk); d.text(((W - w) / 2, y), c['dica'], font=fk, fill=GOLD2 + (int(255 * a2),))
+    T.put(L)
+
+CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito, 'versus': cena_versus, 'check': cena_check}
 
 # ---------------- REEL ----------------
 def reel(rot, saida):

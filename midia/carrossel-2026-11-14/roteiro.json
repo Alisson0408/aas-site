@@ -1,0 +1,9 @@
+{"slides": [
+ {"t":"texto","eyebrow":"TESTE RÁPIDO · SALVE ESTE POST","linhas":["Sua marca já","precisa de","um site?"],"ouro":[2],"size":120,"sub":"4 sinais. Conte quantos são seus."},
+ {"t":"check","eyebrow":"SINAL 1 DE 4","sinal":"O cliente pede o seu link e você manda só o @.","desc":"Instagram é vitrine. O site é o endereço onde ele confirma que a sua marca é séria.","dica":"É você? Conte 1 e arraste."},
+ {"t":"check","eyebrow":"SINAL 2 DE 4","sinal":"Você explica preço e serviço no direct todos os dias.","desc":"Um site responde as mesmas perguntas a qualquer hora, sem você digitar nada.","dica":"Conte mais 1 e arraste."},
+ {"t":"check","eyebrow":"SINAL 3 DE 4","sinal":"Pesquisam seu nome no Google e não acham você.","desc":"Quem procura e não acha costuma fechar com quem aparece primeiro.","dica":"Falta só um. Arraste."},
+ {"t":"check","eyebrow":"SINAL 4 DE 4","sinal":"Se o Instagram sair do ar amanhã, a sua marca some.","desc":"Perfil é espaço alugado. Site com domínio próprio é seu.","dica":"Agora some e veja o resultado."},
+ {"t":"texto","eyebrow":"RESULTADO","linhas":["Contou 2 ou mais?","Está na hora","do seu site."],"ouro":[1,2],"size":104,"sub":"Domínio e hospedagem inclusos · no ar em 7 dias"},
+ {"t":"cta","linhas":["Sua marca merece","ser encontrada."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187"}
+]}
