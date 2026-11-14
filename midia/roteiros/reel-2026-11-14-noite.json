@@ -1,0 +1,9 @@
+{"trilha": 1, "cenas": [
+ {"t":"texto","eyebrow":"SITE X INSTAGRAM","linhas":["Sua marca mora","só no Instagram?"],"ouro":[1],"sub":"Então ela está pagando aluguel.","size_sub":48,"dur":2.6},
+ {"t":"versus","eyebrow":"ONDE SUA MARCA MORA","lados":[
+   {"rotulo":"Só Instagram","pre":"um espaço","grande":"Alugado","itens":["Regras da plataforma","Depende do algoritmo","Difícil achar no Google"],"destaque":false},
+   {"rotulo":"Site próprio","pre":"um endereço","grande":"Seu","itens":["Suas regras","Seu domínio","Pronto para o Google"],"destaque":true}],
+  "rodape":"O Instagram atrai. O site convence.","dur":5.4},
+ {"t":"numero","eyebrow":"SEU ENDEREÇO PRÓPRIO A PARTIR DE","grande":"R$ 600","linhas":["Domínio e hospedagem inclusos.","No ar em 7 dias."],"dur":2.9},
+ {"t":"cta","linhas":["Saia do aluguel.","Tenha seu endereço."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.3}
+]}
