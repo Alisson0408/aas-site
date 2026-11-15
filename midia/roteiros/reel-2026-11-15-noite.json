@@ -1,0 +1,7 @@
+{"trilha": 0, "cenas": [
+ {"t":"texto","eyebrow":"PSICÓLOGOS E TERAPEUTAS","linhas":["Antes da 1ª sessão,","seu paciente","pesquisa seu nome."],"ouro":[2],"sub":"O que ele encontra?","size_sub":48,"dur":2.8},
+ {"t":"lista","eyebrow":"UM SITE RESPONDE ANTES DE ELE PERGUNTAR","itens":["Sua abordagem e formação","Como funciona a sessão","Online ou presencial","Botão direto pro WhatsApp"],"dur":3.8},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["christian-gois","vanessa-oliveira"],"por":1.4},
+ {"t":"numero","eyebrow":"SITE INSTITUCIONAL A PARTIR DE","grande":"R$ 700","linhas":["Domínio e hospedagem inclusos.","No ar em 7 dias."],"dur":3.0},
+ {"t":"cta","linhas":["A confiança começa","antes da 1ª sessão."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}
