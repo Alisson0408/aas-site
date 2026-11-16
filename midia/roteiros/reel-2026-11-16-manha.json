@@ -1,0 +1,7 @@
+{"trilha": 1, "cenas": [
+ {"t":"texto","eyebrow":"SEGUNDA-FEIRA, LISTA DE PENDÊNCIAS","linhas":["“Fazer o site”","está nessa lista","há quantos meses?"],"ouro":[0],"sub":"Esta semana pode ser diferente.","size_sub":46,"dur":2.8},
+ {"t":"lista","eyebrow":"NA AAS, JÁ VEM INCLUSO","itens":["Domínio","Hospedagem","4 rodadas de alterações","Garantia de 90 dias"],"dur":3.6},
+ {"t":"numero","eyebrow":"DO PRIMEIRO CONTATO À ENTREGA","grande":"7 dias","linhas":["Método em 4 etapas.","Você acompanha cada uma."],"dur":3.0},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["denise-resende","mesa-rosa"],"por":1.4},
+ {"t":"cta","linhas":["Risque o site","da sua lista."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}
