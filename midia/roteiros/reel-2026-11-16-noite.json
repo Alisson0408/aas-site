@@ -1,0 +1,7 @@
+{"trilha": 2, "cenas": [
+ {"t":"texto","eyebrow":"RESTAURANTES E DELIVERY","linhas":["Seu cardápio ainda","é um PDF","no WhatsApp?"],"ouro":[1],"sub":"Com fome, ninguém espera baixar arquivo.","size_sub":44,"dur":2.7},
+ {"t":"lista","eyebrow":"NUM SITE, SEU CLIENTE VÊ NA HORA","itens":["Cardápio com fotos","Horários e endereço","Botão direto pro WhatsApp","Um link pronto pra bio"],"dur":3.6},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["brasa-burger","mesa-rosa"],"por":1.4},
+ {"t":"numero","eyebrow":"SITE INSTITUCIONAL A PARTIR DE","grande":"R$ 700","linhas":["No ar em 7 dias.","Domínio e hospedagem inclusos."],"dur":3.0},
+ {"t":"cta","linhas":["Seu cardápio merece","ser servido bonito."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}
