@@ -1,0 +1,128 @@
+{
+ "slides": [
+  {
+   "t": "texto",
+   "eyebrow": "TESTE DE 30 SEGUNDOS · SALVE",
+   "linhas": [
+    "Página de vendas",
+    "ou site?"
+   ],
+   "ouro": [
+    1
+   ],
+   "size": 120,
+   "sub": "Responda 4 perguntas. Anote A ou B.",
+   "size_sub": 42
+  },
+  {
+   "t": "escolha",
+   "eyebrow": "PERGUNTA 1 DE 4",
+   "pergunta": "O que você quer divulgar?",
+   "opcoes": [
+    {
+     "letra": "A",
+     "rotulo": "página de vendas",
+     "texto": "Uma oferta específica: um curso, um serviço, um lançamento."
+    },
+    {
+     "letra": "B",
+     "rotulo": "site",
+     "texto": "A marca inteira, com todos os seus serviços."
+    }
+   ],
+   "dica": "Anotou? Arraste para a próxima."
+  },
+  {
+   "t": "escolha",
+   "eyebrow": "PERGUNTA 2 DE 4",
+   "pergunta": "De onde vem o seu cliente?",
+   "opcoes": [
+    {
+     "letra": "A",
+     "rotulo": "página de vendas",
+     "texto": "De um anúncio ou do link da bio, já quase decidido."
+    },
+    {
+     "letra": "B",
+     "rotulo": "site",
+     "texto": "Do Google, pesquisando o seu nome antes de contratar."
+    }
+   ],
+   "dica": "Mais uma. Arraste."
+  },
+  {
+   "t": "escolha",
+   "eyebrow": "PERGUNTA 3 DE 4",
+   "pergunta": "O que ele precisa ver antes de decidir?",
+   "opcoes": [
+    {
+     "letra": "A",
+     "rotulo": "página de vendas",
+     "texto": "Uma oferta clara e um botão para comprar."
+    },
+    {
+     "letra": "B",
+     "rotulo": "site",
+     "texto": "Sua história, seu portfólio e seus serviços."
+    }
+   ],
+   "dica": "Falta só uma."
+  },
+  {
+   "t": "escolha",
+   "eyebrow": "PERGUNTA 4 DE 4",
+   "pergunta": "Qual é o próximo passo dele?",
+   "opcoes": [
+    {
+     "letra": "A",
+     "rotulo": "página de vendas",
+     "texto": "Comprar ou se inscrever agora."
+    },
+    {
+     "letra": "B",
+     "rotulo": "site",
+     "texto": "Conhecer, comparar e chamar você no WhatsApp."
+    }
+   ],
+   "dica": "Agora conte: mais A ou mais B?"
+  },
+  {
+   "t": "versus",
+   "eyebrow": "O SEU RESULTADO",
+   "lados": [
+    {
+     "rotulo": "Mais A: página",
+     "pre": "a partir de",
+     "grande": "R$ 600",
+     "itens": [
+      "Uma oferta",
+      "Foco em conversão",
+      "Ideal para anúncios"
+     ],
+     "destaque": false
+    },
+    {
+     "rotulo": "Mais B: site",
+     "pre": "a partir de",
+     "grande": "R$ 700",
+     "itens": [
+      "A marca inteira",
+      "Portfólio e serviços",
+      "Ser achado no Google"
+     ],
+     "destaque": true
+    }
+   ],
+   "rodape": "Os dois: no ar em 7 dias."
+  },
+  {
+   "t": "cta",
+   "linhas": [
+    "Deu empate?",
+    "A gente te ajuda a escolher."
+   ],
+   "botao": "PEÇA SEU ORÇAMENTO",
+   "rodape": "Link na bio  ·  WhatsApp (19) 98952-2187"
+  }
+ ]
+}
