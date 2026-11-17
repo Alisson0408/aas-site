@@ -1,0 +1,8 @@
+{"trilha": 2, "cenas": [
+ {"t":"texto","eyebrow":"MITO OU VERDADE","linhas":["Domínio. Hospedagem.","DNS. Código.","Travou só de ler?"],"ouro":[2],"sub":"Calma. Isso não é tarefa sua.","size_sub":44,"dur":2.2},
+ {"t":"mito","eyebrow":"MITO OU VERDADE · 1","mito":"Preciso entender de tecnologia.","size_mito":84,"size_verdade":48,"rotulo":"MITO","verdade":["Você fala do seu negócio.","A parte técnica fica com a gente."],"dur":3.2},
+ {"t":"lista","eyebrow":"NA AAS, VOCÊ NÃO MEXE EM NADA DISSO","itens":["Domínio e hospedagem inclusos","Layout, código e publicação","4 rodadas de alterações","Garantia de 90 dias contra bugs"],"dur":3.6},
+ {"t":"portfolio","eyebrow":"PROJETO EM DESTAQUE · MARCA PESSOAL","projetos":["vanessa-oliveira"],"por":2.0},
+ {"t":"numero","eyebrow":"DO PRIMEIRO CONTATO AO SITE NO AR","grande":"7 dias","linhas":["Site institucional","a partir de R$ 700."],"dur":2.6},
+ {"t":"cta","linhas":["Você cuida do negócio.","A tecnologia é com a gente."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.2}
+]}
