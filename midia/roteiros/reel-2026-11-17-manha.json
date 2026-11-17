@@ -1,0 +1,7 @@
+{"trilha": 0, "cenas": [
+ {"t":"texto","eyebrow":"MÚSICOS E ARTISTAS","linhas":["Um contratante","pediu seu material.","Você manda o quê?"],"ouro":[1],"sub":"Link do Instagram não é portfólio.","size_sub":44,"dur":2.2},
+ {"t":"lista","eyebrow":"NUM SITE, O CONTRATANTE ENCONTRA","itens":["Release e biografia","Fotos e vídeos de shows","Agenda e repertório","Botão pra contratar no WhatsApp"],"dur":3.8},
+ {"t":"portfolio","eyebrow":"PROJETO EM DESTAQUE","projetos":["adao-rosa-monteiro"],"por":2.2},
+ {"t":"numero","eyebrow":"SITE INSTITUCIONAL A PARTIR DE","grande":"R$ 700","linhas":["No ar em 7 dias.","Domínio e hospedagem inclusos."],"dur":3.0},
+ {"t":"cta","linhas":["Seu show começa","antes do palco."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}
