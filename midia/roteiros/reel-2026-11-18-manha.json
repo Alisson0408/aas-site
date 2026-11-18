@@ -1,0 +1,7 @@
+{"trilha": 1, "cenas": [
+ {"t":"texto","eyebrow":"UMA INDICAÇÃO CHEGOU","linhas":["Alguém te indicou","hoje cedo.","O que vão achar?"],"ouro":[2],"dur":2.4},
+ {"t":"texto","eyebrow":"ANTES DE TE CHAMAR","linhas":["Ela pesquisa","o seu nome."],"ouro":[1],"sub":"Indicação abre a porta. O site convence.","size_sub":42,"dur":2.6},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["christian-gois","mesa-rosa","denise-resende"],"por":1.5},
+ {"t":"lista","eyebrow":"NO AR EM 7 DIAS, COM","itens":["Domínio e hospedagem inclusos","4 rodadas de alterações","Garantia de 90 dias","Pix ou cartão de crédito"],"dur":3.8},
+ {"t":"cta","linhas":["Quando te indicarem,","tenha onde mandar."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}
