@@ -61,6 +61,14 @@ h2{font-family:var(--serif);font-size:clamp(1.6rem,6vw,2.1rem);line-height:1.2;m
 .line.on{background:#fff6e4;border-color:var(--gold)}
 .tip{background:#fff6e4;border-left:6px solid var(--gold);border-radius:0 16px 16px 0;padding:16px 18px;margin-top:6px;font-size:20px}
 .empty{text-align:center;padding:80px 0}
+.entry{max-width:520px;margin:20px auto}
+.entry input{width:100%;font-family:var(--sans);font-size:26px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:18px;border-radius:18px;border:2px solid var(--line);background:#fff;color:var(--ink);margin:10px 0 14px}
+.entry input:focus{outline:4px solid var(--gold);outline-offset:2px}
+.err{color:#b23a2e;font-weight:700;min-height:28px;margin-top:10px}
+.lesson-btn{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:20px;padding:20px;margin:12px 0;font-family:var(--sans);font-size:22px;font-weight:700;color:var(--ink);cursor:pointer}
+.lesson-btn small{display:block;font-weight:400;font-size:17px;color:var(--soft);margin-top:2px}
+.lesson-btn .go{flex:none;background:var(--play);color:#fff;border-radius:14px;padding:10px 16px;font-size:18px}
+.linkbtn{background:none;border:0;color:var(--gold);font-family:var(--sans);font-size:19px;font-weight:700;cursor:pointer;text-decoration:underline;padding:8px 0}
 footer{text-align:center;color:var(--soft);font-size:16px;padding:18px 0 50px}
 footer a{color:var(--gold)}
 @media(max-width:480px){body{font-size:20px}.step{padding:22px 16px;border-radius:22px}.chords{gap:10px}.line{padding:10px;flex-wrap:wrap}.line .tx{font-size:20px;flex-basis:100%}}
@@ -75,38 +83,95 @@ footer a{color:var(--gold)}
 <div id="app"></div>
 <footer>Feito com <a href="./">AAS Music</a> · AAS Tecnologia Editorial</footer>
 
+<script src="config.js"></script>
 <script src="engine.js"></script>
 <script>
 (function(){
 "use strict";
-var A=window.AASM, esc=A.esc, app=document.getElementById('app');
-var L=A.decode(location.hash);
-if(!L||!L.m){
-  app.innerHTML='<div class="wrap empty"><div class="brand">AAS Music</div><h1>Aula <em>não encontrada</em></h1><p style="color:#5c5046;margin-top:14px">Peça ao seu professor para enviar o link de novo, completo.</p></div>';
-  return;
+var A=window.AASM, C=window.AASM_CONFIG, esc=A.esc, app=document.getElementById('app'), KEY='aasmusic.codigo';
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v);}catch(e){return null;}}
+
+/* ---------- link antigo (#v1) ---------- */
+var L0=A.decode(location.hash);
+if(L0&&L0.m){renderLesson(L0,null);return;}
+
+/* ---------- entrada por código ---------- */
+var qs=new URLSearchParams(location.search), code=(qs.get('c')||store(KEY)||'').toUpperCase().trim(), data=null;
+if(qs.get('c')) history.replaceState(null,'',location.pathname);
+if(code) entrar(code); else telaCodigo('');
+
+function telaCodigo(erro){
+  A.stopAll();
+  app.innerHTML='<header class="wrap"><div class="brand">AAS Music</div><h1>Minhas <em>aulas</em></h1><p>Digite o código que o seu professor enviou.</p></header>'+
+    '<main class="wrap"><section class="step entry"><label for="cod" style="font-weight:700">Código</label><input id="cod" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EX.: MARIA-7K2QX" value="'+esc(code)+'">'+
+    '<button class="btn btn-play" id="bEntrar">Entrar</button><div class="err" id="err">'+esc(erro||'')+'</div>'+
+    '<p style="color:var(--soft);font-size:18px;margin-top:6px">Não tem código? Peça ao seu professor.</p></section></main>';
+  var inp=document.getElementById('cod');
+  document.getElementById('bEntrar').addEventListener('click',function(){var v=inp.value.toUpperCase().trim();if(!v){document.getElementById('err').textContent='Digite o código.';return;}entrar(v);});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('bEntrar').click();});
 }
-document.title=(L.a?'Aulas de '+L.a:'Minha aula')+' · AAS Music';
-
-var songs=L.m.map(function(m){var p=A.parse(m.x,m.b);return {n:m.n,style:m.y,slow:m.s||70,normal:m.f||90,lines:p.lines,segs:p.segs};}).filter(function(s){return s.segs.length;});
-var all=[];songs.forEach(function(s){A.uniqueChords(s.segs).forEach(function(c){if(all.indexOf(c)<0)all.push(c);});});
-
-var h='<header class="wrap"><div class="brand">AAS Music</div><h1>Aulas <em>'+esc(L.a||'de violão')+'</em></h1><p>'+esc([L.p?(/^prof/i.test(L.p)?L.p:'Prof. '+L.p):'',L.t].filter(Boolean).join(' · '))+'</p></header><main class="wrap">';
-if(L.r) h+='<div class="note"><b>Recado do professor</b>'+esc(L.r)+'</div>';
-var n=1;
-h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Os acordes</h2><p>Monte o acorde no violão e toque. Depois aperte <b>Ouvir</b> e compare.</p><div class="chords">';
-all.forEach(function(c){h+='<div class="chord"><h3>'+c+' <small>'+esc(A.CH[c].n)+'</small></h3>'+A.diagram(c,'light')+'<button class="btn btn-hear" data-hear="'+c+'"><svg><use href="#i-ear"/></svg>Ouvir</button></div>';});
-h+='</div><div class="tip">Números nas bolinhas = <b>dedos</b>: 1 indicador, 2 médio, 3 anelar, 4 mindinho. <b>×</b> = não tocar essa corda.</div></section>';
-if(all.length>1){
-  h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Treinar a troca</h2><p>O som toca '+all.join(', ')+' e repete. Troque quando a tela mudar.</p><div data-player="treino"></div></section>';
+async function entrar(c){
+  code=c;
+  app.innerHTML='<div class="wrap empty"><div class="brand">AAS Music</div><h1>Abrindo suas <em>aulas</em>…</h1></div>';
+  try{
+    var r=await fetch(C.supabaseUrl+'/rest/v1/rpc/aluno_entrar',{method:'POST',headers:{apikey:C.supabaseKey,'Content-Type':'application/json'},body:JSON.stringify({p_codigo:c})});
+    data=await r.json();
+    if(!r.ok) throw new Error('falha');
+  }catch(e){
+    app.innerHTML='<div class="wrap empty"><div class="brand">AAS Music</div><h1>Sem <em>internet</em>?</h1><p style="color:#5c5046;margin:14px 0 20px">Não conseguimos abrir suas aulas agora.</p><button class="btn btn-play" id="bTry">Tentar de novo</button></div>';
+    document.getElementById('bTry').addEventListener('click',function(){entrar(c);});return;
+  }
+  if(data.erro==='codigo'){store(KEY,null);telaCodigo('Código não encontrado. Confira e tente de novo.');return;}
+  if(data.erro==='bloqueado'){
+    app.innerHTML='<div class="wrap empty"><div class="brand">AAS Music</div><h1>Aulas <em>pausadas</em></h1><p style="color:#5c5046;margin:14px 0 20px">O acesso do seu professor'+(data.professor?' ('+esc(data.professor)+')':'')+' está pausado no momento. Fale com ele.</p><button class="linkbtn" id="bOutro">Usar outro código</button></div>';
+    document.getElementById('bOutro').addEventListener('click',function(){store(KEY,null);code='';telaCodigo('');});return;
+  }
+  store(KEY,c);lista();
 }
-songs.forEach(function(s,i){
-  h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>'+esc(s.n||'Música '+(i+1))+'</h2><p>Aperte <b>Tocar</b>. A tela conta 4, 3, 2, 1 e a música começa.</p><div data-player="'+i+'"></div></section>';
-});
-h+='<div class="tip" style="margin-bottom:10px">Sem som? Tire o celular do <b>silencioso</b> e aumente o volume.</div></main>';
-app.innerHTML=h;
+function lista(){
+  A.stopAll();
+  var aulas=data.aulas||[];
+  if(aulas.length===1){abrir(0,true);return;}
+  var h='<header class="wrap"><div class="brand">AAS Music</div><h1>Olá, <em>'+esc((data.aluno||'').split(' ')[0])+'</em>!</h1><p>'+esc(data.professor?(/^prof/i.test(data.professor)?data.professor:'Prof. '+data.professor):'')+'</p></header><main class="wrap"><section class="step"><span class="tag">Suas aulas</span>';
+  if(!aulas.length) h+='<p style="color:var(--soft)">Seu professor ainda não enviou nenhuma aula. Volte mais tarde.</p>';
+  aulas.forEach(function(a,i){var n=(a.songs||[]).length;h+='<button class="lesson-btn" data-i="'+i+'"><span>'+esc(a.titulo||'Aula '+(i+1))+'<small>'+n+' música'+(n===1?'':'s')+'</small></span><span class="go">Abrir</span></button>';});
+  h+='</section><p style="text-align:center"><button class="linkbtn" id="bSair">Usar outro código</button></p></main>';
+  app.innerHTML=h;scrollTo(0,0);
+  app.querySelectorAll('[data-i]').forEach(function(b){b.addEventListener('click',function(){abrir(+b.dataset.i,false);});});
+  document.getElementById('bSair').addEventListener('click',function(){store(KEY,null);code='';telaCodigo('');});
+}
+function abrir(i,only){
+  var a=data.aulas[i];
+  var L={a:data.aluno,p:data.professor,t:a.titulo,r:a.recado,m:(a.songs||[]).map(function(s){return {n:s.n,y:s.style,s:s.slow,f:s.normal,b:s.beats,x:s.text};})};
+  renderLesson(L,only?null:lista,only);
+}
 
-document.querySelectorAll('[data-hear]').forEach(function(b){b.addEventListener('click',function(){A.hear(b.dataset.hear);});});
-
+/* ---------- aula ---------- */
+function renderLesson(L,back,only){
+  A.stopAll();
+  document.title=(L.a?'Aulas de '+L.a:'Minha aula')+' · AAS Music';
+  var songs=(L.m||[]).map(function(m){var p=A.parse(m.x,m.b);return {n:m.n,style:m.y,slow:m.s||70,normal:m.f||90,lines:p.lines,segs:p.segs};}).filter(function(s){return s.segs.length;});
+  var all=[];songs.forEach(function(s){A.uniqueChords(s.segs).forEach(function(c){if(all.indexOf(c)<0)all.push(c);});});
+  var prof=L.p?(/^prof/i.test(L.p)?L.p:'Prof. '+L.p):'';
+  var h='<header class="wrap"><div class="brand">AAS Music</div><h1>Aulas <em>'+esc(L.a||'de violão')+'</em></h1><p>'+esc([prof,L.t].filter(Boolean).join(' · '))+'</p>'+(back?'<button class="linkbtn" id="bBack">← Todas as aulas</button>':'')+'</header><main class="wrap">';
+  if(L.r) h+='<div class="note"><b>Recado do professor</b>'+esc(L.r)+'</div>';
+  var n=1;
+  h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Os acordes</h2><p>Monte o acorde no violão e toque. Depois aperte <b>Ouvir</b> e compare.</p><div class="chords">';
+  all.forEach(function(c){h+='<div class="chord"><h3>'+c+' <small>'+esc(A.CH[c].n)+'</small></h3>'+A.diagram(c,'light')+'<button class="btn btn-hear" data-hear="'+c+'"><svg><use href="#i-ear"/></svg>Ouvir</button></div>';});
+  h+='</div><div class="tip">Números nas bolinhas = <b>dedos</b>: 1 indicador, 2 médio, 3 anelar, 4 mindinho. <b>×</b> = não tocar essa corda.</div></section>';
+  if(all.length>1) h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Treinar a troca</h2><p>O som toca '+all.join(', ')+' e repete. Troque quando a tela mudar.</p><div data-player="treino"></div></section>';
+  songs.forEach(function(s,i){h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>'+esc(s.n||'Música '+(i+1))+'</h2><p>Aperte <b>Tocar</b>. A tela conta 4, 3, 2, 1 e a música começa.</p><div data-player="'+i+'"></div></section>';});
+  h+='<div class="tip" style="margin-bottom:10px">Sem som? Tire o celular do <b>silencioso</b> e aumente o volume.</div>';
+  if(only&&!L0) h+='<p style="text-align:center;margin-top:10px"><button class="linkbtn" id="bSair2">Usar outro código</button></p>';
+  h+='</main>';
+  app.innerHTML=h;scrollTo(0,0);
+  if(back) document.getElementById('bBack').addEventListener('click',back);
+  var s2=document.getElementById('bSair2');if(s2) s2.addEventListener('click',function(){store(KEY,null);code='';telaCodigo('');});
+  app.querySelectorAll('[data-hear]').forEach(function(b){b.addEventListener('click',function(){A.hear(b.dataset.hear);});});
+  if(all.length>1){var ts=[];for(var r=0;r<3;r++) all.forEach(function(c){ts.push({c:c,b:4,line:0,part:''});});
+    build(app.querySelector('[data-player="treino"]'),{segs:ts,lines:[],style:(songs[0]&&songs[0].style)||'pop',slow:60,normal:80},true);}
+  songs.forEach(function(s,i){build(app.querySelector('[data-player="'+i+'"]'),s,false);});
+}
 function build(el,song,isTrain){
   var x='<button class="btn btn-play" data-play><svg><use href="#i-play"/></svg><span>Tocar</span></button>';
   x+='<div class="speed"><button data-sp="slow" aria-pressed="true">Devagar</button><button data-sp="normal" aria-pressed="false">Normal</button></div>';
@@ -154,11 +219,6 @@ function build(el,song,isTrain){
     if(stopFn){var f=stopFn;stopFn=null;f();start();}
   });});
 }
-if(all.length>1){
-  var tsegs=[];for(var r=0;r<3;r++) all.forEach(function(c){tsegs.push({c:c,b:4,line:0,part:''});});
-  build(document.querySelector('[data-player="treino"]'),{segs:tsegs,lines:[],style:(songs[0]&&songs[0].style)||'pop',slow:60,normal:80},true);
-}
-songs.forEach(function(s,i){build(document.querySelector('[data-player="'+i+'"]'),s,false);});
 })();
 </script>
 </body>

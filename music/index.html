@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AAS Music · Painel do Professor</title>
-<meta name="description" content="AAS Music: monte aulas de violão com áudio e acordes na tela e envie um link para cada aluno.">
+<title>AAS Music · Aulas de violão com áudio</title>
+<meta name="description" content="AAS Music: o professor monta a aula com acordes e áudio, o aluno treina em casa pelo celular.">
 <meta name="theme-color" content="#0b0a08">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -13,19 +13,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0a08;--bg2:#12100d;--panel:#18150f;--panel2:#1f1b14;--line:#ffffff17;--gold:#c9a66b;--gold2:#e6c896;--cream:#f3ece0;--muted:#a69f94;--wa:#25d366;--red:#e0715f;
+:root{--bg:#0b0a08;--panel:#18150f;--panel2:#1f1b14;--line:#ffffff17;--gold:#c9a66b;--gold2:#e6c896;--cream:#f3ece0;--muted:#a69f94;--wa:#25d366;--red:#e0715f;--ok:#7bd88f;
 --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:radial-gradient(900px 500px at 90% -10%,#c9a66b1c,transparent 60%),var(--bg);background-attachment:fixed;color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
 .wrap{width:min(980px,92%);margin:auto}
 header{position:sticky;top:0;z-index:20;background:#0b0a08cc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
-.logo{font-family:var(--serif);font-size:1.35rem;display:flex;align-items:center;gap:10px}
+.logo{font-family:var(--serif);font-size:1.35rem;display:flex;align-items:center;gap:10px;color:var(--cream);text-decoration:none}
 .logo em{color:var(--gold)}
 .logo img{width:30px;height:30px;border-radius:8px}
-.beta{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2);border:1px solid #c9a66b55;border-radius:999px;padding:4px 10px;white-space:nowrap}
 h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.1}
-h1{font-size:clamp(2rem,5vw,3.2rem)}
+h1{font-size:clamp(2.1rem,6vw,3.6rem)}
 h1 em,h2 em{color:var(--gold);font-style:italic}
 h2{font-size:1.6rem}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;text-transform:uppercase;letter-spacing:.26em;color:var(--gold);font-weight:700;margin-bottom:14px}
@@ -35,6 +34,7 @@ h2{font-size:1.6rem}
 .hero p{max-width:620px;margin-top:12px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border-radius:999px;font-weight:700;font-size:14px;border:0;cursor:pointer;text-decoration:none;transition:.25s;font-family:var(--sans);color:var(--cream);background:transparent}
 .btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
 .btn svg{width:18px;height:18px}
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a140a;box-shadow:0 12px 34px #c9a66b40}
@@ -43,6 +43,7 @@ h2{font-size:1.6rem}
 .btn-ghost:hover{border-color:var(--gold)}
 .btn-sm{padding:9px 14px;font-size:13px}
 .btn-danger{color:var(--red);border:1px solid #e0715f55}
+.btn-block{width:100%}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;min-width:0}
@@ -53,12 +54,13 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#c
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .grid4{display:grid;grid-template-columns:2fr 1.4fr 1fr 1fr 1fr;gap:12px}
 .grid2>*,.grid4>*{min-width:0}
-.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin:22px 0 40px}
-.lesson h3{font-size:1.4rem;margin-bottom:4px}
-.lesson .meta{font-size:14px;color:var(--muted);margin-bottom:16px}
-.lesson .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:18px 0 30px}
+.item h3{font-size:1.35rem;margin-bottom:4px}
+.item .meta{font-size:14px;color:var(--muted);margin-bottom:14px}
+.code{font-family:ui-monospace,Menlo,monospace;font-weight:700;letter-spacing:.08em;color:var(--gold2);background:#c9a66b14;border:1px solid #c9a66b40;border-radius:9px;padding:3px 10px;font-size:14px}
+.code.big{font-size:1.6rem;padding:10px 18px;border-radius:14px;display:inline-block}
 .chip{font-family:var(--serif);font-weight:700;font-size:14px;color:var(--gold2);background:#c9a66b14;border:1px solid #c9a66b40;border-radius:9px;padding:3px 10px}
-.empty{text-align:center;padding:50px 20px;border:1px dashed #ffffff26;border-radius:22px;color:var(--muted)}
+.empty{text-align:center;padding:44px 20px;border:1px dashed #ffffff26;border-radius:22px;color:var(--muted);grid-column:1/-1}
 .song{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:18px}
 .song-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
 .song-head h3{font-size:1.2rem}
@@ -69,25 +71,47 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#c
 .help{font-size:13px;color:var(--muted);background:#ffffff06;border-radius:12px;padding:10px 14px;margin-top:8px}
 .help code{color:var(--gold2);font-family:ui-monospace,Menlo,monospace}
 .check{font-size:13px;margin-top:8px}
-.check.ok{color:#7bd88f}.check.warn{color:var(--red)}
+.check.ok{color:var(--ok)}.check.warn{color:var(--red)}
 .preview{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}
 .preview .now{font-family:var(--serif);font-size:2.6rem;color:var(--gold2);min-width:70px;text-align:center;line-height:1}
 .preview .nx{font-size:13px;color:var(--muted)}
 .bar{flex:1;min-width:120px;height:6px;background:#ffffff14;border-radius:6px;overflow:hidden}
 .bar div{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2))}
 .sticky-actions{position:sticky;bottom:0;background:linear-gradient(180deg,transparent,#0b0a08 30%);padding:26px 0 18px;margin-top:10px}
+.banner{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border-radius:18px;padding:16px 20px;margin:20px 0 6px;border:1px solid #c9a66b55;background:#c9a66b12}
+.banner.bad{border-color:#e0715f66;background:#e0715f14}
+.banner.good{border-color:#7bd88f55;background:#7bd88f10}
+.banner b{color:var(--cream)}
+.tabs{display:flex;gap:6px;margin:22px 0 4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{background:none;border:0;color:var(--muted);font-family:var(--sans);font-weight:700;font-size:15px;padding:12px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs button.on{color:var(--cream);border-color:var(--gold)}
+.choose{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:30px 0}
+.choose a{display:block;text-decoration:none;color:var(--cream);background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:30px;transition:.25s}
+.choose a:hover{border-color:var(--gold);transform:translateY(-3px)}
+.choose .ic{font-size:2.2rem;margin-bottom:10px}
+.choose h2{margin-bottom:6px}
+.auth{max-width:440px;margin:30px auto}
+.auth .tabs{margin-top:0}
+.msg{font-size:14px;margin-top:10px;min-height:20px}
+.msg.err{color:var(--red)}.msg.ok{color:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{color:var(--muted);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.tbl{overflow-x:auto}
+.pill{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.pill.on{background:#7bd88f22;color:var(--ok)}.pill.off{background:#e0715f22;color:var(--red)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);opacity:0;pointer-events:none;background:var(--panel2);border:1px solid #c9a66b55;color:var(--cream);padding:12px 20px;border-radius:999px;transition:.35s;z-index:60;font-size:14px;max-width:92%}
+.toast.show{transform:translateX(-50%);opacity:1}
 .modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:50;padding:18px}
 .modal.open{display:flex}
-.modal .card{width:min(560px,100%);box-shadow:0 40px 100px #000c}
-.modal h2{margin-bottom:6px}
-.link{font-size:13px;word-break:break-all;color:var(--muted);background:#0f0d0a;border:1px solid var(--line);border-radius:12px;padding:12px;max-height:110px;overflow:auto;margin:14px 0}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);opacity:0;pointer-events:none;background:var(--panel2);border:1px solid #c9a66b55;color:var(--cream);padding:12px 20px;border-radius:999px;transition:.35s;z-index:60;font-size:14px}
-.toast.show{transform:translateX(-50%);opacity:1}
+.modal .card{width:min(520px,100%);box-shadow:0 40px 100px #000c}
 footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:13px;margin-top:40px}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--gold2);text-decoration:none}
 .hidden{display:none!important}
-@media(max-width:760px){.grid4{grid-template-columns:1fr 1fr}.grid4 .f-name,.grid4 .f-style{grid-column:1/-1}.grid2{grid-template-columns:1fr}.beta{display:none}}
+.back{background:none;border:0;color:var(--muted);font-family:var(--sans);font-size:14px;cursor:pointer;padding:0;margin-bottom:10px}
+.back:hover{color:var(--gold2)}
+@media(max-width:760px){.grid4{grid-template-columns:1fr 1fr}.grid4 .f-name,.grid4 .f-style{grid-column:1/-1}.grid2,.choose{grid-template-columns:1fr}#hdrUser .muted{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -96,138 +120,346 @@ footer a{color:var(--gold2);text-decoration:none}
   <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></symbol>
   <symbol id="i-stop" viewBox="0 0 24 24"><rect fill="currentColor" x="6" y="6" width="12" height="12" rx="2"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
-  <symbol id="i-send" viewBox="0 0 24 24"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6 3.3 10l12.6 2-12.6 2z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.2z"/></symbol>
 </svg>
 
 <header><div class="wrap">
-  <div class="logo"><img src="icon.svg" alt="">AAS <em>Music</em></div>
-  <span class="beta">Painel do professor · versão de teste</span>
+  <a class="logo" href="./"><img src="icon.svg" alt="">AAS <em>Music</em></a>
+  <div class="row" id="hdrUser"></div>
 </div></header>
 
 <main class="wrap">
-  <!-- LISTA -->
-  <section id="vList">
+  <section id="vHome" class="hidden">
     <div class="hero">
-      <div class="eyebrow">Painel do professor</div>
-      <h1>Suas aulas, <em>no bolso do aluno</em></h1>
-      <p class="muted">Monte a aula com os acordes e as músicas, toque para conferir e envie o link no WhatsApp. O aluno abre no celular, ouve e vê o acorde da vez — sem baixar nada.</p>
+      <div class="eyebrow">Aulas de violão com áudio</div>
+      <h1>O professor ensina. <em>O aluno treina em casa.</em></h1>
+      <p class="muted">O professor monta a aula com os acordes e as músicas. O aluno abre no celular, ouve e vê o acorde da vez — no ritmo dele.</p>
     </div>
-    <div class="card" style="margin-bottom:8px">
-      <div class="grid2" style="align-items:end">
-        <div class="field" style="margin:0"><label for="prof">Seu nome (aparece para o aluno)</label><input id="prof" placeholder="Ex.: Prof. João" maxlength="60"></div>
-        <div class="row" style="justify-content:flex-end"><button class="btn btn-gold" id="bNew"><svg><use href="#i-plus"/></svg>Nova aula</button></div>
-      </div>
-    </div>
-    <div class="list" id="list"></div>
-    <div class="row muted" style="font-size:13px;margin-bottom:10px">
-      <span>As aulas ficam salvas neste aparelho.</span>
-      <button class="btn btn-ghost btn-sm" id="bExport">Salvar cópia de segurança</button>
-      <label class="btn btn-ghost btn-sm" style="cursor:pointer">Restaurar cópia<input type="file" id="fImport" accept=".json,application/json" hidden></label>
+    <div class="choose">
+      <a href="#entrar" id="goProf"><div class="ic">🎓</div><h2>Sou <em>professor</em></h2><p class="muted">Entrar ou criar conta. 7 dias grátis, depois <span data-preco></span>/mês.</p></a>
+      <a href="aluno.html"><div class="ic">🎸</div><h2>Sou <em>aluno</em></h2><p class="muted">Entrar com o código que o seu professor enviou.</p></a>
     </div>
   </section>
 
-  <!-- EDITOR -->
-  <section id="vEdit" class="hidden">
-    <div class="hero" style="padding-bottom:18px">
-      <div class="eyebrow">Montar aula</div>
-      <h1 id="edTitle">Nova <em>aula</em></h1>
-    </div>
-    <div class="card" style="margin-bottom:18px">
-      <div class="grid2">
-        <div class="field"><label for="eAluno">Nome do aluno</label><input id="eAluno" placeholder="Ex.: Dona Maria" maxlength="60"></div>
-        <div class="field"><label for="eTitulo">Título da aula</label><input id="eTitulo" placeholder="Ex.: Aula 1 — Lá e Mi" maxlength="80"></div>
+  <section id="vAuth" class="hidden">
+    <div class="auth">
+      <button class="back" data-go="home">← Voltar</button>
+      <div class="card">
+        <div class="tabs" id="authTabs"><button data-t="in" class="on">Entrar</button><button data-t="up">Criar conta</button></div>
+        <form id="fAuth" style="margin-top:18px" novalidate>
+          <div class="field hidden" id="fNomeW"><label for="aNome">Seu nome</label><input id="aNome" autocomplete="name" maxlength="60" placeholder="Ex.: Prof. João"></div>
+          <div class="field"><label for="aEmail">E-mail</label><input id="aEmail" type="email" autocomplete="email" required></div>
+          <div class="field" id="fSenhaW"><label for="aSenha">Senha</label><input id="aSenha" type="password" autocomplete="current-password" minlength="6" required></div>
+          <button class="btn btn-gold btn-block" id="bAuth" type="submit">Entrar</button>
+          <div class="msg" id="authMsg"></div>
+          <p style="margin-top:14px;font-size:14px"><a href="#" id="forgot" style="color:var(--gold2)">Esqueci minha senha</a></p>
+          <p class="muted hidden" id="upInfo" style="font-size:13px;margin-top:8px">7 dias grátis para testar. Depois, <span data-preco></span> por mês. Sem fidelidade.</p>
+        </form>
       </div>
-      <div class="field" style="margin:0"><label for="eRecado">Recado para o aluno (opcional)</label><textarea id="eRecado" style="min-height:80px;font-family:var(--sans)" placeholder="Ex.: Treine 10 minutos por dia, sempre no modo Devagar primeiro." maxlength="400"></textarea></div>
     </div>
-    <div id="songs"></div>
-    <button class="btn btn-ghost" id="bAddSong"><svg><use href="#i-plus"/></svg>Adicionar música</button>
-    <div class="sticky-actions"><div class="row">
-      <button class="btn btn-gold" id="bSave">Salvar aula</button>
-      <button class="btn btn-ghost" id="bSaveSend"><svg><use href="#i-send"/></svg>Salvar e enviar</button>
-      <button class="btn btn-ghost" id="bCancel">Voltar</button>
+  </section>
+
+  <section id="vReset" class="hidden">
+    <div class="auth"><div class="card">
+      <h2 style="margin-bottom:14px">Criar nova <em>senha</em></h2>
+      <div class="field"><label for="nSenha">Nova senha (mínimo 6 caracteres)</label><input id="nSenha" type="password" autocomplete="new-password" minlength="6"></div>
+      <button class="btn btn-gold btn-block" id="bReset">Salvar senha</button>
+      <div class="msg" id="resetMsg"></div>
     </div></div>
+  </section>
+
+  <section id="vApp" class="hidden">
+    <div id="banner"></div>
+    <div class="tabs" id="appTabs"><button data-t="alunos" class="on">Alunos</button><button data-t="conta">Minha conta</button><button data-t="admin" class="hidden" id="tabAdmin">Administração</button></div>
+
+    <div id="pAlunos">
+      <div class="row" style="justify-content:space-between;margin-top:20px">
+        <h2>Seus <em>alunos</em></h2>
+        <button class="btn btn-gold" id="bNovoAluno" data-need><svg><use href="#i-plus"/></svg>Novo aluno</button>
+      </div>
+      <div class="list" id="listAlunos"></div>
+    </div>
+
+    <div id="pAluno" class="hidden">
+      <button class="back" id="backAlunos" style="margin-top:20px">← Todos os alunos</button>
+      <div class="card" style="margin-bottom:18px">
+        <div class="row" style="justify-content:space-between">
+          <div><h2 id="alNome"></h2><p class="muted" style="font-size:14px;margin-top:6px">Código de acesso do aluno:</p><span class="code big" id="alCodigo"></span></div>
+          <div class="row">
+            <a class="btn btn-wa" id="alWa" target="_blank" rel="noopener noreferrer"><svg><use href="#i-wa"/></svg>Enviar acesso no WhatsApp</a>
+            <a class="btn btn-ghost" id="alVer" target="_blank" rel="noopener">Ver como o aluno</a>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <h2>Aulas</h2>
+        <button class="btn btn-gold" id="bNovaAula" data-need><svg><use href="#i-plus"/></svg>Nova aula</button>
+      </div>
+      <div class="list" id="listAulas"></div>
+      <div class="row" style="margin-top:6px"><button class="btn btn-danger btn-sm" id="bDelAluno">Apagar aluno</button></div>
+    </div>
+
+    <div id="pEdit" class="hidden">
+      <div class="hero" style="padding:26px 0 16px"><button class="back" id="backAluno">← Voltar</button><div class="eyebrow" id="edFor"></div><h1 id="edTitle" style="font-size:2.2rem"></h1></div>
+      <div class="card" style="margin-bottom:18px">
+        <div class="field"><label for="eTitulo">Título da aula</label><input id="eTitulo" placeholder="Ex.: Aula 1 — Lá e Mi" maxlength="80"></div>
+        <div class="field" style="margin:0"><label for="eRecado">Recado para o aluno (opcional)</label><textarea id="eRecado" style="min-height:80px;font-family:var(--sans)" placeholder="Ex.: Treine 10 minutos por dia, sempre no modo Devagar primeiro." maxlength="400"></textarea></div>
+      </div>
+      <div id="songs"></div>
+      <button class="btn btn-ghost" id="bAddSong"><svg><use href="#i-plus"/></svg>Adicionar música</button>
+      <div class="sticky-actions"><div class="row">
+        <button class="btn btn-gold" id="bSave" data-need>Salvar aula</button>
+        <button class="btn btn-ghost" id="bCancel">Voltar</button>
+        <button class="btn btn-danger btn-sm hidden" id="bDelAula">Apagar aula</button>
+      </div></div>
+    </div>
+
+    <div id="pConta" class="hidden" style="margin-top:20px">
+      <div class="grid2">
+        <div class="card">
+          <h2 style="margin-bottom:14px">Seus <em>dados</em></h2>
+          <div class="field"><label for="cNome">Nome (aparece para o aluno)</label><input id="cNome" maxlength="60"></div>
+          <div class="field"><label for="cEmail">E-mail</label><input id="cEmail" disabled></div>
+          <button class="btn btn-gold" id="bNome">Salvar nome</button>
+        </div>
+        <div class="card">
+          <h2 style="margin-bottom:14px">Sua <em>assinatura</em></h2>
+          <div id="cPlano" class="muted"></div>
+          <div class="row" style="margin-top:16px"><a class="btn btn-gold" data-assinar target="_blank" rel="noopener noreferrer">Assinar por <span data-preco></span>/mês</a></div>
+          <p class="muted" style="font-size:13px;margin-top:14px">Dúvidas? <a style="color:var(--gold2)" data-suporte target="_blank" rel="noopener noreferrer">Fale com o suporte no WhatsApp</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="pAdmin" class="hidden" style="margin-top:20px">
+      <div class="card">
+        <div class="row" style="justify-content:space-between;margin-bottom:12px"><h2>Professores</h2><button class="btn btn-ghost btn-sm" id="bAdmRefresh">Atualizar</button></div>
+        <div class="field" style="max-width:460px"><label for="admEmail">Liberar e-mail por 30 dias (pode ser antes do cadastro)</label><div class="row"><input id="admEmail" type="email" placeholder="professor@email.com" style="flex:1;min-width:180px"><button class="btn btn-gold btn-sm" id="bAdmAdd">+30 dias</button></div></div>
+        <div class="tbl"><table><thead><tr><th>Professor</th><th>Situação</th><th>Alunos / aulas</th><th>Ações</th></tr></thead><tbody id="admRows"></tbody></table></div>
+      </div>
+    </div>
   </section>
 </main>
 
-<div class="modal" id="mShare" role="dialog" aria-modal="true" aria-labelledby="shTitle"><div class="card">
-  <div class="eyebrow">Enviar aula</div>
-  <h2 id="shTitle">Link de <em id="shAluno"></em></h2>
-  <p class="muted" style="font-size:14px">Mande este link para o aluno. Quando você mudar a aula, envie o link novo.</p>
-  <div class="link" id="shLink"></div>
-  <div class="row">
-    <a class="btn btn-wa" id="shWa" target="_blank" rel="noopener noreferrer"><svg><use href="#i-wa"/></svg>Enviar no WhatsApp</a>
-    <button class="btn btn-ghost" id="shCopy">Copiar link</button>
-    <a class="btn btn-ghost" id="shOpen" target="_blank" rel="noopener">Ver como o aluno</a>
-    <button class="btn btn-ghost" id="shClose">Fechar</button>
-  </div>
-</div></div>
 <div class="toast" id="toast"></div>
+<footer><div class="wrap"><span>AAS Music · AAS Tecnologia Editorial</span><a data-suporte target="_blank" rel="noopener noreferrer">Suporte no WhatsApp</a></div></footer>
 
-<footer><div class="wrap"><span>AAS Music · AAS Tecnologia Editorial</span><a href="https://wa.me/5519989522187?text=Ol%C3%A1!%20Uso%20o%20AAS%20Music%20e%20preciso%20de%20ajuda." target="_blank" rel="noopener noreferrer">Suporte no WhatsApp</a></div></footer>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
 <script src="engine.js"></script>
 <script>
 (function(){
 "use strict";
-var A=window.AASM, esc=A.esc, KEY='aasmusic.v1';
+var C=window.AASM_CONFIG, A=window.AASM, esc=A.esc;
 var $=function(id){return document.getElementById(id);};
+var sb=window.supabase.createClient(C.supabaseUrl,C.supabaseKey);
+var me=null,status={},alunos=[],aulas=[],curAluno=null,editing=null,booting=false;
 
-/* ---------- Dados ---------- */
-var db={prof:'',lessons:[]};
-function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.lessons)db=j;}catch(e){}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){toast('Não foi possível salvar neste navegador.');}}
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
-load();
-if(!db.lessons.length&&!db.seeded){
-  db.seeded=true;
-  db.lessons.push({id:uid(),aluno:'Maria (exemplo)',titulo:'Aula 1 — Lá e Mi',recado:'Treine 10 minutos por dia. Comece sempre no modo Devagar.',
-    songs:[{n:'Marcha Soldado',style:'marcha',slow:72,normal:96,beats:8,text:'A | Marcha soldado, cabeça de\nE | papel, se não marchar direito vai preso pro\nA | quartel. O quartel pegou fogo, a polícia deu\nE | sinal: acorda, acorda, acorda a bandeira na-\nA | -cional!'}]});
-  save();
-}
-$('prof').value=db.prof||'';
-$('prof').addEventListener('input',function(){db.prof=this.value.trim();save();});
-
-/* ---------- Utilidades ---------- */
-var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show');},2600);}
+var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show');},3200);}
 function base(){return location.href.replace(/[#?].*$/,'').replace(/[^\/]*$/,'');}
-function linkOf(l){return base()+'aluno.html#'+A.encode(A.pack(l,db.prof));}
-function chordsOf(l){var o=[];(l.songs||[]).forEach(function(s){A.uniqueChords(A.parse(s.text,s.beats).segs).forEach(function(c){if(o.indexOf(c)<0)o.push(c);});});return o;}
-
-/* ---------- Lista ---------- */
-function renderList(){
-  var el=$('list');
-  if(!db.lessons.length){el.innerHTML='<div class="empty" style="grid-column:1/-1">Nenhuma aula ainda. Toque em <b>Nova aula</b> para começar.</div>';return;}
-  el.innerHTML=db.lessons.map(function(l){
-    var ch=chordsOf(l);
-    return '<div class="card lesson" data-id="'+l.id+'"><h3>'+esc(l.aluno||'Sem nome')+'</h3><div class="meta">'+esc(l.titulo||'Aula')+' · '+(l.songs||[]).length+' música(s)</div>'+
-      '<div class="chips">'+ch.map(function(c){return '<span class="chip">'+c+'</span>';}).join('')+'</div>'+
-      '<div class="row"><button class="btn btn-gold btn-sm" data-act="send"><svg><use href="#i-send"/></svg>Enviar</button><button class="btn btn-ghost btn-sm" data-act="edit">Editar</button><button class="btn btn-ghost btn-sm" data-act="dup">Duplicar</button><button class="btn btn-danger btn-sm" data-act="del">Apagar</button></div></div>';
-  }).join('');
+function wa(num,msg){return 'https://wa.me/'+(num||'')+'?text='+encodeURIComponent(msg);}
+function fmt(d){return d?new Date(d).toLocaleDateString('pt-BR'):'';}
+function daysLeft(d){return Math.max(0,Math.ceil((new Date(d)-new Date())/864e5));}
+function errPt(e){
+  var m=(e&&(e.message||e.error_description))||String(e);
+  if(/Invalid login/i.test(m)) return 'E-mail ou senha incorretos.';
+  if(/already registered|already been registered/i.test(m)) return 'Este e-mail já tem conta. Use "Entrar".';
+  if(/Password should be/i.test(m)) return 'A senha precisa ter pelo menos 6 caracteres.';
+  if(/valid email|invalid format|is invalid/i.test(m)) return 'Confira o e-mail digitado.';
+  if(/rate limit|too many/i.test(m)) return 'Muitas tentativas. Aguarde alguns minutos.';
+  if(/row-level security|violates/i.test(m)) return 'Sua assinatura não está ativa. Assine para continuar editando.';
+  return m;
 }
-$('list').addEventListener('click',function(e){
-  var b=e.target.closest('[data-act]');if(!b)return;
-  var id=b.closest('[data-id]').dataset.id, l=db.lessons.find(function(x){return x.id===id;});if(!l)return;
-  var act=b.dataset.act;
-  if(act==='send') share(l);
-  else if(act==='edit') openEditor(l);
-  else if(act==='dup'){var c=JSON.parse(JSON.stringify(l));c.id=uid();c.aluno=(l.aluno||'')+' (cópia)';db.lessons.unshift(c);save();renderList();toast('Aula duplicada.');}
-  else if(act==='del'){
-    if(b.dataset.confirm){db.lessons=db.lessons.filter(function(x){return x.id!==id;});save();renderList();toast('Aula apagada.');}
-    else{b.dataset.confirm='1';b.textContent='Confirmar?';setTimeout(function(){if(b.isConnected){delete b.dataset.confirm;b.textContent='Apagar';}},3000);}
-  }
+document.querySelectorAll('[data-preco]').forEach(function(e){e.textContent=C.preco;});
+document.querySelectorAll('[data-suporte]').forEach(function(a){a.href=wa(C.whatsapp,'Olá! Uso o AAS Music e preciso de ajuda.');});
+function checkoutHref(){
+  if(C.checkoutUrl) return C.checkoutUrl+(me?(C.checkoutUrl.indexOf('?')<0?'?':'&')+'email='+encodeURIComponent(me.email):'');
+  return wa(C.whatsapp,'Olá! Quero assinar o AAS Music ('+C.preco+'/mês). Meu e-mail de cadastro: '+(me?me.email:''));
+}
+
+var VIEWS=['vHome','vAuth','vReset','vApp'];
+function view(v){VIEWS.forEach(function(x){$(x).classList.toggle('hidden',x!==v);});scrollTo(0,0);A.stopAll();}
+function panel(p){['pAlunos','pAluno','pEdit','pConta','pAdmin'].forEach(function(x){$(x).classList.toggle('hidden',x!==p);});scrollTo(0,0);A.stopAll();
+  var t={pAlunos:'alunos',pAluno:'alunos',pEdit:'alunos',pConta:'conta',pAdmin:'admin'}[p];
+  document.querySelectorAll('#appTabs button').forEach(function(b){b.classList.toggle('on',b.dataset.t===t);});}
+document.querySelectorAll('[data-go="home"]').forEach(function(b){b.addEventListener('click',function(){view('vHome');});});
+$('goProf').addEventListener('click',function(e){e.preventDefault();view('vAuth');});
+$('appTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.t==='alunos'){panel('pAlunos');renderAlunos();}
+  else if(b.dataset.t==='conta'){panel('pConta');renderConta();}
+  else{panel('pAdmin');loadAdmin();}});
+
+/* ---------- autenticação ---------- */
+var mode='in';
+$('authTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;setMode(b.dataset.t);});
+function setMode(m){mode=m;document.querySelectorAll('#authTabs button').forEach(function(b){b.classList.toggle('on',b.dataset.t===m);});
+  $('fNomeW').classList.toggle('hidden',m!=='up');$('upInfo').classList.toggle('hidden',m!=='up');$('fSenhaW').classList.toggle('hidden',m==='forgot');
+  $('bAuth').textContent=m==='up'?'Criar conta grátis':m==='forgot'?'Enviar link para nova senha':'Entrar';
+  $('aSenha').autocomplete=m==='up'?'new-password':'current-password';$('authMsg').textContent='';$('authMsg').className='msg';}
+$('forgot').addEventListener('click',function(e){e.preventDefault();setMode('forgot');});
+$('fAuth').addEventListener('submit',async function(e){
+  e.preventDefault();var msg=$('authMsg'),btn=$('bAuth'),email=$('aEmail').value.trim(),senha=$('aSenha').value;
+  msg.className='msg';msg.textContent='';
+  if(!email){msg.className='msg err';msg.textContent='Digite seu e-mail.';return;}
+  btn.disabled=true;
+  try{
+    if(mode==='forgot'){
+      var r0=await sb.auth.resetPasswordForEmail(email,{redirectTo:base()});
+      if(r0.error) throw r0.error;
+      msg.className='msg ok';msg.textContent='Enviamos um link para o seu e-mail. Abra e crie a nova senha.';
+    }else if(mode==='up'){
+      var nome=$('aNome').value.trim();
+      if(!nome) throw {message:'Digite seu nome.'};
+      if(senha.length<6) throw {message:'Password should be at least 6'};
+      var r1=await sb.auth.signUp({email:email,password:senha,options:{data:{nome:nome},emailRedirectTo:base()}});
+      if(r1.error) throw r1.error;
+      if(!r1.data.session){msg.className='msg ok';msg.textContent='Conta criada! Confira seu e-mail para confirmar e depois entre.';}
+      else start();
+    }else{
+      var r2=await sb.auth.signInWithPassword({email:email,password:senha});
+      if(r2.error) throw r2.error;
+      start();
+    }
+  }catch(err){msg.className='msg err';msg.textContent=errPt(err);}
+  btn.disabled=false;
+});
+$('bReset').addEventListener('click',async function(){
+  var s=$('nSenha').value,m=$('resetMsg');
+  if(s.length<6){m.className='msg err';m.textContent='Mínimo de 6 caracteres.';return;}
+  var r=await sb.auth.updateUser({password:s});
+  if(r.error){m.className='msg err';m.textContent=errPt(r.error);return;}
+  recovering=false;toast('Senha atualizada.');history.replaceState(null,'',base());start();
+});
+async function logout(){await sb.auth.signOut();me=null;status={};$('hdrUser').innerHTML='';view('vHome');}
+
+var recovering=/type=recovery/.test(location.hash);
+sb.auth.onAuthStateChange(function(ev){
+  if(ev==='PASSWORD_RECOVERY'){recovering=true;view('vReset');}
 });
 
-/* ---------- Editor ---------- */
-var editing=null;
-function show(v){$('vList').classList.toggle('hidden',v!=='list');$('vEdit').classList.toggle('hidden',v!=='edit');scrollTo(0,0);A.stopAll();}
-function openEditor(l){
-  editing=l?JSON.parse(JSON.stringify(l)):{id:null,aluno:'',titulo:'',recado:'',songs:[newSong()]};
-  $('edTitle').innerHTML=l?'Editar <em>aula</em>':'Nova <em>aula</em>';
-  $('eAluno').value=editing.aluno;$('eTitulo').value=editing.titulo;$('eRecado').value=editing.recado||'';
-  renderSongs();show('edit');
+async function start(){
+  if(booting) return; booting=true;
+  try{
+    var s=(await sb.auth.getSession()).data.session;
+    if(recovering){view('vReset');return;}
+    if(!s){view(location.hash==='#entrar'?'vAuth':'vHome');return;}
+    me=s.user;
+    $('hdrUser').innerHTML='<span class="muted" style="font-size:14px">'+esc(me.email)+'</span><button class="btn btn-ghost btn-sm" id="bOut">Sair</button>';
+    $('bOut').addEventListener('click',logout);
+    view('vApp');panel('pAlunos');
+    await refreshStatus();
+    await loadAlunos();
+  }finally{booting=false;}
 }
+
+/* ---------- assinatura ---------- */
+async function refreshStatus(){
+  var r=await sb.rpc('meu_status');status=r.data||{};
+  var h;
+  if(status.admin) h='<div class="banner good"><span><b>Acesso de dono.</b> Liberado para sempre.</span></div>';
+  else if(status.status==='ativo'&&new Date(status.valido_ate)>new Date()) h='<div class="banner good"><span><b>Assinatura ativa</b> até '+fmt(status.valido_ate)+'.</span></div>';
+  else if(status.ativo){var d=daysLeft(status.teste_ate);h='<div class="banner"><span><b>Teste grátis:</b> '+(d<=1?'termina hoje':'faltam '+d+' dias')+'. Assine para não perder o acesso dos seus alunos.</span><a class="btn btn-gold btn-sm" data-assinar target="_blank" rel="noopener noreferrer">Assinar por '+C.preco+'/mês</a></div>';}
+  else h='<div class="banner bad"><span><b>Acesso pausado.</b> Seus alunos não conseguem abrir as aulas. Assine para liberar tudo de novo.</span><a class="btn btn-gold btn-sm" data-assinar target="_blank" rel="noopener noreferrer">Assinar por '+C.preco+'/mês</a></div>';
+  $('banner').innerHTML=h;
+  document.querySelectorAll('[data-assinar]').forEach(function(a){a.href=checkoutHref();});
+  document.querySelectorAll('[data-need]').forEach(function(x){x.disabled=!status.ativo;});
+  $('tabAdmin').classList.toggle('hidden',!status.admin);
+}
+function renderConta(){
+  $('cNome').value=status.nome||'';$('cEmail').value=me.email;
+  var t;
+  if(status.admin) t='Acesso de dono — sem cobrança.';
+  else if(status.status==='ativo'&&new Date(status.valido_ate)>new Date()) t='Ativa até <b>'+fmt(status.valido_ate)+'</b>.';
+  else if(status.ativo) t='Teste grátis até <b>'+fmt(status.teste_ate)+'</b>.';
+  else t='<span style="color:var(--red)">Sem assinatura ativa.</span>';
+  $('cPlano').innerHTML=t+'<br>Plano Professor: '+C.preco+'/mês, alunos ilimitados.';
+}
+$('bNome').addEventListener('click',async function(){
+  var n=$('cNome').value.trim();if(!n){toast('Digite seu nome.');return;}
+  var r=await sb.from('professores').update({nome:n}).eq('id',me.id);
+  if(r.error){toast(errPt(r.error));return;}status.nome=n;toast('Nome salvo.');
+});
+
+/* ---------- alunos ---------- */
+async function loadAlunos(){
+  var r1=await sb.from('alunos').select('id,nome,codigo,criado').order('criado',{ascending:false});
+  var r2=await sb.from('aulas').select('id,aluno_id,titulo,recado,songs,criado,atualizado').order('criado');
+  if(r1.error){toast(errPt(r1.error));return;}
+  alunos=r1.data||[];aulas=r2.data||[];renderAlunos();
+}
+function aulasDe(id){return aulas.filter(function(a){return a.aluno_id===id;});}
+function renderAlunos(){
+  var el=$('listAlunos');
+  if(!alunos.length){el.innerHTML='<div class="empty">Nenhum aluno ainda. Toque em <b>Novo aluno</b> — cada aluno ganha um código para entrar no app.</div>';return;}
+  el.innerHTML=alunos.map(function(a){var n=aulasDe(a.id).length;
+    return '<div class="card item"><h3>'+esc(a.nome)+'</h3><div class="meta">'+n+' aula(s) · código <span class="code">'+esc(a.codigo)+'</span></div><button class="btn btn-gold btn-sm" data-open="'+a.id+'">Abrir</button></div>';}).join('');
+}
+$('listAlunos').addEventListener('click',function(e){var b=e.target.closest('[data-open]');if(b)openAluno(b.dataset.open);});
+function novoCodigo(nome){
+  var p=(nome||'ALUNO').normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase().replace(/[^A-Z]/g,'').slice(0,8)||'ALUNO';
+  var abc='ABCDEFGHJKMNPQRSTUVWXYZ23456789',s='',rnd=new Uint32Array(5);crypto.getRandomValues(rnd);
+  for(var i=0;i<5;i++) s+=abc[rnd[i]%abc.length];
+  return p+'-'+s;
+}
+$('bNovoAluno').addEventListener('click',openModal);
+function openModal(){
+  var m=$('mAluno');
+  if(!m){
+    m=document.createElement('div');m.className='modal';m.id='mAluno';
+    m.innerHTML='<div class="card"><h2 style="margin-bottom:14px">Novo <em>aluno</em></h2><div class="field"><label for="nAluno">Nome do aluno</label><input id="nAluno" maxlength="60" placeholder="Ex.: Dona Maria"></div><div class="row"><button class="btn btn-gold" id="bCriarAluno">Criar aluno</button><button class="btn btn-ghost" id="bFecharAluno">Cancelar</button></div><div class="msg err" id="nAlunoMsg"></div></div>';
+    document.body.appendChild(m);
+    $('bFecharAluno').addEventListener('click',function(){m.classList.remove('open');});
+    m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('open');});
+    $('nAluno').addEventListener('keydown',function(e){if(e.key==='Enter')$('bCriarAluno').click();});
+    $('bCriarAluno').addEventListener('click',async function(){
+      var nome=$('nAluno').value.trim(),btn=this;if(!nome){$('nAlunoMsg').textContent='Digite o nome.';return;}
+      btn.disabled=true;var r,tries=0;
+      do{r=await sb.from('alunos').insert({nome:nome,codigo:novoCodigo(nome),professor_id:me.id}).select().single();tries++;}while(r.error&&r.error.code==='23505'&&tries<4);
+      btn.disabled=false;
+      if(r.error){$('nAlunoMsg').textContent=errPt(r.error);return;}
+      alunos.unshift(r.data);m.classList.remove('open');renderAlunos();openAluno(r.data.id);toast('Aluno criado.');
+    });
+  }
+  $('nAluno').value='';$('nAlunoMsg').textContent='';m.classList.add('open');setTimeout(function(){$('nAluno').focus();},50);
+}
+function linkAluno(a){return base()+'aluno.html?c='+encodeURIComponent(a.codigo);}
+function openAluno(id){
+  curAluno=alunos.find(function(a){return a.id===id;});if(!curAluno)return;
+  $('alNome').textContent=curAluno.nome;$('alCodigo').textContent=curAluno.codigo;
+  var first=curAluno.nome.split(' ')[0];
+  $('alWa').href=wa('','Olá, '+first+'! Suas aulas de violão estão no app AAS Music.\n\nAbra este link: '+linkAluno(curAluno)+'\n\nSe pedir, seu código é: '+curAluno.codigo);
+  $('alVer').href=linkAluno(curAluno);
+  renderAulas();panel('pAluno');
+}
+function renderAulas(){
+  var list=aulasDe(curAluno.id),el=$('listAulas');
+  if(!list.length){el.innerHTML='<div class="empty">Nenhuma aula para '+esc(curAluno.nome)+' ainda. Toque em <b>Nova aula</b>.</div>';return;}
+  el.innerHTML=list.map(function(a){var ch=[];(a.songs||[]).forEach(function(s){A.uniqueChords(A.parse(s.text,s.beats).segs).forEach(function(c){if(ch.indexOf(c)<0)ch.push(c);});});
+    return '<div class="card item"><h3>'+esc(a.titulo||'Aula')+'</h3><div class="meta">'+(a.songs||[]).length+' música(s) · atualizada em '+fmt(a.atualizado)+'</div><div class="row" style="margin-bottom:14px">'+ch.map(function(c){return '<span class="chip">'+c+'</span>';}).join('')+'</div><button class="btn btn-gold btn-sm" data-ed="'+a.id+'">Editar</button></div>';}).join('');
+}
+$('listAulas').addEventListener('click',function(e){var b=e.target.closest('[data-ed]');if(b)openEditor(aulas.find(function(a){return a.id===b.dataset.ed;}));});
+$('backAlunos').addEventListener('click',function(){panel('pAlunos');renderAlunos();});
+var delAlunoArm=0;
+$('bDelAluno').addEventListener('click',async function(){
+  var b=this;if(Date.now()-delAlunoArm>3000){delAlunoArm=Date.now();b.textContent='Toque de novo para apagar o aluno e as aulas';setTimeout(function(){b.textContent='Apagar aluno';},3000);return;}
+  var r=await sb.from('alunos').delete().eq('id',curAluno.id);
+  if(r.error){toast(errPt(r.error));return;}
+  var id=curAluno.id;alunos=alunos.filter(function(a){return a.id!==id;});aulas=aulas.filter(function(a){return a.aluno_id!==id;});
+  b.textContent='Apagar aluno';panel('pAlunos');renderAlunos();toast('Aluno apagado.');
+});
+
+/* ---------- editor de aula ---------- */
 function newSong(){return {n:'',style:'pop',slow:70,normal:90,beats:4,text:''};}
+$('bNovaAula').addEventListener('click',function(){openEditor(null);});
+function openEditor(a){
+  editing=a?{id:a.id,titulo:a.titulo,recado:a.recado,songs:JSON.parse(JSON.stringify(a.songs||[]))}:{id:null,titulo:'Aula '+(aulasDe(curAluno.id).length+1),recado:'',songs:[newSong()]};
+  if(!editing.songs.length) editing.songs.push(newSong());
+  $('edFor').textContent='Aula de '+curAluno.nome;
+  $('edTitle').innerHTML=a?'Editar <em>aula</em>':'Nova <em>aula</em>';
+  $('eTitulo').value=editing.titulo||'';$('eRecado').value=editing.recado||'';
+  $('bDelAula').classList.toggle('hidden',!a);
+  renderSongs();panel('pEdit');
+}
 function styleOpts(sel){return Object.keys(A.STYLES).map(function(k){return '<option value="'+k+'"'+(k===sel?' selected':'')+'>'+A.STYLES[k].nome+'</option>';}).join('');}
 function beatOpts(sel){return [2,3,4,6,8].map(function(n){return '<option value="'+n+'"'+(n==sel?' selected':'')+'>'+n+' tempos</option>';}).join('');}
 function renderSongs(){
@@ -244,14 +476,14 @@ function renderSongs(){
       '</div>'+
       '<div class="field" style="margin-bottom:0"><label>Sequência de acordes — uma frase por linha</label>'+
         '<div class="palette">'+A.ORDER.map(function(c){return '<button type="button" data-ins="'+c+'">'+c+'</button>';}).join('')+'<button type="button" class="part" data-ins="[Refrão]">+ Parte</button><button type="button" class="part" data-ins="|">| texto</button></div>'+
-        '<textarea data-k="text" spellcheck="false" placeholder="[Introdução]\nA E\n[Primeira parte]\nA E | frase que o aluno canta\nD:2 A:2 E">'+esc(s.text)+'</textarea>'+
+        '<textarea data-k="text" spellcheck="false" placeholder="[Introdução]\nA E\n[Primeira parte]\nA E | lembrete curto\nD:2 A:2 E">'+esc(s.text)+'</textarea>'+
         '<div class="help">Toque nos acordes para inserir. <code>[Refrão]</code> = nome da parte · <code>A E | texto</code> = frase com lembrete · <code>D:2</code> = Ré dura 2 tempos. Em músicas com direitos autorais, use só um lembrete curto em vez da letra.</div>'+
         '<div class="check" data-chk></div>'+
       '</div>'+
       '<div class="preview"><button class="btn btn-gold btn-sm" data-prev><svg><use href="#i-play"/></svg><span>Ouvir</span></button><div class="now" data-now>–</div><div class="bar"><div data-bar></div></div><div class="nx" data-nx></div></div>'+
     '</div>';
   }).join('');
-  el.querySelectorAll('.song').forEach(function(box){check(box);});
+  el.querySelectorAll('.song').forEach(check);
 }
 function songOf(box){return editing.songs[+box.dataset.i];}
 function check(box){
@@ -261,24 +493,21 @@ function check(box){
   c.className='check '+(p.bad.length?'warn':'ok');
   c.textContent=(p.bad.length?'Não reconheci: '+p.bad.slice(0,6).join(', ')+'. ':'✓ ')+p.segs.length+' acordes · '+p.lines.length+' linhas · cerca de '+secs+'s no Normal.';
 }
+function setVal(box,t){var k=t.dataset.k;if(!k)return;var s=songOf(box);s[k]=(k==='slow'||k==='normal'||k==='beats')?+t.value:t.value;check(box);}
+$('songs').addEventListener('input',function(e){var box=e.target.closest('.song');if(box)setVal(box,e.target);});
+$('songs').addEventListener('change',function(e){var box=e.target.closest('.song');if(box)setVal(box,e.target);});
 var prevStop=null,prevBox=null;
-function resetPrev(box){if(!box)return;box.querySelector('[data-prev]').innerHTML='<svg><use href="#i-play"/></svg><span>Ouvir</span>';box.querySelector('[data-now]').textContent='–';box.querySelector('[data-bar]').style.width='0';box.querySelector('[data-nx]').textContent='';}
-$('songs').addEventListener('input',function(e){
-  var box=e.target.closest('.song'),k=e.target.dataset.k;if(!box||!k)return;
-  var s=songOf(box),v=e.target.value;s[k]=(k==='slow'||k==='normal'||k==='beats')?+v:v;check(box);
-});
-$('songs').addEventListener('change',function(e){var box=e.target.closest('.song');if(box&&e.target.dataset.k){var s=songOf(box),k=e.target.dataset.k;s[k]=(k==='slow'||k==='normal'||k==='beats')?+e.target.value:e.target.value;check(box);}});
+function resetPrev(box){if(!box||!box.isConnected)return;box.querySelector('[data-prev]').innerHTML='<svg><use href="#i-play"/></svg><span>Ouvir</span>';box.querySelector('[data-now]').textContent='–';box.querySelector('[data-bar]').style.width='0';box.querySelector('[data-nx]').textContent='';}
 $('songs').addEventListener('click',function(e){
   var box=e.target.closest('.song');if(!box)return;
   var ins=e.target.closest('[data-ins]');
   if(ins){
-    var ta=box.querySelector('textarea'),v=ins.dataset.ins,st=ta.selectionStart,en=ta.selectionEnd,before=ta.value.slice(0,st),after=ta.value.slice(en);
-    var txt;
-    if(v.charAt(0)==='['){txt=(before&&!/\n$/.test(before)?'\n':'')+v+'\n';}
-    else if(v==='|'){txt=' | ';}
-    else{txt=(before&&!/[\s\n]$/.test(before)?' ':'')+v+' ';}
+    var ta=box.querySelector('textarea'),v=ins.dataset.ins,st=ta.selectionStart,en=ta.selectionEnd,before=ta.value.slice(0,st),after=ta.value.slice(en),txt;
+    if(v.charAt(0)==='[') txt=(before&&!/\n$/.test(before)?'\n':'')+v+'\n';
+    else if(v==='|') txt=' | ';
+    else txt=(before&&!/[\s\n]$/.test(before)?' ':'')+v+' ';
     ta.value=before+txt+after;var pos=st+txt.length;ta.focus();ta.setSelectionRange(pos,pos);
-    if(v.charAt(0)==='['){ta.setSelectionRange(pos-v.length,pos-2);}
+    if(v.charAt(0)==='[') ta.setSelectionRange(pos-v.length,pos-2);
     songOf(box).text=ta.value;check(box);return;
   }
   if(e.target.closest('[data-rm]')){A.stopAll();editing.songs.splice(+box.dataset.i,1);renderSongs();return;}
@@ -295,56 +524,54 @@ $('songs').addEventListener('click',function(e){
   }
 });
 $('bAddSong').addEventListener('click',function(){editing.songs.push(newSong());renderSongs();var b=$('songs').lastElementChild;if(b)b.scrollIntoView({behavior:'smooth',block:'start'});});
-function commit(){
-  editing.aluno=$('eAluno').value.trim();editing.titulo=$('eTitulo').value.trim();editing.recado=$('eRecado').value.trim();
-  if(!editing.aluno){toast('Escreva o nome do aluno.');$('eAluno').focus();return null;}
-  var ok=editing.songs.some(function(s){return A.parse(s.text,s.beats).segs.length;});
-  if(!ok){toast('Coloque os acordes de pelo menos uma música.');return null;}
-  if(!editing.id){editing.id=uid();db.lessons.unshift(editing);}
-  else{var i=db.lessons.findIndex(function(x){return x.id===editing.id;});if(i>=0)db.lessons[i]=editing;else db.lessons.unshift(editing);}
-  save();var saved=editing;renderList();show('list');toast('Aula salva.');return saved;
+$('bSave').addEventListener('click',async function(){
+  var btn=this;
+  editing.titulo=$('eTitulo').value.trim()||'Aula';editing.recado=$('eRecado').value.trim();
+  var songs=editing.songs.filter(function(s){return A.parse(s.text,s.beats).segs.length;});
+  if(!songs.length){toast('Coloque os acordes de pelo menos uma música.');return;}
+  songs.forEach(function(s,i){if(!s.n)s.n='Música '+(i+1);});
+  var row={titulo:editing.titulo,recado:editing.recado,songs:songs,aluno_id:curAluno.id,professor_id:me.id,atualizado:new Date().toISOString()};
+  btn.disabled=true;
+  var r=editing.id?await sb.from('aulas').update(row).eq('id',editing.id).select().single():await sb.from('aulas').insert(row).select().single();
+  btn.disabled=!status.ativo;
+  if(r.error){toast(errPt(r.error));return;}
+  var i=aulas.findIndex(function(a){return a.id===r.data.id;});if(i>=0)aulas[i]=r.data;else aulas.push(r.data);
+  toast('Aula salva. O aluno já vê a versão nova.');openAluno(curAluno.id);
+});
+$('bCancel').addEventListener('click',function(){openAluno(curAluno.id);});
+$('backAluno').addEventListener('click',function(){openAluno(curAluno.id);});
+var delAulaArm=0;
+$('bDelAula').addEventListener('click',async function(){
+  var b=this;if(Date.now()-delAulaArm>3000){delAulaArm=Date.now();b.textContent='Toque de novo para apagar';setTimeout(function(){b.textContent='Apagar aula';},3000);return;}
+  var r=await sb.from('aulas').delete().eq('id',editing.id);
+  if(r.error){toast(errPt(r.error));return;}
+  var id=editing.id;aulas=aulas.filter(function(a){return a.id!==id;});b.textContent='Apagar aula';toast('Aula apagada.');openAluno(curAluno.id);
+});
+
+/* ---------- administração ---------- */
+async function loadAdmin(){
+  var r=await sb.rpc('admin_professores');var rows=r.data||[],el=$('admRows');
+  if(!rows.length){el.innerHTML='<tr><td colspan="4" class="muted">Nenhum professor cadastrado ainda.</td></tr>';return;}
+  el.innerHTML=rows.map(function(p){
+    var sit=p.status==='vitalicio'?'Vitalício':(p.status==='ativo'&&new Date(p.valido_ate)>new Date())?'Pago até '+fmt(p.valido_ate):p.ativo?'Teste grátis':'Pausado';
+    return '<tr><td><b>'+esc(p.nome||'—')+'</b><br><span class="muted">'+esc(p.email)+'</span></td><td><span class="pill '+(p.ativo?'on':'off')+'">'+sit+'</span></td><td>'+p.alunos+' / '+p.aulas+'</td>'+
+      '<td><div class="row">'+(p.status==='vitalicio'?'—':'<button class="btn btn-gold btn-sm" data-adm="ativo" data-e="'+esc(p.email)+'">+30 dias</button><button class="btn btn-ghost btn-sm" data-adm="inativo" data-e="'+esc(p.email)+'">Pausar</button>')+'</div></td></tr>';
+  }).join('');
 }
-$('bSave').addEventListener('click',commit);
-$('bSaveSend').addEventListener('click',function(){var l=commit();if(l)share(l);});
-$('bCancel').addEventListener('click',function(){show('list');});
-$('bNew').addEventListener('click',function(){openEditor(null);});
-
-/* ---------- Enviar ---------- */
-function share(l){
-  if(!db.prof){toast('Dica: escreva seu nome no topo — ele aparece para o aluno.');}
-  var url=linkOf(l),first=(l.aluno||'').split(' ')[0].replace(/[()]/g,'');
-  var msg='Olá'+(first?', '+first:'')+'! Sua aula de violão está aqui. É só abrir, apertar Tocar e acompanhar:\n'+url;
-  $('shAluno').textContent=l.aluno||'aluno';$('shLink').textContent=url;
-  $('shWa').href='https://wa.me/?text='+encodeURIComponent(msg);
-  $('shOpen').href=url;
-  $('mShare').classList.add('open');
-}
-$('shCopy').addEventListener('click',function(){
-  var url=$('shLink').textContent;
-  if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){toast('Link copiado.');},function(){fallbackCopy(url);});}else fallbackCopy(url);
+$('admRows').addEventListener('click',async function(e){
+  var b=e.target.closest('[data-adm]');if(!b)return;b.disabled=true;
+  var r=await sb.rpc('admin_definir',{p_email:b.dataset.e,p_status:b.dataset.adm,p_dias:30});
+  if(r.error)toast(errPt(r.error));else toast(b.dataset.adm==='ativo'?'Liberado por mais 30 dias.':'Professor pausado.');
+  loadAdmin();
 });
-function fallbackCopy(t){var r=document.createRange();r.selectNodeContents($('shLink'));var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');toast('Link copiado.');}catch(e){toast('Selecione e copie o link.');}}
-$('shClose').addEventListener('click',function(){$('mShare').classList.remove('open');});
-$('mShare').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
-addEventListener('keydown',function(e){if(e.key==='Escape')$('mShare').classList.remove('open');});
-
-/* ---------- Cópia de segurança ---------- */
-$('bExport').addEventListener('click',function(){
-  var blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download='aas-music-aulas-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();
-  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+$('bAdmAdd').addEventListener('click',async function(){
+  var em=$('admEmail').value.trim();if(!em){toast('Digite o e-mail.');return;}
+  var r=await sb.rpc('admin_definir',{p_email:em,p_status:'ativo',p_dias:30});
+  if(r.error){toast(errPt(r.error));return;}$('admEmail').value='';toast('E-mail liberado por 30 dias.');loadAdmin();
 });
-$('fImport').addEventListener('change',function(){
-  var f=this.files[0];if(!f)return;var r=new FileReader();
-  r.onload=function(){try{var j=JSON.parse(r.result);if(!j.lessons)throw 0;
-    var ids={};db.lessons.forEach(function(l){ids[l.id]=1;});var n=0;
-    j.lessons.forEach(function(l){if(!ids[l.id]){db.lessons.push(l);n++;}});
-    if(j.prof&&!db.prof){db.prof=j.prof;$('prof').value=j.prof;}
-    save();renderList();toast(n+' aula(s) restaurada(s).');}catch(e){toast('Arquivo inválido.');}};
-  r.readAsText(f);this.value='';
-});
+$('bAdmRefresh').addEventListener('click',loadAdmin);
 
-renderList();
+start();
 })();
 </script>
 </body>
