@@ -252,10 +252,11 @@ function renderBoard(){
 }
 function resendLink(x){var first=x.nome.split(' ')[0];return 'https://wa.me/'+fone(x.fone)+'?text='+encodeURIComponent('Olá, '+first+'! Sua aula de violão está no app AAS Music 🎸\n\nÉ só abrir, apertar Tocar e acompanhar:\n'+x.link);}
 function renderTrial(){
-  var left=Math.ceil((EXP-Date.now())/DAY);
-  if(left<=0){document.querySelector('main').hidden=true;document.querySelector('.summary').hidden=true;$('expired').hidden=false;
+  var sod=function(t){var x=new Date(t);x.setHours(0,0,0,0);return x.getTime();};
+  var left=Math.round((sod(EXP)-sod(Date.now()))/DAY);
+  if(Date.now()>EXP){document.querySelector('main').hidden=true;document.querySelector('.summary').hidden=true;$('expired').hidden=false;
     $('expWa').href='https://wa.me/5519989522187?text='+encodeURIComponent('Olá! Testei o AAS Music e quero assinar o plano do professor.');return false;}
-  $('trialTxt').textContent=(left===1?'último dia':'faltam '+left+' dias')+' (até 23/11, 23h59)';return true;
+  $('trialTxt').textContent=(left<=0?'último dia':left===1?'falta 1 dia':'faltam '+left+' dias')+' (até 23/11, 23h59)';return true;
 }
 function renderAll(){renderStudents();renderGrid();renderSettings();renderSummary();renderBoard();}
 
