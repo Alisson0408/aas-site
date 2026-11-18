@@ -72,7 +72,9 @@ h2{font-family:var(--serif);font-size:clamp(1.6rem,6vw,2.1rem);line-height:1.2;m
 .pswitch{display:inline-flex;border:2px solid var(--line);border-radius:999px;padding:3px;background:#fff}
 .pswitch a{padding:8px 14px;border-radius:999px;font-weight:700;font-size:15px;color:#6a4614;text-decoration:none}
 .pswitch a.on{background:var(--gold);color:#fff}
-.topbar{display:flex;justify-content:flex-end;padding:12px 4%}
+.helpb{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 14px;border-radius:999px;border:2px solid var(--line);background:#fff;color:#6a4614;font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap}
+@media(max-width:420px){.helpb span{display:none}.helpb{width:44px;padding:0;justify-content:center}}
+.topbar{display:flex;justify-content:flex-end;gap:8px;align-items:center;padding:12px 4%}
 .switch{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:2px solid var(--line);background:#fff;color:#6a4614;font-weight:700;font-size:15px;text-decoration:none}
 .switch:hover{border-color:var(--gold)}
 header{padding-top:10px!important}
@@ -87,7 +89,7 @@ footer a{color:var(--gold)}
   <symbol id="i-stop" viewBox="0 0 24 24"><rect fill="currentColor" x="6" y="6" width="12" height="12" rx="2"/></symbol>
   <symbol id="i-ear" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
 </svg>
-<div class="topbar"><nav class="pswitch" aria-label="Trocar painel"><a href="./" id="toProf">🎓 Professor</a><a class="on" href="aluno.html" aria-current="page">🎸 Aluno</a></nav></div>
+<div class="topbar"><a class="helpb" href="manual.html#aluno" title="Como usar">❓<span> Como usar</span></a><nav class="pswitch" aria-label="Trocar painel"><a href="./" id="toProf">🎓 Professor</a><a class="on" href="aluno.html" aria-current="page">🎸 Aluno</a></nav></div>
 <div id="app"></div>
 <footer>Feito com <a href="./">AAS Music</a> · AAS Tecnologia Editorial</footer>
 

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Como usar · AAS Music</title>
+<meta name="description" content="Manual do AAS Music: como o professor monta e envia as aulas e como o aluno estuda pelo celular.">
+<meta name="theme-color" content="#0b0a08">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0a08;--panel:#18150f;--line:#ffffff17;--gold:#c9a66b;--gold2:#e6c896;--cream:#f3ece0;--muted:#a69f94;--wa:#25d366;
+--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(900px 500px at 90% -10%,#c9a66b1c,transparent 60%),var(--bg);background-attachment:fixed;color:var(--cream);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{width:min(820px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:#0b0a08cc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+.logo{font-family:var(--serif);font-size:1.35rem;display:flex;align-items:center;gap:10px;color:var(--cream);text-decoration:none}
+.logo em{color:var(--gold)}.logo img{width:30px;height:30px;border-radius:8px}
+.back{color:var(--gold2);font-weight:700;font-size:14px;text-decoration:none;border:1px solid #c9a66b55;border-radius:999px;padding:8px 14px;white-space:nowrap}
+h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.15}
+h1{font-size:clamp(2.1rem,6vw,3.2rem)}
+h1 em,h2 em{color:var(--gold);font-style:italic}
+h2{font-size:1.7rem;margin:44px 0 6px}
+h3{font-size:1.2rem;margin-bottom:6px}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;text-transform:uppercase;letter-spacing:.26em;color:var(--gold);font-weight:700;margin-bottom:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.muted{color:var(--muted)}
+.hero{padding:40px 0 10px}
+.tabs{display:flex;gap:8px;margin:26px 0 6px;flex-wrap:wrap}
+.tabs a{padding:11px 18px;border-radius:999px;border:1px solid #ffffff2a;color:var(--cream);text-decoration:none;font-weight:700;font-size:15px}
+.tabs a:hover{border-color:var(--gold)}
+.steps{list-style:none;counter-reset:s;margin-top:16px}
+.steps li{counter-increment:s;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px 20px 20px 70px;margin:12px 0}
+.steps li::before{content:counter(s);position:absolute;left:20px;top:20px;width:34px;height:34px;border-radius:50%;background:var(--gold);color:#1a140a;font-weight:700;display:grid;place-items:center}
+.steps li p{color:var(--muted)}
+.steps b,.box b,details b{color:var(--cream)}
+.box{background:#c9a66b12;border:1px solid #c9a66b45;border-radius:18px;padding:18px 20px;margin:16px 0;color:var(--muted)}
+.box h3{color:var(--gold2)}
+kbd{font-family:var(--sans);font-size:14px;font-weight:700;background:#ffffff10;border:1px solid #ffffff2a;border-radius:8px;padding:1px 8px;color:var(--cream);white-space:nowrap}
+.lv{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.lv>div{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;font-size:15px;color:var(--muted);min-width:0}
+.lv h3{color:var(--cream)}
+.aluno{background:#fbf7f0;color:#2a2118;border-radius:26px;padding:28px 24px;margin-top:16px;font-size:20px}
+.aluno h2{margin-top:0;color:#2a2118}.aluno h2 em{color:#a8742c}
+.aluno .steps li{background:#fff;border-color:#e6dccd;font-size:19px}
+.aluno .steps li::before{background:#a8742c;color:#fff}
+.aluno .steps li p{color:#5c5046}
+.aluno .steps b{color:#2a2118}
+.aluno kbd{background:#f3e6cf;border-color:#e6dccd;color:#6a4614}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold);font-size:1.4rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:8px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a140a}
+.btn-wa{background:var(--wa);color:#06260f}
+.btn-ghost{border:1px solid #ffffff2a;color:var(--cream)}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:13px;margin-top:40px;text-align:center}
+@media(max-width:640px){.lv{grid-template-columns:1fr}.steps li{padding:18px 16px 18px 62px}.steps li::before{left:16px}.aluno{padding:22px 16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="./"><img src="icon.svg" alt="">AAS <em>Music</em></a>
+  <a class="back" id="back" href="./">← Voltar ao app</a>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Manual de instruções</div>
+    <h1>Como usar o <em>AAS Music</em></h1>
+    <p class="muted" style="margin-top:10px">O professor monta a aula e envia pelo WhatsApp. O aluno abre no celular, ouve o violão e vê qual acorde tocar. Escolha a sua parte:</p>
+    <nav class="tabs"><a href="#professor">🎓 Sou professor</a><a href="#aluno">🎸 Sou aluno</a><a href="#duvidas">❓ Dúvidas</a></nav>
+  </div>
+
+  <!-- PROFESSOR -->
+  <section id="professor">
+    <h2>Para o <em>professor</em></h2>
+    <p class="muted">Na versão de teste você não precisa de cadastro. Abra <b style="color:var(--cream)">Testar sem cadastro</b> na tela inicial.</p>
+    <ol class="steps">
+      <li><h3>Escreva o seu nome</h3><p>No primeiro campo, coloque como quer aparecer para o aluno — por exemplo, <b>Prof. João</b>.</p></li>
+      <li><h3>Escolha ou cadastre o aluno</h3><p>Toque em <kbd>+ Novo aluno</kbd>, escreva o nome e, se quiser, o WhatsApp dele. Cada aluno guarda a própria aula.</p></li>
+      <li><h3>Defina o nível do aluno</h3><p>Toque em <kbd>🌱 Básico</kbd>, <kbd>🎯 Intermediário</kbd> ou <kbd>🔥 Avançado</kbd>. A grade mostra as músicas e exercícios daquele nível.</p></li>
+      <li><h3>Marque o que entra na aula</h3><p>Toque nos cartões da grade para marcar (✓) ou desmarcar. Use <kbd>▶ Ouvir trecho</kbd> para conferir uma música antes. Marque pelo menos uma música.</p></li>
+      <li><h3>Faça os ajustes</h3><p>Escolha a velocidade (<b>Bem devagar</b>, <b>Devagar</b> ou <b>Ritmo da música</b>) e escreva um recado — ou toque numa frase pronta.</p></li>
+      <li><h3>Confira e envie</h3><p>Toque em <kbd>Ver como o aluno</kbd> para ver a aula pronta. Depois, <kbd>Enviar no WhatsApp</kbd>: a conversa abre com o link da aula, é só enviar.</p></li>
+      <li><h3>Acompanhe no quadro de alunos</h3><p>No fim da tela fica o <b>quadro</b> com todos os alunos que receberam aula, a data do envio e o conteúdo. Use <kbd>Reenviar</kbd> se o aluno perder o link.</p></li>
+    </ol>
+
+    <h2 style="font-size:1.35rem">Os <em>níveis</em></h2>
+    <div class="lv">
+      <div><h3>🌱 Básico</h3>Lá e Mi. Marcha Soldado e La Bella Luna.</div>
+      <div><h3>🎯 Intermediário</h3>G, D, Em, C, Am, Dm e G7. Sequência pop, valsa e acordes menores.</div>
+      <div><h3>🔥 Avançado</h3>Acordes com sétima, Bm e F. Blues, sequências com pestana e ciclo das sétimas.</div>
+    </div>
+
+    <div class="box"><h3>Versão de teste × conta completa</h3>
+      <p><b>Teste:</b> grátis até 23/11, sem cadastro. As aulas ficam salvas no seu celular e os links enviados vencem quando o teste acabar.</p>
+      <p style="margin-top:8px"><b>Conta completa (R$ 49/mês):</b> entre com e-mail e senha, alunos ilimitados, aulas salvas na nuvem e cada aluno com um código fixo. Quando você edita a aula, o aluno já vê a versão nova — sem link novo.</p>
+    </div>
+
+    <h3 style="margin-top:26px">Na conta completa</h3>
+    <ol class="steps">
+      <li><h3>Crie sua conta</h3><p>Na tela inicial, toque em <kbd>Sou professor</kbd> → <kbd>Criar conta</kbd>. Você tem 7 dias grátis.</p></li>
+      <li><h3>Cadastre os alunos</h3><p><kbd>Novo aluno</kbd> gera um código (ex.: MARIA-7K2QX). Toque em <kbd>Enviar acesso no WhatsApp</kbd> para mandar o link e o código.</p></li>
+      <li><h3>Monte as aulas</h3><p>Dentro do aluno, <kbd>Nova aula</kbd>. Toque nos acordes para escrever a sequência, uma frase por linha. Use <kbd>Ouvir</kbd> para conferir e <kbd>Salvar aula</kbd>.</p></li>
+    </ol>
+    <div class="box"><h3>Escrevendo a sequência</h3>
+      <p><b>[Refrão]</b> = nome da parte · <b>A E | texto</b> = acordes e um lembrete curto · <b>D:2</b> = Ré dura 2 tempos.</p>
+      <p style="margin-top:6px">Em músicas com direitos autorais, não coloque a letra inteira — use só um lembrete curto. O aluno acompanha a letra pela cifra.</p>
+    </div>
+  </section>
+
+  <!-- ALUNO -->
+  <section id="aluno">
+    <div class="aluno">
+      <h2>Para o <em>aluno</em></h2>
+      <ol class="steps">
+        <li><b>Abra o link</b><p>Toque no link que o seu professor mandou no WhatsApp. Se pedir um código, digite o código que ele enviou.</p></li>
+        <li><b>Veja os acordes</b><p>Os números nas bolinhas são os dedos: 1 indicador, 2 médio, 3 anelar, 4 mindinho. O <b>×</b> quer dizer: não toque essa corda. Aperte <kbd>Ouvir</kbd> e compare com o seu violão.</p></li>
+        <li><b>Treine a troca</b><p>Aperte <kbd>Tocar</kbd>. Troque de acorde quando a tela mudar.</p></li>
+        <li><b>Toque a música</b><p>Aperte <kbd>Tocar</kbd>. A tela conta 4, 3, 2, 1 e mostra, em letra grande, o acorde de agora e o próximo.</p></li>
+        <li><b>Escolha a velocidade</b><p>Comece no <kbd>Devagar</kbd>. Quando ficar fácil, passe para o <kbd>Normal</kbd>.</p></li>
+        <li><b>Deixe na tela inicial</b><p>No Chrome, toque nos três pontinhos ⋮ e em <b>Adicionar à tela inicial</b>. A aula vira um ícone no celular.</p></li>
+      </ol>
+      <p style="color:#5c5046;margin-top:10px">Sem som? Tire o celular do <b>silencioso</b> e aumente o volume.</p>
+    </div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section id="duvidas">
+    <h2>Dúvidas <em>frequentes</em></h2>
+    <details><summary>O aluno precisa baixar algum aplicativo?</summary><p>Não. É um link que abre no navegador do celular. Se quiser, ele pode adicionar à tela inicial para virar um ícone.</p></details>
+    <details><summary>Não sai som.</summary><p>Tire o celular do modo silencioso e aumente o volume de mídia. O som só começa depois de tocar em um botão — é uma regra do navegador.</p></details>
+    <details><summary>Mudei a aula. O aluno vê a mudança?</summary><p>Na <b>conta completa</b>, sim, na hora. Na <b>versão de teste</b>, envie de novo pelo botão <b>Reenviar</b> do quadro de alunos.</p></details>
+    <details><summary>O aluno perdeu o link.</summary><p>No teste, use <b>Reenviar</b> no quadro de alunos. Na conta completa, mande de novo o acesso pelo botão do WhatsApp — o código do aluno não muda.</p></details>
+    <details><summary>Quais instrumentos funcionam?</summary><p>Hoje, violão (acordes e batida). Outros instrumentos estão nos planos.</p></details>
+    <details><summary>Quanto custa?</summary><p>Teste grátis. Depois, R$ 49 por mês para o professor, com alunos ilimitados. O aluno não paga nada.</p></details>
+  </section>
+
+  <div class="cta">
+    <a class="btn btn-gold" href="demo.html">Testar sem cadastro</a>
+    <a class="btn btn-ghost" href="./#entrar">Criar conta de professor</a>
+    <a class="btn btn-wa" href="https://wa.me/5519989522187?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20AAS%20Music." target="_blank" rel="noopener noreferrer">Falar com o suporte</a>
+  </div>
+</main>
+<footer>AAS Music · AAS Tecnologia Editorial</footer>
+<script>
+try{var p=localStorage.getItem('aasmusic.painel');var r=document.referrer;
+  if(r&&r.indexOf(location.host)>=0&&r.indexOf('manual.html')<0){document.getElementById('back').href=r;}
+  else if(p){document.getElementById('back').href=p;}}catch(e){}
+</script>
+</body>
+</html>

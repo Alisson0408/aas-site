@@ -24,6 +24,9 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 .logo img{width:30px;height:30px;border-radius:8px}
 .switch{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid #c9a66b66;background:#c9a66b14;color:var(--gold2);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}
 .switch:hover{background:#c9a66b30}
+.helpb{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:999px;border:1px solid #ffffff2a;color:var(--cream);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}
+.helpb:hover{border-color:var(--gold)}
+@media(max-width:560px){.helpb span{display:none}.helpb{width:36px;padding:0;justify-content:center}}
 .pswitch{display:inline-flex;border:1px solid #c9a66b55;border-radius:999px;padding:3px;background:#c9a66b10;white-space:nowrap}
 .pswitch a{padding:7px 12px;border-radius:999px;font-weight:700;font-size:13px;color:var(--gold2);text-decoration:none}
 .pswitch a.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a140a}
@@ -104,6 +107,7 @@ footer{padding:30px 4% 40px;color:var(--muted);font-size:13px;text-align:center}
 footer a{color:var(--gold2)}
 @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.two{grid-template-columns:1fr}.opt{min-height:150px;padding:16px 14px}.opt h3{font-size:1.02rem}.summary .row{width:100%}.summary .btn{flex:1}.logo span.t{display:none}}
+@media(max-width:480px){.logo{font-size:0;gap:0}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -114,11 +118,11 @@ footer a{color:var(--gold2)}
 
 <header><div class="wrap">
   <a class="logo" href="./"><img src="icon.svg" alt="">AAS <em>Music</em></a>
-  <nav class="pswitch" aria-label="Trocar painel"><a class="on" href="demo.html" aria-current="page">🎓 Professor</a><a href="aluno.html" id="toAluno">🎸 Aluno</a></nav>
+  <div class="row" style="flex-wrap:nowrap"><a class="helpb" href="manual.html#professor" title="Como usar">❓<span> Como usar</span></a><nav class="pswitch" aria-label="Trocar painel"><a class="on" href="demo.html" aria-current="page">🎓 Professor</a><a href="aluno.html" id="toAluno">🎸 Aluno</a></nav></div>
 </div></header>
 
 <main class="wrap">
-  <div class="test"><span><b>Teste grátis</b> — <span id="trialTxt">até 23/11</span>. Sem cadastro: monte aulas e envie para alunos de verdade.</span><a class="btn btn-gold btn-sm" href="./#entrar">Criar conta grátis</a></div>
+  <div class="test"><span><b>Teste grátis</b> — <span id="trialTxt">até 23/11</span>. Sem cadastro: monte aulas e envie para alunos de verdade.</span><span class="row"><a class="btn btn-ghost btn-sm" href="manual.html#professor">Como usar</a><a class="btn btn-gold btn-sm" href="./#entrar">Criar conta grátis</a></span></div>
 
   <div class="hero">
     <div class="eyebrow">Painel do professor</div>

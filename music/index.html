@@ -110,6 +110,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--gold2);text-decoration:none}
 .switch{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid #c9a66b66;background:#c9a66b14;color:var(--gold2);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}
 .switch:hover{background:#c9a66b30}
+.helpb{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:999px;border:1px solid #ffffff2a;color:var(--cream);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}
+.helpb:hover{border-color:var(--gold)}
+@media(max-width:560px){.helpb span{display:none}.helpb{width:36px;padding:0;justify-content:center}}
 .pswitch{display:inline-flex;border:1px solid #c9a66b55;border-radius:999px;padding:3px;background:#c9a66b10;white-space:nowrap}
 .pswitch a{padding:7px 12px;border-radius:999px;font-weight:700;font-size:13px;color:var(--gold2);text-decoration:none}
 .pswitch a.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a140a}
@@ -131,7 +134,7 @@ footer a{color:var(--gold2);text-decoration:none}
 
 <header><div class="wrap">
   <a class="logo" href="./"><img src="icon.svg" alt="">AAS <em>Music</em></a>
-  <div class="row"><div class="row" id="hdrUser"></div><nav class="pswitch" aria-label="Trocar painel"><a class="on" href="./" aria-current="page">🎓 Professor</a><a href="aluno.html">🎸 Aluno</a></nav></div>
+  <div class="row"><div class="row" id="hdrUser"></div><a class="helpb" href="manual.html#professor" title="Como usar">❓<span> Como usar</span></a><nav class="pswitch" aria-label="Trocar painel"><a class="on" href="./" aria-current="page">🎓 Professor</a><a href="aluno.html">🎸 Aluno</a></nav></div>
 </div></header>
 
 <main class="wrap">
