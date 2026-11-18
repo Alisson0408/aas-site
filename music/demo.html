@@ -89,6 +89,12 @@ textarea{min-height:90px;resize:vertical}
 .summary .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
 .summary .txt{font-size:14px;color:var(--muted)}
 .summary .txt b{color:var(--cream)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{color:var(--muted);font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+tr:last-child td{border-bottom:0}
+.tbl{overflow-x:auto}
+.mini{display:inline-block;font-size:11px;font-weight:700;color:var(--gold2);border:1px solid #c9a66b40;border-radius:999px;padding:2px 8px;margin:2px 2px 2px 0;white-space:nowrap}
 .modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:50;padding:18px}
 .modal.open{display:flex}
 .modal .card{width:min(500px,100%);box-shadow:0 40px 100px #000c}
@@ -112,7 +118,7 @@ footer a{color:var(--gold2)}
 </div></header>
 
 <main class="wrap">
-  <div class="test"><span><b>Versão de teste</b> — sem cadastro. Monte uma aula e envie para um aluno de verdade.</span><a class="btn btn-gold btn-sm" href="./#entrar">Criar conta grátis</a></div>
+  <div class="test"><span><b>Teste grátis</b> — <span id="trialTxt">4 dias</span>. Sem cadastro: monte aulas e envie para alunos de verdade.</span><a class="btn btn-gold btn-sm" href="./#entrar">Criar conta grátis</a></div>
 
   <div class="hero">
     <div class="eyebrow">Painel do professor</div>
@@ -120,14 +126,17 @@ footer a{color:var(--gold2)}
     <p class="muted">Escolha o aluno, marque o que entra na aula e envie pelo WhatsApp. O aluno abre no celular, ouve o violão e vê o acorde da vez.</p>
   </div>
 
-  <div class="step-title"><span class="n">1</span><h2>Para qual <em>aluno</em>?</h2></div>
+  <div class="step-title"><span class="n">1</span><h2>Seu <em>nome</em></h2></div>
+  <div class="card" style="max-width:520px"><label class="l" for="prof">Nome do professor (aparece para o aluno)</label><input id="prof" maxlength="60" placeholder="Ex.: Prof. João"></div>
+
+  <div class="step-title"><span class="n">2</span><h2>Para qual <em>aluno</em>?</h2></div>
   <div class="students" id="students"></div>
 
-  <div class="step-title"><span class="n">2</span><h2>O que entra na <em>aula</em>?</h2></div>
+  <div class="step-title"><span class="n">3</span><h2>O que entra na <em>aula</em>?</h2></div>
   <p class="muted" style="margin:-4px 0 14px;font-size:14px">Toque nos cartões para marcar ou desmarcar.</p>
   <div class="grid" id="grid"></div>
 
-  <div class="step-title"><span class="n">3</span><h2>Ajustes para <em id="stuName2">o aluno</em></h2></div>
+  <div class="step-title"><span class="n">4</span><h2>Ajustes para <em id="stuName2">o aluno</em></h2></div>
   <div class="two">
     <div class="card">
       <label class="l">Velocidade</label>
@@ -140,7 +149,20 @@ footer a{color:var(--gold2)}
       <div class="chips" id="recChips"><button>Treine 10 minutos por dia.</button><button>Comece sempre no Devagar.</button><button>Capriche na troca de A para E!</button><button>Na próxima aula a gente revisa.</button></div>
     </div>
   </div>
+
+  <div class="step-title" id="boardTitle"><span class="n">✓</span><h2>Quadro de <em>alunos</em></h2></div>
+  <p class="muted" style="margin:-4px 0 14px;font-size:14px">Alunos que já receberam aula por aqui. Toque em <b>Reenviar</b> para mandar de novo.</p>
+  <div class="card" style="padding:8px 18px"><div class="tbl"><table><thead><tr><th>Aluno</th><th>Última aula</th><th>Conteúdo</th><th></th></tr></thead><tbody id="board"></tbody></table></div></div>
 </main>
+
+<section id="expired" class="wrap" hidden>
+  <div class="card" style="max-width:620px;margin:60px auto;text-align:center;padding:40px 28px">
+    <div style="font-size:2.4rem">⏳</div>
+    <h1 style="margin:10px 0 12px">Seu teste <em>terminou</em></h1>
+    <p class="muted">Gostou de ver seus alunos treinando em casa? Crie sua conta e continue com alunos ilimitados por <b style="color:var(--cream)">R$ 49/mês</b>.</p>
+    <div class="row" style="justify-content:center;margin-top:24px"><a class="btn btn-gold" href="./#entrar">Criar minha conta</a><a class="btn btn-wa" id="expWa" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></div>
+  </div>
+</section>
 
 <div class="summary"><div class="wrap">
   <div class="txt" id="sumTxt"></div>
@@ -172,7 +194,7 @@ footer a{color:var(--gold2)}
 <script>
 (function(){
 "use strict";
-var A=window.AASM,esc=A.esc,$=function(id){return document.getElementById(id);},KEY='aasmusic.demo';
+var A=window.AASM,esc=A.esc,$=function(id){return document.getElementById(id);},KEY='aasmusic.teste',DIAS=4,DAY=864e5;
 
 /* ---------- Biblioteca (grade de opções) ---------- */
 var LIB=[
@@ -186,9 +208,11 @@ var LIB=[
 
 /* ---------- Estado ---------- */
 var st;
-function defaults(){return {cur:0,students:[{nome:'Dionísia Rosa',fone:'',sel:['acordes','troca','marcha','luna'],speed:1,recado:'Treine 10 minutos por dia. Comece sempre no Devagar.'},{nome:'Aluno exemplo',fone:'',sel:['acordes','marcha'],speed:0.8,recado:''}]};}
+function defaults(){return {start:Date.now(),prof:'',cur:0,sent:[],students:[{nome:'Aluno exemplo',fone:'',sel:['acordes','troca','marcha','luna'],speed:1,recado:'Treine 10 minutos por dia. Comece sempre no Devagar.'}]};}
 try{st=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
 if(!st||!st.students||!st.students.length) st=defaults();
+if(!st.start) st.start=Date.now(); if(!st.sent) st.sent=[];
+var EXP=st.start+DIAS*DAY;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 function stu(){return st.students[st.cur]||st.students[0];}
 
@@ -219,15 +243,29 @@ function renderSummary(){
   $('toAluno').href=items?link():'aluno.html';
   if(items){$('bVer').href=link();$('bVer').removeAttribute('aria-disabled');$('bVer').style.opacity='';}else{$('bVer').removeAttribute('href');$('bVer').style.opacity='.45';}
 }
-function renderAll(){renderStudents();renderGrid();renderSettings();renderSummary();}
+function renderBoard(){
+  var el=$('board');
+  if(!st.sent.length){el.innerHTML='<tr><td colspan="4" class="muted" style="padding:18px 8px">Nenhuma aula enviada ainda. Monte a primeira aula acima e toque em <b>Enviar no WhatsApp</b>.</td></tr>';return;}
+  el.innerHTML=st.sent.map(function(x,i){var dt=new Date(x.data);
+    return '<tr><td><b>'+esc(x.nome)+'</b></td><td>'+dt.toLocaleDateString('pt-BR')+'<br><span class="muted">'+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'</span></td><td>'+x.itens.map(function(t){return '<span class="mini">'+esc(t.split(' — ')[0])+'</span>';}).join('')+'</td>'+
+      '<td><div class="row" style="flex-wrap:nowrap"><a class="btn btn-wa btn-sm" target="_blank" rel="noopener noreferrer" href="'+esc(resendLink(x))+'">Reenviar</a><a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="'+esc(x.link)+'">Ver</a></div></td></tr>';}).join('');
+}
+function resendLink(x){var first=x.nome.split(' ')[0];return 'https://wa.me/'+fone(x.fone)+'?text='+encodeURIComponent('Olá, '+first+'! Sua aula de violão está no app AAS Music 🎸\n\nÉ só abrir, apertar Tocar e acompanhar:\n'+x.link);}
+function renderTrial(){
+  var left=Math.ceil((EXP-Date.now())/DAY);
+  if(left<=0){document.querySelector('main').hidden=true;document.querySelector('.summary').hidden=true;$('expired').hidden=false;
+    $('expWa').href='https://wa.me/5519989522187?text='+encodeURIComponent('Olá! Testei o AAS Music e quero assinar o plano do professor.');return false;}
+  $('trialTxt').textContent=left===1?'último dia':'faltam '+left+' dias';return true;
+}
+function renderAll(){renderStudents();renderGrid();renderSettings();renderSummary();renderBoard();}
 
 /* ---------- Montar a aula ---------- */
 function lesson(){
   var s=stu(),songs=[],k=s.speed||1;
   LIB.forEach(function(o){if(o.kind==='song'&&s.sel.indexOf(o.id)>=0){var g=o.song;songs.push({n:g.n,y:g.style,s:Math.round(g.slow*k),f:Math.round(g.normal*Math.max(1,k)),b:g.beats,x:g.text});}});
   if(!songs.length) songs.push({n:'Acordes da aula',y:'simples',s:Math.round(60*k),f:80,b:4,x:'A E A E'});
-  return {a:s.nome,p:'',t:'Aula de violão — Lá e Mi',r:s.recado||'',m:songs,
-    o:{ac:s.sel.indexOf('acordes')>=0?1:0,tr:s.sel.indexOf('troca')>=0?1:0,only:songs.length&&!LIB.some(function(o){return o.kind==='song'&&s.sel.indexOf(o.id)>=0;})?1:0}};
+  return {a:s.nome,p:st.prof||'',t:'Aula de violão — Lá e Mi',r:s.recado||'',m:songs,
+    o:{exp:EXP,ac:s.sel.indexOf('acordes')>=0?1:0,tr:s.sel.indexOf('troca')>=0?1:0,only:songs.length&&!LIB.some(function(o){return o.kind==='song'&&s.sel.indexOf(o.id)>=0;})?1:0}};
 }
 function link(){return location.href.replace(/[#?].*$/,'').replace(/[^\/]*$/,'')+'aluno.html#'+A.encode(lesson());}
 function fone(v){var d=String(v||'').replace(/\D/g,'');if(!d)return '';if(d.length<=11)d='55'+d;return d;}
@@ -277,10 +315,17 @@ $('bSend').addEventListener('click',function(){
   var s=stu();$('sendName').textContent=s.nome.split(' ')[0];$('sendFone').value=s.fone||'';$('bSendGo').href=waLink();$('mSend').classList.add('open');
 });
 $('sendFone').addEventListener('input',function(){stu().fone=this.value;save();$('bSendGo').href=waLink();});
-$('bSendGo').addEventListener('click',function(){$('mSend').classList.remove('open');toast('Aula enviada para o WhatsApp.');});
+$('bSendGo').addEventListener('click',function(){
+  var s=stu(),items=s.sel.map(function(id){return LIB.find(function(o){return o.id===id;}).t;});
+  st.sent=st.sent.filter(function(x){return x.nome!==s.nome;});
+  st.sent.unshift({nome:s.nome,fone:s.fone||'',data:Date.now(),itens:items,link:link()});save();renderBoard();
+  $('mSend').classList.remove('open');toast('Aula enviada. '+s.nome.split(' ')[0]+' entrou no quadro de alunos.');
+});
 $('bSendNo').addEventListener('click',function(){$('mSend').classList.remove('open');});
 
-renderAll();
+$('prof').value=st.prof||'';
+$('prof').addEventListener('input',function(){st.prof=this.value.trim();save();renderSummary();renderBoard();});
+if(renderTrial()) renderAll();
 })();
 </script>
 </body>

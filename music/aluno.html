@@ -158,6 +158,8 @@ function abrir(i,only){
 /* ---------- aula ---------- */
 function renderLesson(L,back,only){
   A.stopAll();
+  if(L.o&&L.o.exp&&Date.now()>L.o.exp){
+    app.innerHTML='<div class="wrap empty"><div class="brand">AAS Music</div><h1>Aula <em>encerrada</em></h1><p style="color:#5c5046;margin-top:14px">O período de teste desta aula terminou. Peça ao seu professor um link novo.</p></div>';return;}
   document.title=(L.a?'Aulas de '+L.a:'Minha aula')+' · AAS Music';
   var songs=(L.m||[]).map(function(m){var p=A.parse(m.x,m.b);return {n:m.n,style:m.y,slow:m.s||70,normal:m.f||90,lines:p.lines,segs:p.segs};}).filter(function(s){return s.segs.length;});
   var all=[];songs.forEach(function(s){A.uniqueChords(s.segs).forEach(function(c){if(all.indexOf(c)<0)all.push(c);});});
