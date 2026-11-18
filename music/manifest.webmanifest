@@ -1,7 +1,7 @@
 {
- "name": "AAS Music",
+ "name": "AAS Music — Aulas de violão",
  "short_name": "AAS Music",
- "description": "Aulas de violão com áudio e acordes na tela.",
+ "description": "App de aulas de violão com áudio: o professor monta, o aluno treina no celular.",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
@@ -20,9 +20,48 @@
    "type": "image/png"
   },
   {
-   "src": "icon.svg",
-   "sizes": "any",
-   "type": "image/svg+xml"
+   "src": "icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "categories": [
+  "music",
+  "education"
+ ],
+ "id": "./",
+ "orientation": "portrait",
+ "shortcuts": [
+  {
+   "name": "Painel do professor",
+   "url": "./#entrar",
+   "icons": [
+    {
+     "src": "icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Minhas aulas (aluno)",
+   "url": "aluno.html",
+   "icons": [
+    {
+     "src": "icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Testar sem cadastro",
+   "url": "demo.html",
+   "icons": [
+    {
+     "src": "icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
   }
  ]
 }
