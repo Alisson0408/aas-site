@@ -6,7 +6,7 @@ window.AASM_CONFIG = {
   // Link de checkout da assinatura (Kiwify). Enquanto vazio, o botão "Assinar" abre o WhatsApp.
   checkoutUrl: '',        // assinatura mensal (cartão)
   checkoutAnualUrl: '',   // plano anual (cartão)
-  pix: '07794016622',     // chave Pix (copiada pelo botão)
+  pix: '7b7a8d1a-09e8-402c-bb44-82d4cc8d392e', // chave Pix aleatória (copiada pelo botão)
   pixRotulo: 'AASMUSIC',  // o que aparece na tela no lugar da chave
   pixNome: '',
   whatsapp: '5519989522187'
