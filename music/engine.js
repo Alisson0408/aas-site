@@ -1,3 +1,11 @@
+/*
+  AAS Music — © 2026 Alisson · AAS Tecnologia Editorial. Todos os direitos reservados.
+  Software proprietário, protegido pela Lei 9.609/1998 (Lei do Software) e pela Lei 9.610/1998 (Direitos Autorais).
+  É proibido copiar, modificar, redistribuir, revender, sublicenciar ou criar sistemas derivados deste código,
+  no todo ou em parte, sem autorização por escrito do autor. Uso permitido somente a clientes licenciados.
+  Autoria registrada no histórico de versões de github.com/Alisson0408/aas-site (desde 17/11/2026).
+  ID de autoria: AAS-AASM-2026-F03625E8
+*/
 /* AAS Music — motor compartilhado: acordes, diagramas, áudio, ritmos e links */
 (function(){
 "use strict";
