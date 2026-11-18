@@ -149,6 +149,8 @@ footer a{color:var(--gold2);text-decoration:none}
       <a href="aluno.html"><div class="ic">🎸</div><h2>Sou <em>aluno</em></h2><p class="muted">Entrar com o código que o seu professor enviou.</p></a>
     </div>
     <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap"><span><b>Professor, quer ver antes de criar conta?</b><br><span class="muted">Monte uma aula de teste agora, sem cadastro.</span></span><a class="btn btn-gold" href="demo.html">Testar sem cadastro</a></div>
+    <h2 style="margin:40px 0 14px">Planos para <em>professores</em></h2>
+    <div data-planos></div>
   </section>
 
   <section id="vAuth" class="hidden">
@@ -235,12 +237,13 @@ footer a{color:var(--gold2);text-decoration:none}
         <div class="card">
           <h2 style="margin-bottom:14px">Sua <em>assinatura</em></h2>
           <div id="cPlano" class="muted"></div>
-          <div class="row" style="margin-top:16px"><a class="btn btn-gold" data-assinar target="_blank" rel="noopener noreferrer">Assinar por <span data-preco></span>/mês</a></div>
+          <div class="row" style="margin-top:16px"><a class="btn btn-gold" data-assinar target="_blank" rel="noopener noreferrer">Assinar por <span data-preco></span>/mês</a><a class="btn btn-ghost" href="#planos-conta">Ver planos</a></div>
           <p class="muted" style="font-size:13px;margin-top:14px">Dúvidas? <a style="color:var(--gold2)" data-suporte target="_blank" rel="noopener noreferrer">Fale com o suporte no WhatsApp</a>.</p>
         </div>
       </div>
-    </div>
 
+    <div id="planos-conta" style="margin-top:26px"><h2 style="margin-bottom:14px">Planos</h2><div data-planos></div></div>
+    </div>
     <div id="pAdmin" class="hidden" style="margin-top:20px">
       <div class="card">
         <div class="row" style="justify-content:space-between;margin-bottom:12px"><h2>Professores</h2><button class="btn btn-ghost btn-sm" id="bAdmRefresh">Atualizar</button></div>
@@ -258,6 +261,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <script>try{localStorage.setItem("aasmusic.painel","./")}catch(e){}</script>
 <script src="config.js"></script>
 <script src="engine.js"></script>
+<script src="planos.js"></script>
 <script>
 (function(){
 "use strict";
@@ -354,7 +358,7 @@ async function start(){
     var s=(await sb.auth.getSession()).data.session;
     if(recovering){view('vReset');return;}
     if(!s){view(location.hash==='#entrar'?'vAuth':'vHome');return;}
-    me=s.user;
+    me=s.user;window.AASM_EMAIL=me.email;
     $('hdrUser').innerHTML='<span class="muted" style="font-size:14px">'+esc(me.email)+'</span><button class="btn btn-ghost btn-sm" id="bOut">Sair</button>';
     $('bOut').addEventListener('click',logout);
     view('vApp');panel('pAlunos');
@@ -372,7 +376,7 @@ async function refreshStatus(){
   else if(status.ativo){var d=daysLeft(status.teste_ate);h='<div class="banner"><span><b>Teste grátis:</b> '+(d<=1?'termina hoje':'faltam '+d+' dias')+'. Assine para não perder o acesso dos seus alunos.</span><a class="btn btn-gold btn-sm" data-assinar target="_blank" rel="noopener noreferrer">Assinar por '+C.preco+'/mês</a></div>';}
   else h='<div class="banner bad"><span><b>Acesso pausado.</b> Seus alunos não conseguem abrir as aulas. Assine para liberar tudo de novo.</span><a class="btn btn-gold btn-sm" data-assinar target="_blank" rel="noopener noreferrer">Assinar por '+C.preco+'/mês</a></div>';
   $('banner').innerHTML=h;
-  document.querySelectorAll('[data-assinar]').forEach(function(a){a.href=checkoutHref();});
+  document.querySelectorAll('[data-assinar]').forEach(function(a){a.href=checkoutHref();if(!C.checkoutUrl&&!a.dataset.pl){a.dataset.pl=1;a.addEventListener('click',function(e){e.preventDefault();window.AASM_PLANOS.pix('mensal');});}});
   document.querySelectorAll('[data-need]').forEach(function(x){x.disabled=!status.ativo;});
   $('tabAdmin').classList.toggle('hidden',!status.admin);
 }

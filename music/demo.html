@@ -158,14 +158,16 @@ footer a{color:var(--gold2)}
   <div class="step-title" id="boardTitle"><span class="n">✓</span><h2>Quadro de <em>alunos</em></h2></div>
   <p class="muted" style="margin:-4px 0 14px;font-size:14px">Alunos que já receberam aula por aqui. Toque em <b>Reenviar</b> para mandar de novo.</p>
   <div class="card" style="padding:8px 18px"><div class="tbl"><table><thead><tr><th>Aluno / nível</th><th>Última aula</th><th>Conteúdo</th><th></th></tr></thead><tbody id="board"></tbody></table></div></div>
+  <div class="step-title"><span class="n">★</span><h2>Gostou? Veja os <em>planos</em></h2></div>
+  <div data-planos></div>
 </main>
 
 <section id="expired" class="wrap" hidden>
-  <div class="card" style="max-width:620px;margin:60px auto;text-align:center;padding:40px 28px">
+  <div class="card" style="max-width:960px;margin:60px auto;text-align:center;padding:40px 28px">
     <div style="font-size:2.4rem">⏳</div>
     <h1 style="margin:10px 0 12px">Seu teste <em>terminou</em></h1>
     <p class="muted">Gostou de ver seus alunos treinando em casa? Crie sua conta e continue com alunos ilimitados por <b style="color:var(--cream)">R$ 49/mês</b>.</p>
-    <div class="row" style="justify-content:center;margin-top:24px"><a class="btn btn-gold" href="./#entrar">Criar minha conta</a><a class="btn btn-wa" id="expWa" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></div>
+    <div data-planos style="text-align:left;margin-top:24px"></div><div class="row" style="justify-content:center;margin-top:24px"><a class="btn btn-gold" href="./#entrar">Criar minha conta</a><a class="btn btn-wa" id="expWa" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></div>
   </div>
 </section>
 
@@ -195,7 +197,9 @@ footer a{color:var(--gold2)}
 <footer>AAS Music · AAS Tecnologia Editorial · <a href="./#entrar">Criar conta de professor</a></footer>
 
 <script>try{localStorage.setItem("aasmusic.painel","demo.html")}catch(e){}</script>
+<script src="config.js"></script>
 <script src="engine.js"></script>
+<script src="planos.js"></script>
 <script>
 (function(){
 "use strict";
