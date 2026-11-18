@@ -131,6 +131,7 @@ footer a{color:var(--gold2)}
 
   <div class="step-title"><span class="n">2</span><h2>Para qual <em>aluno</em>?</h2></div>
   <div class="students" id="students"></div>
+  <div style="margin-top:16px"><label class="l">Nível do aluno</label><div class="seg" id="nivel"><button data-n="b">🌱 Básico</button><button data-n="m">🎯 Intermediário</button><button data-n="a">🔥 Avançado</button></div></div>
 
   <div class="step-title"><span class="n">3</span><h2>O que entra na <em>aula</em>?</h2></div>
   <p class="muted" style="margin:-4px 0 14px;font-size:14px">Toque nos cartões para marcar ou desmarcar.</p>
@@ -152,7 +153,7 @@ footer a{color:var(--gold2)}
 
   <div class="step-title" id="boardTitle"><span class="n">✓</span><h2>Quadro de <em>alunos</em></h2></div>
   <p class="muted" style="margin:-4px 0 14px;font-size:14px">Alunos que já receberam aula por aqui. Toque em <b>Reenviar</b> para mandar de novo.</p>
-  <div class="card" style="padding:8px 18px"><div class="tbl"><table><thead><tr><th>Aluno</th><th>Última aula</th><th>Conteúdo</th><th></th></tr></thead><tbody id="board"></tbody></table></div></div>
+  <div class="card" style="padding:8px 18px"><div class="tbl"><table><thead><tr><th>Aluno / nível</th><th>Última aula</th><th>Conteúdo</th><th></th></tr></thead><tbody id="board"></tbody></table></div></div>
 </main>
 
 <section id="expired" class="wrap" hidden>
@@ -197,24 +198,39 @@ footer a{color:var(--gold2)}
 var A=window.AASM,esc=A.esc,$=function(id){return document.getElementById(id);},KEY='aasmusic.teste',DIAS=4,DAY=864e5;
 
 /* ---------- Biblioteca (grade de opções) ---------- */
+var NIV={b:'Básico',m:'Intermediário',a:'Avançado'};
 var LIB=[
-  {id:'acordes',ic:'🎸',t:'Acordes Lá e Mi',d:'Desenho dos dedos e botão para ouvir cada acorde.',tags:['A','E','Iniciante'],kind:'acordes'},
-  {id:'troca',ic:'🔁',t:'Treino de troca A ↔ E',d:'Lá e Mi se alternando em repetição, no ritmo.',tags:['Exercício','Coordenação'],kind:'troca'},
-  {id:'marcha',ic:'🥁',t:'Marcha Soldado',d:'Infantil · ritmo de marcha. Letra completa na tela.',tags:['A','E','Marcha'],kind:'song',
+  {id:'acordes',lvl:'*',ic:'🎸',t:'Acordes da aula',d:'Desenho dos dedos e botão para ouvir cada acorde das músicas marcadas.',tags:['Diagramas','Ouvir'],kind:'acordes'},
+  {id:'troca',lvl:'*',ic:'🔁',t:'Treino de troca',d:'Os acordes da aula se alternando em repetição, no ritmo.',tags:['Exercício','Coordenação'],kind:'troca'},
+  {id:'marcha',lvl:'b',ic:'🥁',t:'Marcha Soldado',d:'Infantil · ritmo de marcha. Letra completa na tela.',tags:['A','E','Marcha'],kind:'song',
     song:{n:'Marcha Soldado',style:'marcha',slow:72,normal:96,beats:8,text:'A | Marcha soldado, cabeça de\nE | papel, se não marchar direito vai preso pro\nA | quartel. O quartel pegou fogo, a polícia deu\nE | sinal: acorda, acorda, acorda a bandeira na-\nA | -cional!'}},
-  {id:'luna',ic:'🌙',t:'La Bella Luna',d:'Os Paralamas do Sucesso · pop. Sequência e partes; a letra fica na cifra do aluno.',tags:['A','E','Pop'],kind:'song',
-    song:{n:'La Bella Luna — Os Paralamas do Sucesso',style:'pop',slow:70,normal:92,beats:4,text:'[Introdução]\nA E\n[Primeira parte]\nA E\nA E\nA E\nA E\n[Refrão]\nA E\nA E\nA E\nA E\n[Parte "Ó lua"]\nA E\nA E\nA E\nA E\n[Refrão]\nA E\nA E\nA E\nA E\nA'}}
+  {id:'luna',lvl:'b',ic:'🌙',t:'La Bella Luna',d:'Os Paralamas do Sucesso · pop. Sequência e partes; a letra fica na cifra do aluno.',tags:['A','E','Pop'],kind:'song',
+    song:{n:'La Bella Luna — Os Paralamas do Sucesso',style:'pop',slow:70,normal:92,beats:4,text:'[Introdução]\nA E\n[Primeira parte]\nA E\nA E\nA E\nA E\n[Refrão]\nA E\nA E\nA E\nA E\n[Parte "Ó lua"]\nA E\nA E\nA E\nA E\n[Refrão]\nA E\nA E\nA E\nA E\nA'}},
+  {id:'popg',lvl:'m',ic:'🎶',t:'Sequência pop G–D–Em–C',d:'A progressão de milhares de músicas pop e de louvor.',tags:['G','D','Em','C','Pop'],kind:'song',
+    song:{n:'Sequência pop G–D–Em–C',style:'pop',slow:70,normal:95,beats:4,text:'[Sequência]\nG D Em C\nG D Em C\nG D Em C\nG D Em C\nG'}},
+  {id:'valsa',lvl:'m',ic:'💃',t:'Valsa em Dó: C–G7',d:'Ritmo de 3 tempos com troca entre Dó e Sol com sétima.',tags:['C','G7','Valsa'],kind:'song',
+    song:{n:'Valsa em Dó (C–G7)',style:'valsa',slow:80,normal:110,beats:3,text:'[Valsa]\nC C G7 G7\nG7 G7 C C\nC C G7 G7\nG7 G7 C C'}},
+  {id:'menor',lvl:'m',ic:'🌧️',t:'Acordes menores Am–Dm–E',d:'Sequência triste/romântica para treinar acordes menores.',tags:['Am','Dm','E','Balada'],kind:'song',
+    song:{n:'Sequência menor Am–Dm–E',style:'balada',slow:66,normal:88,beats:4,text:'[Sequência]\nAm Dm E Am\nAm Dm E Am\nAm Dm E Am'}},
+  {id:'blues',lvl:'a',ic:'🎷',t:'Blues em Lá (12 compassos)',d:'A forma clássica do blues com acordes de sétima.',tags:['A7','D7','E7','Blues'],kind:'song',
+    song:{n:'Blues em Lá — 12 compassos',style:'simples',slow:72,normal:100,beats:4,text:'[Primeira volta]\nA7 A7 A7 A7\nD7 D7 A7 A7\nE7 D7 A7 E7\n[Segunda volta]\nA7 A7 A7 A7\nD7 D7 A7 A7\nE7 D7 A7 A7'}},
+  {id:'pestana',lvl:'a',ic:'✋',t:'Troca com Bm e F',d:'Duas sequências que exigem os acordes mais difíceis do iniciante.',tags:['Bm','F','D','C'],kind:'song',
+    song:{n:'Sequências com Bm e F',style:'pop',slow:66,normal:92,beats:4,text:'[Em Ré]\nD Bm G A\nD Bm G A\n[Em Dó]\nC Am F G\nC Am F G\nC'}},
+  {id:'setimas',lvl:'a',ic:'🔗',t:'Ciclo das sétimas',d:'B7 → E7 → A7 → D7 → G7 → C7: troca rápida de acordes de sétima.',tags:['B7','E7','A7','D7','G7','C7'],kind:'song',
+    song:{n:'Ciclo das sétimas',style:'simples',slow:64,normal:90,beats:4,text:'[Ciclo]\nB7 E7 A7 D7\nG7 C7\n[De novo]\nB7 E7 A7 D7\nG7 C7'}}
 ];
 
 /* ---------- Estado ---------- */
 var st;
-function defaults(){return {start:Date.now(),prof:'',cur:0,sent:[],students:[{nome:'Aluno exemplo',fone:'',sel:['acordes','troca','marcha','luna'],speed:1,recado:'Treine 10 minutos por dia. Comece sempre no Devagar.'}]};}
+function defaults(){return {start:Date.now(),prof:'',cur:0,sent:[],students:[{nome:'Aluno exemplo',nivel:'b',fone:'',sel:['acordes','troca','marcha','luna'],speed:1,recado:'Treine 10 minutos por dia. Comece sempre no Devagar.'}]};}
 try{st=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
 if(!st||!st.students||!st.students.length) st=defaults();
 if(!st.start) st.start=Date.now(); if(!st.sent) st.sent=[];
 var EXP=new Date('2026-11-23T23:59:59-03:00').getTime(); // teste vale para todos até 23/11, 23h59
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 function stu(){return st.students[st.cur]||st.students[0];}
+function visible(o,s){return o.lvl==='*'||o.lvl===(s.nivel||'b');}
+function selOf(s){return s.sel.filter(function(id){var o=LIB.find(function(x){return x.id===id;});return o&&visible(o,s);});}
 
 var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show');},2600);}
 function initials(n){return n.split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();}
@@ -225,10 +241,11 @@ function renderStudents(){
   $('stuName2').textContent=stu().nome.split(' ')[0];
 }
 function renderGrid(){
-  var sel=stu().sel;
-  $('grid').innerHTML=LIB.map(function(o){var on=sel.indexOf(o.id)>=0;
+  var s=stu(),sel=selOf(s);
+  document.querySelectorAll('#nivel button').forEach(function(b){b.classList.toggle('on',b.dataset.n===(s.nivel||'b'));});
+  $('grid').innerHTML=LIB.filter(function(o){return visible(o,s);}).map(function(o){var on=sel.indexOf(o.id)>=0;
     return '<div class="opt'+(on?' on':'')+'" data-id="'+o.id+'" role="button" tabindex="0" aria-pressed="'+on+'"><span class="tick">✓</span><div class="ic">'+o.ic+'</div><h3>'+esc(o.t)+'</h3><p>'+esc(o.d)+'</p>'+
-      (o.kind==='song'?'<button class="hear" data-hear="'+o.id+'">▶ Ouvir trecho</button>':o.kind==='acordes'?'<button class="hear" data-ch="A">▶ Lá</button>':'')+
+      (o.kind==='song'?'<button class="hear" data-hear="'+o.id+'">▶ Ouvir trecho</button>':'')+
       '<div class="tags">'+o.tags.map(function(t){return '<span>'+esc(t)+'</span>';}).join('')+'</div></div>';}).join('');
 }
 function renderSettings(){
@@ -237,17 +254,18 @@ function renderSettings(){
   $('recado').value=s.recado||'';
 }
 function renderSummary(){
-  var s=stu(),songs=LIB.filter(function(o){return o.kind==='song'&&s.sel.indexOf(o.id)>=0;}).length,items=s.sel.length;
-  $('sumTxt').innerHTML=items?'Aula de <b>'+esc(s.nome)+'</b>: '+items+' item(ns), '+songs+' música(s).':'Marque pelo menos um cartão na grade.';
-  $('bSend').disabled=!items;
-  $('toAluno').href=items?link():'aluno.html';
-  if(items){$('bVer').href=link();$('bVer').removeAttribute('aria-disabled');$('bVer').style.opacity='';}else{$('bVer').removeAttribute('href');$('bVer').style.opacity='.45';}
+  var s=stu(),sel=selOf(s),songs=LIB.filter(function(o){return o.kind==='song'&&sel.indexOf(o.id)>=0;}).length,items=sel.length;
+  $('sumTxt').innerHTML=items?'Aula de <b>'+esc(s.nome)+'</b> ('+NIV[s.nivel||'b']+'): '+items+' item(ns), '+songs+' música(s).':'Marque pelo menos um cartão na grade.';
+  if(items&&!songs) $('sumTxt').innerHTML+=' <span style="color:var(--red)">Marque uma música para ter acordes.</span>';
+  $('bSend').disabled=!songs;
+  $('toAluno').href=songs?link():'aluno.html';
+  if(songs){$('bVer').href=link();$('bVer').removeAttribute('aria-disabled');$('bVer').style.opacity='';}else{$('bVer').removeAttribute('href');$('bVer').style.opacity='.45';}
 }
 function renderBoard(){
   var el=$('board');
   if(!st.sent.length){el.innerHTML='<tr><td colspan="4" class="muted" style="padding:18px 8px">Nenhuma aula enviada ainda. Monte a primeira aula acima e toque em <b>Enviar no WhatsApp</b>.</td></tr>';return;}
   el.innerHTML=st.sent.map(function(x,i){var dt=new Date(x.data);
-    return '<tr><td><b>'+esc(x.nome)+'</b></td><td>'+dt.toLocaleDateString('pt-BR')+'<br><span class="muted">'+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'</span></td><td>'+x.itens.map(function(t){return '<span class="mini">'+esc(t.split(' — ')[0])+'</span>';}).join('')+'</td>'+
+    return '<tr><td><b>'+esc(x.nome)+'</b><br><span class="muted">'+NIV[x.nivel||'b']+'</span></td><td>'+dt.toLocaleDateString('pt-BR')+'<br><span class="muted">'+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+'</span></td><td>'+x.itens.map(function(t){return '<span class="mini">'+esc(t.split(' — ')[0])+'</span>';}).join('')+'</td>'+
       '<td><div class="row" style="flex-wrap:nowrap"><a class="btn btn-wa btn-sm" target="_blank" rel="noopener noreferrer" href="'+esc(resendLink(x))+'">Reenviar</a><a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="'+esc(x.link)+'">Ver</a></div></td></tr>';}).join('');
 }
 function resendLink(x){var first=x.nome.split(' ')[0];return 'https://wa.me/'+fone(x.fone)+'?text='+encodeURIComponent('Olá, '+first+'! Sua aula de violão está no app AAS Music 🎸\n\nÉ só abrir, apertar Tocar e acompanhar:\n'+x.link);}
@@ -262,11 +280,10 @@ function renderAll(){renderStudents();renderGrid();renderSettings();renderSummar
 
 /* ---------- Montar a aula ---------- */
 function lesson(){
-  var s=stu(),songs=[],k=s.speed||1;
-  LIB.forEach(function(o){if(o.kind==='song'&&s.sel.indexOf(o.id)>=0){var g=o.song;songs.push({n:g.n,y:g.style,s:Math.round(g.slow*k),f:Math.round(g.normal*Math.max(1,k)),b:g.beats,x:g.text});}});
-  if(!songs.length) songs.push({n:'Acordes da aula',y:'simples',s:Math.round(60*k),f:80,b:4,x:'A E A E'});
-  return {a:s.nome,p:st.prof||'',t:'Aula de violão — Lá e Mi',r:s.recado||'',m:songs,
-    o:{exp:EXP,ac:s.sel.indexOf('acordes')>=0?1:0,tr:s.sel.indexOf('troca')>=0?1:0,only:songs.length&&!LIB.some(function(o){return o.kind==='song'&&s.sel.indexOf(o.id)>=0;})?1:0}};
+  var s=stu(),songs=[],k=s.speed||1,sel=selOf(s);
+  LIB.forEach(function(o){if(o.kind==='song'&&sel.indexOf(o.id)>=0){var g=o.song;songs.push({n:g.n,y:g.style,s:Math.round(g.slow*k),f:Math.round(g.normal*Math.max(1,k)),b:g.beats,x:g.text});}});
+  return {a:s.nome,p:st.prof||'',t:'Aula de violão — Nível '+NIV[s.nivel||'b'].toLowerCase(),r:s.recado||'',m:songs,
+    o:{exp:EXP,ac:sel.indexOf('acordes')>=0?1:0,tr:sel.indexOf('troca')>=0?1:0}};
 }
 function link(){return location.href.replace(/[#?].*$/,'').replace(/[^\/]*$/,'')+'aluno.html#'+A.encode(lesson());}
 function fone(v){var d=String(v||'').replace(/\D/g,'');if(!d)return '';if(d.length<=11)d='55'+d;return d;}
@@ -284,7 +301,7 @@ $('students').addEventListener('click',function(e){
 });
 $('bStuOk').addEventListener('click',function(){
   var n=$('sNome').value.trim();if(!n){$('sNome').focus();return;}
-  st.students.push({nome:n,fone:$('sFone').value.trim(),sel:['acordes','troca'],speed:1,recado:''});st.cur=st.students.length-1;save();
+  st.students.push({nome:n,nivel:'b',fone:$('sFone').value.trim(),sel:['acordes','troca','marcha'],speed:1,recado:''});st.cur=st.students.length-1;save();
   $('mStu').classList.remove('open');renderAll();toast(n+' adicionado. Agora marque o que entra na aula.');
 });
 $('sNome').addEventListener('keydown',function(e){if(e.key==='Enter')$('bStuOk').click();});
@@ -309,6 +326,9 @@ $('grid').addEventListener('click',function(e){
   var card=e.target.closest('.opt');if(card)toggle(card.dataset.id);
 });
 $('grid').addEventListener('keydown',function(e){var card=e.target.closest('.opt');if(card&&(e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();toggle(card.dataset.id);}});
+$('nivel').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var s=stu();s.nivel=b.dataset.n;
+  var first=LIB.find(function(o){return o.kind==='song'&&visible(o,s);});if(first&&!selOf(s).some(function(id){return LIB.find(function(o){return o.id===id;}).kind==='song';}))s.sel.push(first.id);
+  save();A.stopAll();renderGrid();renderSummary();toast('Nível '+NIV[s.nivel]+' para '+s.nome.split(' ')[0]+'.');});
 $('speed').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;stu().speed=+b.dataset.v;save();renderSettings();renderSummary();});
 $('recado').addEventListener('input',function(){stu().recado=this.value;save();renderSummary();});
 $('recChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var r=$('recado');r.value=(r.value.trim()?r.value.trim()+' ':'')+b.textContent;stu().recado=r.value;save();renderSummary();});
@@ -317,9 +337,9 @@ $('bSend').addEventListener('click',function(){
 });
 $('sendFone').addEventListener('input',function(){stu().fone=this.value;save();$('bSendGo').href=waLink();});
 $('bSendGo').addEventListener('click',function(){
-  var s=stu(),items=s.sel.map(function(id){return LIB.find(function(o){return o.id===id;}).t;});
+  var s=stu(),items=selOf(s).map(function(id){return LIB.find(function(o){return o.id===id;}).t;});
   st.sent=st.sent.filter(function(x){return x.nome!==s.nome;});
-  st.sent.unshift({nome:s.nome,fone:s.fone||'',data:Date.now(),itens:items,link:link()});save();renderBoard();
+  st.sent.unshift({nome:s.nome,nivel:s.nivel||'b',fone:s.fone||'',data:Date.now(),itens:items,link:link()});save();renderBoard();
   $('mSend').classList.remove('open');toast('Aula enviada. '+s.nome.split(' ')[0]+' entrou no quadro de alunos.');
 });
 $('bSendNo').addEventListener('click',function(){$('mSend').classList.remove('open');});
