@@ -118,7 +118,7 @@ footer a{color:var(--gold2)}
 </div></header>
 
 <main class="wrap">
-  <div class="test"><span><b>Teste grátis</b> — <span id="trialTxt">4 dias</span>. Sem cadastro: monte aulas e envie para alunos de verdade.</span><a class="btn btn-gold btn-sm" href="./#entrar">Criar conta grátis</a></div>
+  <div class="test"><span><b>Teste grátis</b> — <span id="trialTxt">até 23/11</span>. Sem cadastro: monte aulas e envie para alunos de verdade.</span><a class="btn btn-gold btn-sm" href="./#entrar">Criar conta grátis</a></div>
 
   <div class="hero">
     <div class="eyebrow">Painel do professor</div>
@@ -212,7 +212,7 @@ function defaults(){return {start:Date.now(),prof:'',cur:0,sent:[],students:[{no
 try{st=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
 if(!st||!st.students||!st.students.length) st=defaults();
 if(!st.start) st.start=Date.now(); if(!st.sent) st.sent=[];
-var EXP=st.start+DIAS*DAY;
+var EXP=new Date('2026-11-23T23:59:59-03:00').getTime(); // teste vale para todos até 23/11, 23h59
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 function stu(){return st.students[st.cur]||st.students[0];}
 
@@ -255,7 +255,7 @@ function renderTrial(){
   var left=Math.ceil((EXP-Date.now())/DAY);
   if(left<=0){document.querySelector('main').hidden=true;document.querySelector('.summary').hidden=true;$('expired').hidden=false;
     $('expWa').href='https://wa.me/5519989522187?text='+encodeURIComponent('Olá! Testei o AAS Music e quero assinar o plano do professor.');return false;}
-  $('trialTxt').textContent=left===1?'último dia':'faltam '+left+' dias';return true;
+  $('trialTxt').textContent=(left===1?'último dia':'faltam '+left+' dias')+' (até 23/11, 23h59)';return true;
 }
 function renderAll(){renderStudents();renderGrid();renderSettings();renderSummary();renderBoard();}
 
