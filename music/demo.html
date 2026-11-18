@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AAS Music · Teste grátis do professor</title>
+<meta name="description" content="Teste o AAS Music sem cadastro: monte uma aula de violão para o seu aluno e envie pelo WhatsApp.">
+<meta name="theme-color" content="#0b0a08">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0a08;--panel:#18150f;--panel2:#1f1b14;--line:#ffffff17;--gold:#c9a66b;--gold2:#e6c896;--cream:#f3ece0;--muted:#a69f94;--wa:#25d366;--red:#e0715f;--ok:#7bd88f;
+--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(900px 500px at 90% -10%,#c9a66b1c,transparent 60%),var(--bg);background-attachment:fixed;color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+.wrap{width:min(1040px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:#0b0a08cc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+.logo{font-family:var(--serif);font-size:1.35rem;display:flex;align-items:center;gap:10px;color:var(--cream);text-decoration:none}
+.logo em{color:var(--gold)}
+.logo img{width:30px;height:30px;border-radius:8px}
+.switch{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid #c9a66b66;background:#c9a66b14;color:var(--gold2);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}
+.switch:hover{background:#c9a66b30}
+h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.1}
+h1{font-size:clamp(2rem,5.5vw,3.2rem)}
+h1 em,h2 em{color:var(--gold);font-style:italic}
+h2{font-size:1.5rem}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;text-transform:uppercase;letter-spacing:.26em;color:var(--gold);font-weight:700;margin-bottom:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.muted{color:var(--muted)}
+.hero{padding:34px 0 10px}
+.hero p{max-width:640px;margin-top:10px}
+.test{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #c9a66b55;background:#c9a66b12;border-radius:16px;padding:12px 16px;margin:18px 0 6px;font-size:14px}
+.test b{color:var(--gold2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;border-radius:999px;font-weight:700;font-size:14px;border:0;cursor:pointer;text-decoration:none;transition:.25s;font-family:var(--sans);color:var(--cream);background:transparent}
+.btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.btn svg{width:18px;height:18px}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a140a;box-shadow:0 12px 34px #c9a66b40}
+.btn-wa{background:var(--wa);color:#06260f}
+.btn-ghost{border:1px solid #ffffff2a}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-sm{padding:9px 14px;font-size:13px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.step-title{display:flex;align-items:center;gap:12px;margin:30px 0 14px}
+.step-title .n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#1a140a;font-weight:700;flex:none}
+/* alunos */
+.students{display:flex;gap:10px;flex-wrap:wrap}
+.stu{display:flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--cream);font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer}
+.stu .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#c9a66b22;color:var(--gold2);font-family:var(--serif)}
+.stu.on{border-color:var(--gold);background:#c9a66b1c}
+.stu.on .av{background:var(--gold);color:#1a140a}
+.stu.add{border-style:dashed;color:var(--muted);padding-left:16px}
+/* grade */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid>*{min-width:0}
+.opt{position:relative;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px 18px 18px;color:var(--cream);font-family:var(--sans);cursor:pointer;transition:.2s;display:flex;flex-direction:column;gap:6px;min-height:170px}
+.opt:hover{border-color:#c9a66b77}
+.opt .ic{font-size:1.9rem;line-height:1}
+.opt h3{font-size:1.15rem;margin-top:6px}
+.opt p{font-size:13px;color:var(--muted)}
+.opt .tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.opt .tags span{font-size:11px;font-weight:700;color:var(--gold2);border:1px solid #c9a66b40;border-radius:999px;padding:2px 8px}
+.opt .tick{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;border:2px solid #ffffff30;display:grid;place-items:center;font-size:14px;color:transparent}
+.opt.on{border-color:var(--gold);background:linear-gradient(170deg,#241d12,#17130d);box-shadow:0 16px 40px #c9a66b1a}
+.opt.on .tick{background:var(--gold);border-color:var(--gold);color:#1a140a}
+.opt .hear{align-self:flex-start;margin-top:4px;font-size:12px;font-weight:700;color:var(--gold2);background:none;border:1px solid #c9a66b55;border-radius:999px;padding:4px 10px;cursor:pointer}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px;background:var(--panel);flex-wrap:wrap}
+.seg button{border:0;background:none;color:var(--muted);font-family:var(--sans);font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--gold);color:#1a140a}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.two>*{min-width:0}
+label.l{font-size:13px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+input,textarea{font-family:var(--sans);font-size:16px;color:var(--cream);background:#0f0d0a;border:1px solid #ffffff22;border-radius:14px;padding:12px 14px;width:100%}
+textarea{min-height:90px;resize:vertical}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chips button{font-family:var(--sans);font-size:12px;color:var(--cream);background:#ffffff08;border:1px solid #ffffff22;border-radius:999px;padding:5px 10px;cursor:pointer}
+.chips button:hover{border-color:var(--gold)}
+/* resumo */
+.summary{position:sticky;bottom:0;z-index:15;margin-top:26px;background:#0b0a08ee;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:14px 0}
+.summary .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.summary .txt{font-size:14px;color:var(--muted)}
+.summary .txt b{color:var(--cream)}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:50;padding:18px}
+.modal.open{display:flex}
+.modal .card{width:min(500px,100%);box-shadow:0 40px 100px #000c}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(40px);opacity:0;pointer-events:none;background:var(--panel2);border:1px solid #c9a66b55;color:var(--cream);padding:12px 20px;border-radius:999px;transition:.35s;z-index:60;font-size:14px;max-width:92%}
+.toast.show{transform:translateX(-50%);opacity:1}
+footer{padding:30px 4% 40px;color:var(--muted);font-size:13px;text-align:center}
+footer a{color:var(--gold2)}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.two{grid-template-columns:1fr}.opt{min-height:150px;padding:16px 14px}.opt h3{font-size:1.02rem}.summary .row{width:100%}.summary .btn{flex:1}.logo span.t{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2l-.4-.2z"/></symbol>
+</svg>
+
+<header><div class="wrap">
+  <a class="logo" href="./"><img src="icon.svg" alt="">AAS <em>Music</em></a>
+  <a class="switch" href="aluno.html">🎸 Painel do aluno</a>
+</div></header>
+
+<main class="wrap">
+  <div class="test"><span><b>Versão de teste</b> — sem cadastro. Monte uma aula e envie para um aluno de verdade.</span><a class="btn btn-gold btn-sm" href="./#entrar">Criar conta grátis</a></div>
+
+  <div class="hero">
+    <div class="eyebrow">Painel do professor</div>
+    <h1>Monte a aula <em>em 3 toques</em></h1>
+    <p class="muted">Escolha o aluno, marque o que entra na aula e envie pelo WhatsApp. O aluno abre no celular, ouve o violão e vê o acorde da vez.</p>
+  </div>
+
+  <div class="step-title"><span class="n">1</span><h2>Para qual <em>aluno</em>?</h2></div>
+  <div class="students" id="students"></div>
+
+  <div class="step-title"><span class="n">2</span><h2>O que entra na <em>aula</em>?</h2></div>
+  <p class="muted" style="margin:-4px 0 14px;font-size:14px">Toque nos cartões para marcar ou desmarcar.</p>
+  <div class="grid" id="grid"></div>
+
+  <div class="step-title"><span class="n">3</span><h2>Ajustes para <em id="stuName2">o aluno</em></h2></div>
+  <div class="two">
+    <div class="card">
+      <label class="l">Velocidade</label>
+      <div class="seg" id="speed"><button data-v="0.8">Bem devagar</button><button data-v="1">Devagar</button><button data-v="1.15">Ritmo da música</button></div>
+      <p class="muted" style="font-size:13px;margin-top:10px">O aluno ainda pode trocar entre Devagar e Normal no celular.</p>
+    </div>
+    <div class="card">
+      <label class="l" for="recado">Recado para o aluno</label>
+      <textarea id="recado" maxlength="300" placeholder="Escreva um recado (opcional)"></textarea>
+      <div class="chips" id="recChips"><button>Treine 10 minutos por dia.</button><button>Comece sempre no Devagar.</button><button>Capriche na troca de A para E!</button><button>Na próxima aula a gente revisa.</button></div>
+    </div>
+  </div>
+</main>
+
+<div class="summary"><div class="wrap">
+  <div class="txt" id="sumTxt"></div>
+  <div class="row">
+    <a class="btn btn-ghost" id="bVer" target="_blank" rel="noopener">Ver como o aluno</a>
+    <button class="btn btn-wa" id="bSend"><svg><use href="#i-wa"/></svg>Enviar no WhatsApp</button>
+  </div>
+</div></div>
+
+<div class="modal" id="mStu" role="dialog" aria-modal="true" aria-labelledby="mStuT"><div class="card">
+  <h2 id="mStuT" style="margin-bottom:14px">Novo <em>aluno</em></h2>
+  <label class="l" for="sNome">Nome</label><input id="sNome" maxlength="60" placeholder="Ex.: Dona Maria" style="margin-bottom:14px">
+  <label class="l" for="sFone">WhatsApp do aluno (opcional, com DDD)</label><input id="sFone" inputmode="tel" maxlength="20" placeholder="Ex.: 34 99999-9999" style="margin-bottom:16px">
+  <div class="row"><button class="btn btn-gold" id="bStuOk">Adicionar</button><button class="btn btn-ghost" id="bStuNo">Cancelar</button></div>
+</div></div>
+
+<div class="modal" id="mSend" role="dialog" aria-modal="true" aria-labelledby="mSendT"><div class="card">
+  <h2 id="mSendT" style="margin-bottom:8px">Enviar para <em id="sendName"></em></h2>
+  <p class="muted" style="font-size:14px;margin-bottom:14px">Se quiser, coloque o WhatsApp do aluno para a conversa abrir direto com ele.</p>
+  <label class="l" for="sendFone">WhatsApp do aluno (opcional)</label><input id="sendFone" inputmode="tel" maxlength="20" placeholder="Ex.: 34 99999-9999" style="margin-bottom:16px">
+  <div class="row"><a class="btn btn-wa" id="bSendGo" target="_blank" rel="noopener noreferrer"><svg><use href="#i-wa"/></svg>Abrir WhatsApp</a><button class="btn btn-ghost" id="bSendNo">Cancelar</button></div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+<footer>AAS Music · AAS Tecnologia Editorial · <a href="./#entrar">Criar conta de professor</a></footer>
+
+<script src="engine.js"></script>
+<script>
+(function(){
+"use strict";
+var A=window.AASM,esc=A.esc,$=function(id){return document.getElementById(id);},KEY='aasmusic.demo';
+
+/* ---------- Biblioteca (grade de opções) ---------- */
+var LIB=[
+  {id:'acordes',ic:'🎸',t:'Acordes Lá e Mi',d:'Desenho dos dedos e botão para ouvir cada acorde.',tags:['A','E','Iniciante'],kind:'acordes'},
+  {id:'troca',ic:'🔁',t:'Treino de troca A ↔ E',d:'Lá e Mi se alternando em repetição, no ritmo.',tags:['Exercício','Coordenação'],kind:'troca'},
+  {id:'marcha',ic:'🥁',t:'Marcha Soldado',d:'Infantil · ritmo de marcha. Letra completa na tela.',tags:['A','E','Marcha'],kind:'song',
+    song:{n:'Marcha Soldado',style:'marcha',slow:72,normal:96,beats:8,text:'A | Marcha soldado, cabeça de\nE | papel, se não marchar direito vai preso pro\nA | quartel. O quartel pegou fogo, a polícia deu\nE | sinal: acorda, acorda, acorda a bandeira na-\nA | -cional!'}},
+  {id:'luna',ic:'🌙',t:'La Bella Luna',d:'Os Paralamas do Sucesso · pop. Sequência e partes; a letra fica na cifra do aluno.',tags:['A','E','Pop'],kind:'song',
+    song:{n:'La Bella Luna — Os Paralamas do Sucesso',style:'pop',slow:70,normal:92,beats:4,text:'[Introdução]\nA E\n[Primeira parte]\nA E\nA E\nA E\nA E\n[Refrão]\nA E\nA E\nA E\nA E\n[Parte "Ó lua"]\nA E\nA E\nA E\nA E\n[Refrão]\nA E\nA E\nA E\nA E\nA'}}
+];
+
+/* ---------- Estado ---------- */
+var st;
+function defaults(){return {cur:0,students:[{nome:'Dionísia Rosa',fone:'',sel:['acordes','troca','marcha','luna'],speed:1,recado:'Treine 10 minutos por dia. Comece sempre no Devagar.'},{nome:'Aluno exemplo',fone:'',sel:['acordes','marcha'],speed:0.8,recado:''}]};}
+try{st=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
+if(!st||!st.students||!st.students.length) st=defaults();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+function stu(){return st.students[st.cur]||st.students[0];}
+
+var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show');},2600);}
+function initials(n){return n.split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();}
+
+/* ---------- Render ---------- */
+function renderStudents(){
+  $('students').innerHTML=st.students.map(function(s,i){return '<button class="stu'+(i===st.cur?' on':'')+'" data-i="'+i+'"><span class="av">'+esc(initials(s.nome))+'</span>'+esc(s.nome)+'</button>';}).join('')+'<button class="stu add" id="bAddStu">+ Novo aluno</button>';
+  $('stuName2').textContent=stu().nome.split(' ')[0];
+}
+function renderGrid(){
+  var sel=stu().sel;
+  $('grid').innerHTML=LIB.map(function(o){var on=sel.indexOf(o.id)>=0;
+    return '<div class="opt'+(on?' on':'')+'" data-id="'+o.id+'" role="button" tabindex="0" aria-pressed="'+on+'"><span class="tick">✓</span><div class="ic">'+o.ic+'</div><h3>'+esc(o.t)+'</h3><p>'+esc(o.d)+'</p>'+
+      (o.kind==='song'?'<button class="hear" data-hear="'+o.id+'">▶ Ouvir trecho</button>':o.kind==='acordes'?'<button class="hear" data-ch="A">▶ Lá</button>':'')+
+      '<div class="tags">'+o.tags.map(function(t){return '<span>'+esc(t)+'</span>';}).join('')+'</div></div>';}).join('');
+}
+function renderSettings(){
+  var s=stu();
+  document.querySelectorAll('#speed button').forEach(function(b){b.classList.toggle('on',+b.dataset.v===s.speed);});
+  $('recado').value=s.recado||'';
+}
+function renderSummary(){
+  var s=stu(),songs=LIB.filter(function(o){return o.kind==='song'&&s.sel.indexOf(o.id)>=0;}).length,items=s.sel.length;
+  $('sumTxt').innerHTML=items?'Aula de <b>'+esc(s.nome)+'</b>: '+items+' item(ns), '+songs+' música(s).':'Marque pelo menos um cartão na grade.';
+  $('bSend').disabled=!items;
+  if(items){$('bVer').href=link();$('bVer').removeAttribute('aria-disabled');$('bVer').style.opacity='';}else{$('bVer').removeAttribute('href');$('bVer').style.opacity='.45';}
+}
+function renderAll(){renderStudents();renderGrid();renderSettings();renderSummary();}
+
+/* ---------- Montar a aula ---------- */
+function lesson(){
+  var s=stu(),songs=[],k=s.speed||1;
+  LIB.forEach(function(o){if(o.kind==='song'&&s.sel.indexOf(o.id)>=0){var g=o.song;songs.push({n:g.n,y:g.style,s:Math.round(g.slow*k),f:Math.round(g.normal*Math.max(1,k)),b:g.beats,x:g.text});}});
+  if(!songs.length) songs.push({n:'Acordes da aula',y:'simples',s:Math.round(60*k),f:80,b:4,x:'A E A E'});
+  return {a:s.nome,p:'',t:'Aula de violão — Lá e Mi',r:s.recado||'',m:songs,
+    o:{ac:s.sel.indexOf('acordes')>=0?1:0,tr:s.sel.indexOf('troca')>=0?1:0,only:songs.length&&!LIB.some(function(o){return o.kind==='song'&&s.sel.indexOf(o.id)>=0;})?1:0}};
+}
+function link(){return location.href.replace(/[#?].*$/,'').replace(/[^\/]*$/,'')+'aluno.html#'+A.encode(lesson());}
+function fone(v){var d=String(v||'').replace(/\D/g,'');if(!d)return '';if(d.length<=11)d='55'+d;return d;}
+function waLink(){
+  var s=stu(),first=s.nome.split(' ')[0];
+  var msg='Olá, '+first+'! Sua aula de violão está pronta no app AAS Music 🎸\n\nÉ só abrir, apertar Tocar e acompanhar:\n'+link();
+  return 'https://wa.me/'+fone($('sendFone').value)+'?text='+encodeURIComponent(msg);
+}
+
+/* ---------- Eventos ---------- */
+$('students').addEventListener('click',function(e){
+  var b=e.target.closest('.stu');if(!b)return;
+  if(b.id==='bAddStu'){$('sNome').value='';$('sFone').value='';$('mStu').classList.add('open');setTimeout(function(){$('sNome').focus();},50);return;}
+  st.cur=+b.dataset.i;save();A.stopAll();renderAll();
+});
+$('bStuOk').addEventListener('click',function(){
+  var n=$('sNome').value.trim();if(!n){$('sNome').focus();return;}
+  st.students.push({nome:n,fone:$('sFone').value.trim(),sel:['acordes','troca'],speed:1,recado:''});st.cur=st.students.length-1;save();
+  $('mStu').classList.remove('open');renderAll();toast(n+' adicionado. Agora marque o que entra na aula.');
+});
+$('sNome').addEventListener('keydown',function(e){if(e.key==='Enter')$('bStuOk').click();});
+$('bStuNo').addEventListener('click',function(){$('mStu').classList.remove('open');});
+document.querySelectorAll('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('open');});});
+addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(function(m){m.classList.remove('open');});});
+
+function toggle(id){var s=stu(),i=s.sel.indexOf(id);if(i>=0)s.sel.splice(i,1);else s.sel.push(id);
+  s.sel.sort(function(a,b){return LIB.findIndex(function(o){return o.id===a;})-LIB.findIndex(function(o){return o.id===b;});});save();renderGrid();renderSummary();}
+var hearStop=null,hearId=null;
+$('grid').addEventListener('click',function(e){
+  var h=e.target.closest('[data-hear]');
+  if(h){e.stopPropagation();
+    if(hearStop&&hearId===h.dataset.hear){var f=hearStop;hearStop=null;f();h.textContent='▶ Ouvir trecho';return;}
+    document.querySelectorAll('[data-hear]').forEach(function(x){x.textContent='▶ Ouvir trecho';});
+    var o=LIB.find(function(x){return x.id===h.dataset.hear;}),p=A.parse(o.song.text,o.song.beats);
+    hearId=o.id;h.textContent='■ Parar';
+    hearStop=A.play(p.segs.slice(0,4),{style:o.song.style,bpm:o.song.normal,count:false,onEnd:function(){hearStop=null;h.textContent='▶ Ouvir trecho';}});
+    return;}
+  var c=e.target.closest('[data-ch]');
+  if(c){e.stopPropagation();A.hear(c.dataset.ch);c.dataset.ch=c.dataset.ch==='A'?'E':'A';c.textContent='▶ '+(c.dataset.ch==='A'?'Lá':'Mi');return;}
+  var card=e.target.closest('.opt');if(card)toggle(card.dataset.id);
+});
+$('grid').addEventListener('keydown',function(e){var card=e.target.closest('.opt');if(card&&(e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();toggle(card.dataset.id);}});
+$('speed').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;stu().speed=+b.dataset.v;save();renderSettings();renderSummary();});
+$('recado').addEventListener('input',function(){stu().recado=this.value;save();renderSummary();});
+$('recChips').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var r=$('recado');r.value=(r.value.trim()?r.value.trim()+' ':'')+b.textContent;stu().recado=r.value;save();renderSummary();});
+$('bSend').addEventListener('click',function(){
+  var s=stu();$('sendName').textContent=s.nome.split(' ')[0];$('sendFone').value=s.fone||'';$('bSendGo').href=waLink();$('mSend').classList.add('open');
+});
+$('sendFone').addEventListener('input',function(){stu().fone=this.value;save();$('bSendGo').href=waLink();});
+$('bSendGo').addEventListener('click',function(){$('mSend').classList.remove('open');toast('Aula enviada para o WhatsApp.');});
+$('bSendNo').addEventListener('click',function(){$('mSend').classList.remove('open');});
+
+renderAll();
+})();
+</script>
+</body>
+</html>

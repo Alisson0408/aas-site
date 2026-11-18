@@ -160,12 +160,13 @@ function renderLesson(L,back,only){
   var prof=L.p?(/^prof/i.test(L.p)?L.p:'Prof. '+L.p):'';
   var h='<header class="wrap"><div class="brand">AAS Music</div><h1>Aulas <em>'+esc(L.a||'de violão')+'</em></h1><p>'+esc([prof,L.t].filter(Boolean).join(' · '))+'</p>'+(back?'<button class="linkbtn" id="bBack">← Todas as aulas</button>':'')+'</header><main class="wrap">';
   if(L.r) h+='<div class="note"><b>Recado do professor</b>'+esc(L.r)+'</div>';
+  var O=L.o||{},showAc=!L.o||O.ac,showTr=!L.o||O.tr,showSongs=!O.only;
   var n=1;
-  h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Os acordes</h2><p>Monte o acorde no violão e toque. Depois aperte <b>Ouvir</b> e compare.</p><div class="chords">';
-  all.forEach(function(c){h+='<div class="chord"><h3>'+c+' <small>'+esc(A.CH[c].n)+'</small></h3>'+A.diagram(c,'light')+'<button class="btn btn-hear" data-hear="'+c+'"><svg><use href="#i-ear"/></svg>Ouvir</button></div>';});
-  h+='</div><div class="tip">Números nas bolinhas = <b>dedos</b>: 1 indicador, 2 médio, 3 anelar, 4 mindinho. <b>×</b> = não tocar essa corda.</div></section>';
-  if(all.length>1) h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Treinar a troca</h2><p>O som toca '+all.join(', ')+' e repete. Troque quando a tela mudar.</p><div data-player="treino"></div></section>';
-  songs.forEach(function(s,i){h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>'+esc(s.n||'Música '+(i+1))+'</h2><p>Aperte <b>Tocar</b>. A tela conta 4, 3, 2, 1 e a música começa.</p><div data-player="'+i+'"></div></section>';});
+  if(showAc) h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Os acordes</h2><p>Monte o acorde no violão e toque. Depois aperte <b>Ouvir</b> e compare.</p><div class="chords">';
+  if(showAc) all.forEach(function(c){h+='<div class="chord"><h3>'+c+' <small>'+esc(A.CH[c].n)+'</small></h3>'+A.diagram(c,'light')+'<button class="btn btn-hear" data-hear="'+c+'"><svg><use href="#i-ear"/></svg>Ouvir</button></div>';});
+  if(showAc) h+='</div><div class="tip">Números nas bolinhas = <b>dedos</b>: 1 indicador, 2 médio, 3 anelar, 4 mindinho. <b>×</b> = não tocar essa corda.</div></section>';
+  if(showTr&&all.length>1) h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>Treinar a troca</h2><p>O som toca '+all.join(', ')+' e repete. Troque quando a tela mudar.</p><div data-player="treino"></div></section>';
+  if(showSongs) songs.forEach(function(s,i){h+='<section class="step"><span class="tag">Passo '+(n++)+'</span><h2>'+esc(s.n||'Música '+(i+1))+'</h2><p>Aperte <b>Tocar</b>. A tela conta 4, 3, 2, 1 e a música começa.</p><div data-player="'+i+'"></div></section>';});
   h+='<div class="tip" style="margin-bottom:10px">Sem som? Tire o celular do <b>silencioso</b> e aumente o volume.</div>';
   if(only&&!L0) h+='<p style="text-align:center;margin-top:10px"><button class="linkbtn" id="bSair2">Usar outro código</button></p>';
   h+='</main>';
@@ -173,9 +174,9 @@ function renderLesson(L,back,only){
   if(back) document.getElementById('bBack').addEventListener('click',back);
   var s2=document.getElementById('bSair2');if(s2) s2.addEventListener('click',function(){store(KEY,null);code='';telaCodigo('');});
   app.querySelectorAll('[data-hear]').forEach(function(b){b.addEventListener('click',function(){A.hear(b.dataset.hear);});});
-  if(all.length>1){var ts=[];for(var r=0;r<3;r++) all.forEach(function(c){ts.push({c:c,b:4,line:0,part:''});});
+  if(showTr&&all.length>1){var ts=[];for(var r=0;r<3;r++) all.forEach(function(c){ts.push({c:c,b:4,line:0,part:''});});
     build(app.querySelector('[data-player="treino"]'),{segs:ts,lines:[],style:(songs[0]&&songs[0].style)||'pop',slow:60,normal:80},true);}
-  songs.forEach(function(s,i){build(app.querySelector('[data-player="'+i+'"]'),s,false);});
+  if(showSongs) songs.forEach(function(s,i){build(app.querySelector('[data-player="'+i+'"]'),s,false);});
 }
 function build(el,song,isTrain){
   var x='<button class="btn btn-play" data-play><svg><use href="#i-play"/></svg><span>Tocar</span></button>';
