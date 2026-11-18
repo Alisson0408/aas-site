@@ -1,0 +1,7 @@
+{"trilha": 0, "cenas": [
+ {"t":"texto","eyebrow":"MARCA PESSOAL","linhas":["Pediram seu contato.","Você respondeu:","“Me acha no Insta.”"],"ouro":[2],"size":94,"dur":2.3},
+ {"t":"texto","eyebrow":"O QUE ACONTECE DEPOIS","linhas":["A pessoa digita.","Erra o @.","Desiste."],"ouro":[2],"sub":"E contrata quem foi fácil de achar.","size_sub":42,"dur":2.7},
+ {"t":"mito","eyebrow":"TROQUE ESTA FRASE","mito":"“Me acha no Instagram.”","size_mito":68,"size_verdade":42,"rotulo":"POR ESTA","destaque":"“Acessa meu site.”","size":92,"verdade":["Seu nome como endereço.","Domínio e hospedagem inclusos."],"dur":3.6},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE · MARCA PESSOAL","projetos":["denise-resende","vanessa-oliveira"],"por":1.6},
+ {"t":"cta","linhas":["Seu site no ar","em 7 dias."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}
