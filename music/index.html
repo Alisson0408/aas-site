@@ -110,10 +110,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--gold2);text-decoration:none}
 .switch{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid #c9a66b66;background:#c9a66b14;color:var(--gold2);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}
 .switch:hover{background:#c9a66b30}
+.pswitch{display:inline-flex;border:1px solid #c9a66b55;border-radius:999px;padding:3px;background:#c9a66b10;white-space:nowrap}
+.pswitch a{padding:7px 12px;border-radius:999px;font-weight:700;font-size:13px;color:var(--gold2);text-decoration:none}
+.pswitch a.on{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a140a}
 .hidden{display:none!important}
 .back{background:none;border:0;color:var(--muted);font-family:var(--sans);font-size:14px;cursor:pointer;padding:0;margin-bottom:10px}
 .back:hover{color:var(--gold2)}
 @media(max-width:760px){.grid4{grid-template-columns:1fr 1fr}.grid4 .f-name,.grid4 .f-style{grid-column:1/-1}.grid2,.choose{grid-template-columns:1fr}#hdrUser .muted{display:none}}
+@media(max-width:480px){.logo{font-size:0;gap:0}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -127,7 +131,7 @@ footer a{color:var(--gold2);text-decoration:none}
 
 <header><div class="wrap">
   <a class="logo" href="./"><img src="icon.svg" alt="">AAS <em>Music</em></a>
-  <div class="row"><div class="row" id="hdrUser"></div><a class="switch" href="aluno.html" title="Ir para o painel do aluno">🎸 Painel do aluno</a></div>
+  <div class="row"><div class="row" id="hdrUser"></div><nav class="pswitch" aria-label="Trocar painel"><a class="on" href="./" aria-current="page">🎓 Professor</a><a href="aluno.html">🎸 Aluno</a></nav></div>
 </div></header>
 
 <main class="wrap">
@@ -248,6 +252,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <footer><div class="wrap"><span>AAS Music · AAS Tecnologia Editorial</span><a data-suporte target="_blank" rel="noopener noreferrer">Suporte no WhatsApp</a></div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>try{localStorage.setItem("aasmusic.painel","./")}catch(e){}</script>
 <script src="config.js"></script>
 <script src="engine.js"></script>
 <script>
