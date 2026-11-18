@@ -108,6 +108,8 @@ th{color:var(--muted);font-weight:500;font-size:12px;text-transform:uppercase;le
 footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:13px;margin-top:40px}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--gold2);text-decoration:none}
+.switch{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1px solid #c9a66b66;background:#c9a66b14;color:var(--gold2);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap}
+.switch:hover{background:#c9a66b30}
 .hidden{display:none!important}
 .back{background:none;border:0;color:var(--muted);font-family:var(--sans);font-size:14px;cursor:pointer;padding:0;margin-bottom:10px}
 .back:hover{color:var(--gold2)}
@@ -125,7 +127,7 @@ footer a{color:var(--gold2);text-decoration:none}
 
 <header><div class="wrap">
   <a class="logo" href="./"><img src="icon.svg" alt="">AAS <em>Music</em></a>
-  <div class="row" id="hdrUser"></div>
+  <div class="row"><div class="row" id="hdrUser"></div><a class="switch" href="aluno.html" title="Ir para o painel do aluno">🎸 Painel do aluno</a></div>
 </div></header>
 
 <main class="wrap">
