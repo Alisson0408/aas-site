@@ -19,6 +19,8 @@ Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"escolha","eyebrow":"PERGUNTA 1 DE 4","pergunta":"...","opcoes":[{"letra":"A","rotulo":"página","texto":"..."},{...}],"dica":"...","certa":0}  (certa = índice do cartão com contorno dourado)
   {"t":"pergunta","eyebrow":"PERGUNTA 1 DE 5","pergunta":"...","porque":"por que perguntar","rotulo":"NA AAS","resposta":"R$ 600","sub":"linha menor opcional"}
   {"t":"cta","linhas":["Sua marca merece","ser extraordinária."],"botao":"PEÇA SEU ORÇAMENTO","dur":3.4}
+CAPA (obrigatória, vira o 1º quadro do Reel e a miniatura no feed):
+  {"capa":{"eyebrow":"...","linhas":["...","..."],"ouro":[1],"selo":"VÍDEO DE 20s"}}  — sem "capa", usa a 1ª cena já montada.
 Roteiro de carrossel: {"slides": [ ...mesmos tipos, sem dur; "portfolio" usa 1 projeto: "projeto":"..." ]}
 """
 import json, math, os, subprocess, sys, wave
@@ -343,10 +345,42 @@ def cena_pergunta(T, c, s, dur, fo, cy):
 
 CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito, 'versus': cena_versus, 'check': cena_check, 'escolha': cena_escolha, 'pergunta': cena_pergunta}
 
+
+# ---------------- CAPA (1º quadro do Reel = miniatura no feed; nunca preto) ----------------
+def desenhar_capa(rot, W=1080, H=1920):
+    c = rot.get('capa')
+    T = Tela(fundo(W, H, 0))
+    L, d = T.layer()
+    # moldura dourada dentro da área que aparece no feed (recorte 3:4 central)
+    top, bot = int(H / 2 - W * 2 / 3) + 40, int(H / 2 + W * 2 / 3) - 40
+    d.rectangle((60, top, W - 60, bot), outline=GOLD + (150,), width=2)
+    for (x, y, dx, dy) in [(60, top, 1, 1), (W - 60, top, -1, 1), (60, bot, 1, -1), (W - 60, bot, -1, -1)]:
+        d.line((x, y, x + 70 * dx, y), fill=GOLD + (255,), width=5); d.line((x, y, x, y + 70 * dy), fill=GOLD + (255,), width=5)
+    d.text((110, top + 60), 'AAS.', font=font(BOLD, 40), fill=GOLD + (255,))
+    selo = (c or {}).get('selo', 'ASSISTA ATÉ O FIM')
+    fs = font(SEMI, 24); w = d.textlength(selo, font=fs)
+    d.rounded_rectangle((W - 110 - w - 44, top + 56, W - 110, top + 106), radius=25, outline=GOLD + (200,), width=2)
+    d.text((W - 110 - w - 22, top + 68), selo, font=fs, fill=GOLD2 + (255,))
+    T.put(L)
+    if c:
+        res, f, sz = linhas_ajustadas(c['linhas'], set(c.get('ouro', [])), W - 220, c.get('size', 116), 70)
+        lh = sz * 1.16; total = len(res) * lh; y0 = H / 2 - total / 2 + 20
+        if c.get('eyebrow'): T.eyebrow(y0 - 100, c['eyebrow'], 1)
+        for k, (ln, g) in enumerate(res): T.centro(y0 + k * lh, ln, f, GOLD2 if g else CREAM, 1)
+        if c.get('sub'): T.centro(y0 + total + 46, c['sub'], font(MED, 38), MUTED, 1)
+    else:
+        c0 = rot['cenas'][0]
+        if c0['t'] in CENAS: CENAS[c0['t']](T, c0, 99, 99, 1, H / 2)
+    L, d = T.layer()
+    hint = 'toque para assistir  ▶'; fh = font(MED, 28); d.text(((W - d.textlength(hint, font=fh)) / 2, bot - 90), hint, font=fh, fill=GOLD + (220,))
+    T.put(L)
+    return T.img.convert('RGB')
+
 # ---------------- REEL ----------------
 def reel(rot, saida):
     W, H, FPS = 1080, 1920, 30
-    cenas = rot['cenas']; tl = []; t = 0
+    cenas = rot['cenas']; tl = []; CAPA = 1.0; t = CAPA
+    capa = desenhar_capa(rot, W, H); capa.save(os.path.splitext(saida)[0] + '-capa.jpg', quality=92)
     for c in cenas:
         d = c.get('por', 1.4) * len(c['projetos']) + .6 if c['t'] == 'portfolio' else c.get('dur', 3.4)
         tl.append((t, d, c)); t += d
@@ -357,7 +391,10 @@ def reel(rot, saida):
                           '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', tmp], stdin=subprocess.PIPE)
     for i in range(N):
         tt = i / FPS
-        idx = max(j for j, (t0, d, c) in enumerate(tl) if t0 <= tt)
+        if tt < CAPA:  # capa parada; dissolve para a 1ª cena nos últimos 0,3 s
+            kf = clamp((tt - (CAPA - .3)) / .3)
+            if kf <= 0: p.stdin.write(capa.tobytes()); continue
+        idx = max([j for j, (t0, d, c) in enumerate(tl) if t0 <= tt] or [0])
         t0, d, c = tl[idx]; s = tt - t0
         T = Tela(bases[idx % 2])
         fo = 1 - ease((s - (d - .4)) / .4) if idx < len(tl) - 1 else 1
@@ -377,9 +414,10 @@ def reel(rot, saida):
         else:
             CENAS[c['t']](T, c, s, d, fo, H / 2)
         out = T.img.convert('RGB')
-        if tt < .15 or tt > DUR - .3:
-            kf = clamp(tt / .15) if tt < .15 else clamp((DUR - tt) / .3)
-            out = Image.blend(Image.new('RGB', (W, H), BG), out, kf)
+        if tt < CAPA:
+            out = Image.blend(capa, out, kf)
+        elif tt > DUR - .3:
+            out = Image.blend(Image.new('RGB', (W, H), BG), out, clamp((DUR - tt) / .3))
         p.stdin.write(out.tobytes())
     p.stdin.close(); p.wait()
     trilha(DUR, saida + '.wav', rot.get('trilha', 0))

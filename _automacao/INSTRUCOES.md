@@ -16,6 +16,15 @@ O Alisson pediu DOIS Reels por dia.
 - Cada tarefa faz só o formato do seu turno. Os dois Reels do mesmo dia precisam ter temas e ganchos diferentes,
   e diferentes também do carrossel do dia. Antes de criar, confira no historico.json o que já saiu hoje.
 
+
+## CAPA OBRIGATÓRIA (regra do dono — nunca publicar Reel com tela preta)
+- Todo Reel TEM de ter `"capa"` no roteiro: `{"eyebrow":"...","linhas":["...","...","..."],"ouro":[i],"selo":"..."}`.
+  O motor desenha a capa premium (moldura dourada, AAS., selo, gancho grande) como 1º quadro do vídeo,
+  que é o que o Instagram usa como miniatura no feed. Também salva `<nome>-capa.jpg` para conferência.
+- O gancho da capa precisa funcionar sozinho no feed: pergunta, dor ou número real, em 2–3 linhas curtas.
+- Antes de publicar, abra o `-capa.jpg` e o 1º quadro do MP4: se estiver escuro/vazio, NÃO publique; corrija.
+- Carrossel: o slide 1 é a capa (gancho grande + "arraste"). Nunca slide 1 vazio ou só com logo.
+
 ## Fatos da oferta (use só estes; não invente números, clientes ou depoimentos)
 - Página de vendas a partir de **R$ 600**; site institucional a partir de **R$ 700**; manutenção **R$ 250–350/mês**.
 - Entrega em **1 semana (7 dias)**; **domínio e hospedagem inclusos**; **4 rodadas de alterações** antes da entrega.
