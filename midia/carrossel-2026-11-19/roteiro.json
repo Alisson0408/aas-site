@@ -1,0 +1,9 @@
+{"slides": [
+ {"t":"texto","eyebrow":"SALVE ANTES DE CONTRATAR","linhas":["Antes de fechar","o seu site, faça","estas 5 perguntas."],"ouro":[2],"size":100,"sub":"Vale para qualquer orçamento. Inclusive o nosso.","size_sub":36},
+ {"t":"pergunta","eyebrow":"PERGUNTA 1 DE 5","pergunta":"Quanto custa, exatamente?","porque":"Valor fechado antes de começar evita surpresa no meio do caminho.","resposta":"A partir de R$ 600","sub":"página de vendas  ·  site: a partir de R$ 700"},
+ {"t":"pergunta","eyebrow":"PERGUNTA 2 DE 5","pergunta":"Domínio e hospedagem estão inclusos?","porque":"Se não estiverem, viram mais uma conta para você resolver depois.","resposta":"Os dois inclusos","sub":"seu endereço próprio, sem custo à parte"},
+ {"t":"pergunta","eyebrow":"PERGUNTA 3 DE 5","pergunta":"Em quanto tempo fica pronto?","porque":"Prazo combinado é o que separa um plano de uma promessa.","resposta":"Entrega em 7 dias","sub":"Descoberta, Criação, Refinamento e Publicação"},
+ {"t":"pergunta","eyebrow":"PERGUNTA 4 DE 5","pergunta":"Quantos ajustes posso pedir?","size":74,"porque":"Saber o limite antes evita o site “quase do jeito que eu queria”.","resposta":"4 rodadas de ajustes","sub":"todas antes da entrega final"},
+ {"t":"pergunta","eyebrow":"PERGUNTA 5 DE 5","pergunta":"E se der problema depois de pronto?","porque":"É a resposta que mais pesa quando algo dá errado.","resposta":"Garantia de 90 dias","sub":"bugs, links quebrados ou algo fora do combinado"},
+ {"t":"cta","linhas":["Pergunte tudo.","A gente responde."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187"}
+]}

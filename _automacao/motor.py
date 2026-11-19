@@ -17,6 +17,7 @@ Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"versus","eyebrow":"...","lados":[{"rotulo":"...","pre":"a partir de","grande":"R$ 600","itens":["..."],"destaque":false},{...}],"rodape":"...","dur":5.4}
   {"t":"check","eyebrow":"SINAL 1 DE 4","sinal":"frase-sinal","desc":"explicação curta","dica":"linha dourada opcional"}
   {"t":"escolha","eyebrow":"PERGUNTA 1 DE 4","pergunta":"...","opcoes":[{"letra":"A","rotulo":"página","texto":"..."},{...}],"dica":"...","certa":0}  (certa = índice do cartão com contorno dourado)
+  {"t":"pergunta","eyebrow":"PERGUNTA 1 DE 5","pergunta":"...","porque":"por que perguntar","rotulo":"NA AAS","resposta":"R$ 600","sub":"linha menor opcional"}
   {"t":"cta","linhas":["Sua marca merece","ser extraordinária."],"botao":"PEÇA SEU ORÇAMENTO","dur":3.4}
 Roteiro de carrossel: {"slides": [ ...mesmos tipos, sem dur; "portfolio" usa 1 projeto: "projeto":"..." ]}
 """
@@ -304,7 +305,43 @@ def cena_escolha(T, c, s, dur, fo, cy):
         y += 40; w = d.textlength(c['dica'], font=fk); d.text(((W - w) / 2, y), c['dica'], font=fk, fill=GOLD2 + (int(255 * a),))
     T.put(L)
 
-CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito, 'versus': cena_versus, 'check': cena_check, 'escolha': cena_escolha}
+def cena_pergunta(T, c, s, dur, fo, cy):
+    """Pergunta + resposta: aspas douradas, pergunta em serifa itálica, por que perguntar e cartão de resposta (bloco centrado em cy)."""
+    W = T.W; a = ease(s / .5) * fo; a2 = ease((s - .5) / .5) * fo; a3 = ease((s - 1.0) / .5) * fo
+    tmp = ImageDraw.Draw(Image.new('RGB', (10, 10)))
+    fq = font(SERIF_I, c.get('size', 82)); fp = font(MED, c.get('size_desc', 38))
+    fr = font(SEMI, 24); fa = font(SERIF, c.get('size_resp', 58)); fs = font(REG, 32)
+    lq = quebrar(tmp, c['pergunta'], fq, W - 180)
+    lp = quebrar(tmp, c.get('porque', ''), fp, W - 240) if c.get('porque') else []
+    cw = W - 180; la = quebrar(tmp, c['resposta'], fa, cw - 100)
+    lsub = quebrar(tmp, c.get('sub', ''), fs, cw - 100) if c.get('sub') else []
+    hc = 70 + 40 + len(la) * fa.size * 1.2 + (len(lsub) * fs.size * 1.4 + 16 if lsub else 0) + 40
+    h = 60 + 110 + len(lq) * fq.size * 1.2 + 40 + len(lp) * fp.size * 1.45 + 60 + hc
+    top = cy - h / 2
+    T.eyebrow(top, c.get('eyebrow', ''), a)
+    L, d = T.layer(); y = top + 60
+    fqq = font(SERIF, 200); w = d.textlength('“', font=fqq)
+    d.text(((W - w) / 2, y - 40), '“', font=fqq, fill=GOLD + (int(255 * a),)); y += 110
+    for q in lq:
+        w = d.textlength(q, font=fq); d.text(((W - w) / 2, y), q, font=fq, fill=CREAM + (int(255 * a),)); y += fq.size * 1.2
+    y += 40
+    for q in lp:
+        w = d.textlength(q, font=fp); d.text(((W - w) / 2, y), q, font=fp, fill=MUTED + (int(255 * a2),)); y += fp.size * 1.45
+    y += 60; x0 = (W - cw) / 2
+    d.rounded_rectangle((x0, y, x0 + cw, y + hc), 18, fill=(28, 22, 14, int(230 * a3)), outline=GOLD + (int(255 * a3),), width=3)
+    rot = c.get('rotulo', 'NA AAS'); sp = 6; ws = [d.textlength(ch, font=fr) for ch in rot]
+    xx = (W - (sum(ws) + sp * (len(ws) - 1))) / 2
+    for ch, wch in zip(rot, ws): d.text((xx, y + 40), ch, font=fr, fill=GOLD + (int(255 * a3),)); xx += wch + sp
+    yy = y + 40 + 50
+    for q in la:
+        w = d.textlength(q, font=fa); d.text(((W - w) / 2, yy), q, font=fa, fill=GOLD2 + (int(255 * a3),)); yy += fa.size * 1.2
+    if lsub:
+        yy += 16
+        for q in lsub:
+            w = d.textlength(q, font=fs); d.text(((W - w) / 2, yy), q, font=fs, fill=CREAM + (int(220 * a3),)); yy += fs.size * 1.4
+    T.put(L)
+
+CENAS = {'texto': cena_texto, 'lista': cena_lista, 'numero': cena_numero, 'passos': cena_passos, 'cta': cena_cta, 'mito': cena_mito, 'versus': cena_versus, 'check': cena_check, 'escolha': cena_escolha, 'pergunta': cena_pergunta}
 
 # ---------------- REEL ----------------
 def reel(rot, saida):
