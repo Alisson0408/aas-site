@@ -1,0 +1,7 @@
+{"trilha": 2, "cenas": [
+ {"t":"texto","eyebrow":"PRIMEIRA MENSAGEM DO DIA","linhas":["Cliente novo","pergunta:","“Você tem site?”"],"ouro":[2],"dur":2.3},
+ {"t":"escolha","eyebrow":"E VOCÊ RESPONDE...","pergunta":"Qual é a sua resposta?","opcoes":[{"letra":"A","rotulo":"só Instagram","texto":"“Me segue lá no Insta.”"},{"letra":"B","rotulo":"arquivo","texto":"“Te mando um PDF.”"},{"letra":"C","rotulo":"site próprio","texto":"“Tenho. Segue o link.”"}],"dica":"Só uma passa confiança na hora.","certa":2,"dur":4.0},
+ {"t":"portfolio","eyebrow":"RESPOSTA C, NA PRÁTICA","projetos":["adao-rosa-monteiro","brasa-burger","vanessa-oliveira"],"por":1.4},
+ {"t":"numero","eyebrow":"DA CONVERSA AO LINK","grande":"7 dias","linhas":["Domínio e hospedagem inclusos.","Garantia de 90 dias."],"dur":3.0},
+ {"t":"cta","linhas":["Amanhã cedo,","responda com um link."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}

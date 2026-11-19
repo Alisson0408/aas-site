@@ -16,7 +16,7 @@ Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"texto",...,"sub":"linha menor opcional abaixo"}
   {"t":"versus","eyebrow":"...","lados":[{"rotulo":"...","pre":"a partir de","grande":"R$ 600","itens":["..."],"destaque":false},{...}],"rodape":"...","dur":5.4}
   {"t":"check","eyebrow":"SINAL 1 DE 4","sinal":"frase-sinal","desc":"explicação curta","dica":"linha dourada opcional"}
-  {"t":"escolha","eyebrow":"PERGUNTA 1 DE 4","pergunta":"...","opcoes":[{"letra":"A","rotulo":"página","texto":"..."},{...}],"dica":"..."}
+  {"t":"escolha","eyebrow":"PERGUNTA 1 DE 4","pergunta":"...","opcoes":[{"letra":"A","rotulo":"página","texto":"..."},{...}],"dica":"...","certa":0}  (certa = índice do cartão com contorno dourado)
   {"t":"cta","linhas":["Sua marca merece","ser extraordinária."],"botao":"PEÇA SEU ORÇAMENTO","dur":3.4}
 Roteiro de carrossel: {"slides": [ ...mesmos tipos, sem dur; "portfolio" usa 1 projeto: "projeto":"..." ]}
 """
@@ -290,10 +290,10 @@ def cena_escolha(T, c, s, dur, fo, cy):
     y += 60
     for k, ((o, q), hh) in enumerate(zip(ops, hc)):
         ak = ease((s - .4 - k * .3) / .5) * fo
-        d.rounded_rectangle((x0, y, x0 + cw, y + hh), 16, fill=(20, 18, 15, int(210 * ak)), outline=(GOLD if k == 0 else (110, 96, 72)) + (int(255 * ak),), width=2)
+        d.rounded_rectangle((x0, y, x0 + cw, y + hh), 16, fill=(20, 18, 15, int(210 * ak)), outline=(GOLD if k == c.get('certa', 0) else (110, 96, 72)) + (int(255 * ak),), width=2)
         cx, ccy = x0 + 70, y + hh / 2
         d.ellipse((cx - 38, ccy - 38, cx + 38, ccy + 38), outline=GOLD + (int(255 * ak),), width=3)
-        lt = o.get('letra', 'AB'[k]); lw = d.textlength(lt, font=fl); d.text((cx - lw / 2, ccy - 30), lt, font=fl, fill=GOLD2 + (int(255 * ak),))
+        lt = o.get('letra', 'ABCDEF'[k]); lw = d.textlength(lt, font=fl); d.text((cx - lw / 2, ccy - 30), lt, font=fl, fill=GOLD2 + (int(255 * ak),))
         lab = ('→ ' + o.get('rotulo', '')).upper(); sp = 4
         ws = [d.textlength(ch, font=fr) for ch in lab]; xx = x0 + 140
         for ch, w in zip(lab, ws): d.text((xx, y + 30), ch, font=fr, fill=GOLD + (int(255 * ak),)); xx += w + sp
