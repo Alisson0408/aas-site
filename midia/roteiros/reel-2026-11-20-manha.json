@@ -1,0 +1,9 @@
+{"trilha": 1,
+ "capa": {"eyebrow":"MÚSICOS, BANDAS E ARTISTAS","linhas":["Sexta de manhã.","Alguém procura","um show pra sábado."],"ouro":[2],"selo":"ASSISTA ATÉ O FIM"},
+ "cenas": [
+ {"t":"texto","eyebrow":"MÚSICOS, BANDAS E ARTISTAS","linhas":["Sexta de manhã.","Alguém procura","um show pra sábado."],"ouro":[2],"sub":"Ele vai te achar ou achar outro?","size_sub":44,"dur":2.6},
+ {"t":"check","eyebrow":"ANTES DE TE CHAMAR, ELE QUER VER","sinal":"Vídeo, repertório e um botão para contratar.","desc":"Tudo em um link. Sem “me manda o material depois”.","dica":"Quem demora, perde a data.","dur":3.6},
+ {"t":"portfolio","eyebrow":"ASSIM, NA PRÁTICA","projetos":["adao-rosa-monteiro"],"por":2.2},
+ {"t":"numero","eyebrow":"SEU SITE NO AR EM","grande":"7 dias","linhas":["A partir de R$ 700.","Domínio e hospedagem inclusos."],"dur":3.0},
+ {"t":"cta","linhas":["Na próxima sexta,","mande o seu link."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.4}
+]}
