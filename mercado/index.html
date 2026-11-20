@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestor Mercado PRO — Menos perda e mais lucro para o seu mercadinho</title>
+<meta name="description" content="Sistema simples, no celular, para mercadinhos e mercearias de bairro: avisa o que vai vencer, calcula o pedido, manda no WhatsApp do fornecedor e organiza o fiado.">
+<meta property="og:title" content="Gestor Mercado PRO — Menos perda e mais lucro">
+<meta property="og:description" content="Avisa o que vai vencer, faz o pedido no WhatsApp e organiza o fiado. Tudo no celular.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0F3A2B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..800;1,9..144,500..800&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#FFF8EE;--bg2:#F5EDDE;--deep:#0F3A2B;--deep2:#0A2D21;--line:#0f3a2b1a;
+ --accent:#F28C28;--accent2:#FFB547;--ink:#132E25;--muted:#56665E;--cream:#FFF8EE;--wa:#25d366;
+ --serif:'Fraunces',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block}
+a{color:inherit}
+.wrap{width:min(1180px,90%);margin:0 auto}
+section{padding:110px 0;position:relative}
+h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;margin:0;line-height:1.08;font-weight:700}
+h1{font-size:clamp(2.6rem,6vw,5.2rem)}
+h2{font-size:clamp(2.1rem,4.4vw,3.6rem)}
+h3{font-size:1.45rem;line-height:1.2}
+h1 em,h2 em{font-style:italic;color:var(--accent)}
+.dark h2 em,.dark h1 em{color:var(--accent2)}
+p{margin:0}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.26em;color:var(--accent);margin-bottom:18px}
+.eyebrow::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.dark .eyebrow{color:var(--accent2)}
+.head{max-width:720px;margin-bottom:56px}
+.head p{margin-top:18px;color:var(--muted);font-size:1.12rem}
+.dark{background:var(--deep);color:var(--cream)}
+.dark .head p,.dark .muted{color:#BFD8CC}
+.alt{background:var(--bg2)}
+/* botões */
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 26px;border-radius:14px;font-weight:700;font-size:1rem;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;font-family:var(--sans)}
+.btn:hover{transform:translateY(-3px)}
+.btn svg{width:20px;height:20px}
+.btn-gold{background:var(--accent);color:#1E1203;box-shadow:0 14px 34px #f28c2855}
+.btn-wa{background:var(--wa);color:#05301A;box-shadow:0 14px 34px #25d36640}
+.btn-ghost{border:1.5px solid currentColor;background:transparent}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,box-shadow .3s}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+header.scrolled{background:#fff8eecc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:1.05rem}
+.logo .mk{width:38px;height:38px;border-radius:11px;background:var(--deep);display:grid;place-items:center}
+.logo small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+header .btn{padding:12px 18px;font-size:.92rem}
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;padding:130px 0 80px;background:radial-gradient(70% 60% at 85% 20%,#ffb54733,transparent 70%),radial-gradient(50% 50% at 10% 90%,#0f3a2b14,transparent 70%),var(--bg);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero .wrap>*{min-width:0}
+.hero p.sub{font-size:1.2rem;color:var(--muted);margin:26px 0 34px;max-width:560px}
+.hero p.sub b{color:var(--ink)}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.trust{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:.92rem;color:var(--muted);font-weight:500}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 0 #25d36699;animation:blink 2s infinite}
+@keyframes blink{0%{box-shadow:0 0 0 0 #25d36699}70%{box-shadow:0 0 0 12px #25d36600}100%{box-shadow:0 0 0 0 #25d36600}}
+/* celular */
+.phone{width:min(340px,100%);margin:0 auto;background:var(--deep2);border-radius:44px;padding:14px;box-shadow:0 40px 100px #0a2d2155,0 0 0 1px #ffffff14 inset;position:relative}
+.screen{background:#F3F5F2;border-radius:32px;overflow:hidden;padding:18px 14px 20px;font-size:13px;color:#14241C}
+.scr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.scr-top b{font-size:15px}
+.scr-top span{font-size:10.5px;font-weight:800;background:#E7F5EC;color:#0A6B39;padding:4px 9px;border-radius:20px}
+.scr-hero{background:linear-gradient(135deg,#13a453,#0b5a31);color:#fff;border-radius:18px;padding:14px 16px;margin-bottom:10px}
+.scr-hero small{opacity:.85;font-size:11px}
+.scr-hero b{display:block;font-size:22px;font-family:var(--serif)}
+.scr-card{background:#fff;border-radius:14px;padding:11px 13px;margin-top:8px;display:flex;gap:10px;align-items:center;box-shadow:0 1px 2px #0001}
+.scr-card i{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-style:normal;font-size:15px;flex:none}
+.scr-card b{display:block;font-size:12.5px}
+.scr-card small{color:#5d6a62;font-size:11px}
+.scr-btn{margin-top:10px;background:#1fae55;color:#fff;border-radius:12px;text-align:center;padding:10px;font-weight:800;font-size:12.5px}
+.badge{position:absolute;background:#fffffff2;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:16px;padding:12px 16px;box-shadow:0 20px 50px #0a2d2133;font-size:.85rem;font-weight:700;display:flex;gap:10px;align-items:center;color:var(--ink)}
+.badge .em{font-size:1.4rem}
+.badge.b1{left:-70px;top:56%;animation:float 6s ease-in-out infinite}
+.badge.b2{right:-30px;bottom:16%;animation:float 6s ease-in-out infinite 1.5s}
+@keyframes float{50%{transform:translateY(-10px)}}
+/* marquee */
+.marquee{background:var(--deep);color:var(--cream);padding:20px 0;overflow:hidden;white-space:nowrap}
+.marquee .track{display:inline-flex;gap:46px;animation:mq 32s linear infinite;font-weight:700;font-size:1.05rem}
+.marquee span{display:inline-flex;align-items:center;gap:46px}
+.marquee span::after{content:"✦";color:var(--accent2)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* cartões */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid4>*,.grid3>*,.grid2>*{min-width:0}
+.card{background:#fff;border-radius:22px;padding:30px;border:1px solid var(--line);box-shadow:0 18px 40px #0f3a2b0d}
+.card .ic{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-size:1.8rem;margin-bottom:18px}
+.card p{color:var(--muted);margin-top:10px;font-size:1rem}
+.t-red{background:#FDE8E8}.t-orange{background:#FFEBD6}.t-blue{background:#E3EEFD}.t-purple{background:#EDE7FE}.t-green{background:#DDF3E6}.t-teal{background:#D9F2F1}
+/* calculadora */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
+.calc>*{min-width:0}
+.calc-in{background:#ffffff10;border:1px solid #ffffff22;border-radius:24px;padding:34px}
+.calc-in label{font-weight:700;font-size:1.05rem;display:block;margin-bottom:12px}
+.calc-in .val{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3rem);font-weight:700;color:var(--accent2)}
+input[type=range]{width:100%;accent-color:var(--accent);margin:18px 0 6px;height:28px}
+.range-l{display:flex;justify-content:space-between;font-size:.85rem;color:#BFD8CC}
+.calc-out{display:grid;gap:16px}
+.out{border-radius:22px;padding:24px 28px;background:var(--accent2);color:#2A1A05}
+.out.big{background:var(--accent);}
+.out small{font-weight:700;font-size:.95rem}
+.out b{display:block;font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;margin-top:4px}
+.src{font-size:.82rem;color:#BFD8CC;margin-top:22px}
+/* passos */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.steps>*{min-width:0}
+.step{background:#fff;border-radius:22px;padding:32px;border:1px solid var(--line);position:relative}
+.step::before{counter-increment:s;content:counter(s);width:56px;height:56px;border-radius:50%;background:var(--deep);color:var(--accent2);font-family:var(--serif);font-size:1.6rem;font-weight:700;display:grid;place-items:center;margin-bottom:18px}
+.step p{color:var(--muted);margin-top:10px}
+.banner{margin-top:26px;background:var(--deep);color:var(--cream);border-radius:20px;padding:22px 28px;font-size:1.08rem}
+.banner b{color:var(--accent2)}
+/* timeline */
+.tl{display:grid;gap:12px;max-width:900px}
+.row{display:flex;align-items:center;gap:18px;background:#fff;border-radius:18px;padding:16px 20px;border:1px solid var(--line)}
+.row .h{font-family:var(--serif);font-weight:700;font-size:1.15rem;background:var(--accent);color:#1E1203;border-radius:12px;padding:6px 12px;min-width:68px;text-align:center;flex:none}
+.row p{flex:1;min-width:0}
+.row .ok{font-size:.82rem;font-weight:800;color:#0F6B37;background:#DDF3E6;border-radius:30px;padding:6px 12px;white-space:nowrap;flex:none}
+/* whatsapp */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.duo>*{min-width:0}
+.chk{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:14px}
+.chk li{display:flex;gap:12px;align-items:flex-start;font-size:1.05rem}
+.chk svg{width:26px;height:26px;flex:none;margin-top:1px}
+.x li{color:var(--muted)}
+.wa-phone{width:min(380px,100%);margin:0 auto;background:#0b141a;border-radius:40px;padding:12px;box-shadow:0 40px 100px #0a2d2140}
+.wa-scr{background:#ECE5DD;border-radius:30px;overflow:hidden}
+.wa-bar{background:#075E54;color:#fff;padding:16px 18px;font-weight:700;display:flex;gap:10px;align-items:center}
+.wa-bar i{width:34px;height:34px;border-radius:50%;background:#ffffff33;display:grid;place-items:center;font-style:normal}
+.wa-body{padding:18px 14px 20px}
+.bubble{background:#D9FDD3;border-radius:14px 14px 14px 4px;padding:14px 16px;font-size:.93rem;line-height:1.5;color:#16301F;box-shadow:0 1px 1px #0001}
+.wa-ok{margin-top:12px;background:#1fae55;color:#fff;border-radius:30px;text-align:center;padding:12px;font-weight:800}
+/* antes depois */
+.ad{display:grid;gap:12px}
+.ad .r{display:grid;grid-template-columns:1fr 1fr;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.ad .r>div{padding:18px 22px;min-width:0}
+.ad .a{background:#FFF0F0;color:#8A3A3D}
+.ad .d{background:#fff;color:#0F5530;font-weight:700}
+.ad .hd>div{font-family:var(--serif);font-size:1.3rem;font-weight:700}
+.ad .hd .a{background:#F9DCDC}.ad .hd .d{background:#DDF3E6}
+/* planos */
+.plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;align-items:stretch}
+.plans>*{min-width:0}
+.plan{background:#fff;border-radius:24px;padding:34px;border:1px solid var(--line);display:flex;flex-direction:column}
+.plan.pro{border:3px solid var(--deep);box-shadow:0 30px 70px #0f3a2b22}
+.tag{align-self:flex-start;background:var(--deep);color:var(--accent2);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:30px;padding:6px 12px;margin-bottom:14px}
+.price{font-family:var(--serif);font-size:3rem;font-weight:700;margin:10px 0 4px}
+.price span{font-size:1rem;font-family:var(--sans);color:var(--muted);font-weight:500}
+.plan ul{margin:16px 0 26px;padding:0;list-style:none;display:grid;gap:10px;flex:1;align-content:start}
+.plan li{display:flex;gap:10px;font-size:.98rem}
+.plan li svg{width:20px;height:20px;flex:none;margin-top:3px}
+.plan.dia{background:var(--deep);color:var(--cream);border:0}
+.plan.dia .price{color:var(--accent2)}
+.plan.dia p{color:#BFD8CC}
+.impl{margin-top:24px;text-align:center;color:var(--muted)}
+/* prova */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.nums>*{min-width:0}
+.num{border-top:2px solid var(--accent2);padding-top:22px}
+.num b{font-family:var(--serif);font-size:clamp(2.4rem,4vw,3.4rem);color:var(--accent2);display:block;line-height:1}
+.num p{margin-top:10px;color:#BFD8CC}
+.num small{display:block;margin-top:8px;font-size:.8rem;color:#8FB3A0}
+/* form */
+.form{background:#fff;border-radius:24px;padding:34px;border:1px solid var(--line);box-shadow:0 30px 70px #0f3a2b14;display:grid;gap:16px}
+.form label{font-weight:700;font-size:.92rem;display:grid;gap:6px}
+.form input,.form select{font:inherit;padding:14px 16px;border-radius:12px;border:1.5px solid #0f3a2b26;background:#FFFCF7;width:100%}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .two>*{min-width:0}
+/* faq */
+.faq{display:grid;gap:12px;max-width:860px}
+details{background:#fff;border-radius:18px;border:1px solid var(--line);padding:4px 24px}
+summary{cursor:pointer;font-weight:700;font-size:1.08rem;padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--serif);font-size:1.6rem;line-height:1;color:var(--accent);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--muted)}
+/* cta final */
+.final{text-align:center;background:radial-gradient(60% 80% at 50% 0%,#ffb54733,transparent 70%),var(--deep);color:var(--cream)}
+.final h2{max-width:820px;margin:0 auto}
+.final p{max-width:600px;margin:20px auto 34px;color:#BFD8CC;font-size:1.12rem}
+footer{background:var(--deep2);color:#8FB3A0;padding:34px 0;font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.float{position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:none;place-items:center;box-shadow:0 14px 34px #25d36666}
+.float svg{width:30px;height:30px}
+/* revelação */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media(max-width:980px){
+ section{padding:72px 0}
+ .hero{padding:110px 0 60px;min-height:auto}
+ .hero .wrap,.duo,.calc{grid-template-columns:1fr}
+ .grid4{grid-template-columns:1fr 1fr}
+ .grid3,.steps,.plans,.nums{grid-template-columns:1fr}
+ .badge.b1{left:-6px}.badge.b2{right:-6px}
+}
+@media(max-width:620px){
+ body{font-size:16px}
+ .grid4,.grid2,.form .two{grid-template-columns:1fr}
+ .btn{width:100%}
+ header .btn{width:auto}
+ .ctas{flex-direction:column}
+ .card,.step,.plan,.form,.calc-in{padding:24px}
+ .row{flex-wrap:wrap;gap:10px 14px}
+ .row p{flex-basis:100%;order:3}
+ .row .ok{margin-left:auto}
+ .ad .r>div{padding:14px 16px;font-size:.95rem}
+ .logo small{display:none}
+ .float{display:grid}
+ .badge{display:none}
+ .logo{font-size:.95rem}
+ header .btn{padding:11px 14px;font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.08c-.24.68-1.42 1.3-1.95 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.26-.29.58-.36.77-.36h.55c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.65-.14.26.1 1.69.8 1.98.94.29.14.48.22.55.34.07.12.07.7-.17 1.38z"/></symbol>
+ <symbol id="i-chk" viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="#DDF3E6"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="#13A453" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+ <symbol id="i-x" viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="#FDE8E8"/><path d="M9 9l8 8M17 9l-8 8" fill="none" stroke="#D9474C" stroke-width="2.6" stroke-linecap="round"/></symbol>
+</svg>
+
+<header id="top">
+ <div class="wrap">
+  <a class="logo" href="#inicio"><span class="mk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFB547" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9h18"/><path d="M9 20v-6h6v6"/></svg></span><span>Gestor Mercado PRO<small>AAS Tecnologia Editorial</small></span></a>
+  <a class="btn btn-wa wa-link" data-msg="topo" href="#contato"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+ <div class="wrap">
+  <div class="rv">
+   <p class="eyebrow">Para mercadinhos e mercearias de bairro</p>
+   <h1>Seu mercadinho com <em>menos perda</em> e mais lucro</h1>
+   <p class="sub">Um sistema simples, no celular, que <b>avisa o que vai vencer</b>, <b>calcula o pedido</b> e <b>manda no WhatsApp do fornecedor</b>. Você continua atendendo e ele cuida do resto.</p>
+   <div class="ctas">
+    <a class="btn btn-gold wa-link" data-msg="hero" href="#contato"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quero ver funcionando</a>
+    <a class="btn btn-ghost" href="#como">Como funciona</a>
+   </div>
+   <p class="trust"><span class="dot" aria-hidden="true"></span>Atendimento pelo WhatsApp · implantação feita por nós</p>
+  </div>
+  <div class="rv" style="position:relative">
+   <div class="phone" role="img" aria-label="Tela do sistema no celular mostrando avisos de validade, pedido pronto e fiado">
+    <div class="screen">
+     <div class="scr-top"><b>Bom dia, Seu José!</b><span>Hoje</span></div>
+     <div class="scr-hero"><small>Dinheiro em risco de vencer</small><b>R$ 74,20</b><small>4 produtos pedem promoção</small></div>
+     <div class="scr-card"><i class="t-red">⏰</i><div><b>Iogurte vence em 4 dias</b><small>8 unidades vão sobrar — fazer oferta</small></div></div>
+     <div class="scr-card"><i class="t-orange">📦</i><div><b>Leite acaba na quinta</b><small>Pedido pronto: 24 unidades</small></div></div>
+     <div class="scr-card"><i class="t-blue">📒</i><div><b>Fiado a receber</b><small>R$ 728,20 · 1 cliente atrasado</small></div></div>
+     <div class="scr-btn">✔ Aprovar e enviar no WhatsApp</div>
+    </div>
+   </div>
+   <div class="badge b1"><span class="em">⏰</span>Avisa antes de vencer</div>
+   <div class="badge b2"><span class="em">📲</span>Pedido em 1 toque</div>
+  </div>
+ </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+ <span>Estoque por seção</span><span>Aviso de validade</span><span>Pedido no WhatsApp</span><span>Fiado digital</span><span>Preço certo</span><span>Nota fiscal automática</span><span>Mais vendidos</span><span>Contagem rápida</span><span>Padaria e produção</span>
+ <span>Estoque por seção</span><span>Aviso de validade</span><span>Pedido no WhatsApp</span><span>Fiado digital</span><span>Preço certo</span><span>Nota fiscal automática</span><span>Mais vendidos</span><span>Contagem rápida</span><span>Padaria e produção</span>
+</div></div>
+
+<section id="dores">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">O dia a dia do mercadinho</p><h2>Você conhece <em>essas situações?</em></h2></div>
+  <div class="grid4">
+   <div class="card rv"><div class="ic t-red">🗑️</div><h3>O produto venceu escondido</h3><p>Ninguém viu, e o dinheiro foi para o lixo.</p></div>
+   <div class="card rv"><div class="ic t-orange">🚫</div><h3>O cliente pediu e tinha acabado</h3><p>Ele comprou no concorrente, e a venda foi embora.</p></div>
+   <div class="card rv"><div class="ic t-blue">📒</div><h3>O fiado ficou no caderno</h3><p>Fica difícil saber quem deve, quanto e desde quando.</p></div>
+   <div class="card rv"><div class="ic t-purple">💸</div><h3>O custo subiu e o preço não</h3><p>Você continua vendendo e o lucro vai sumindo.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="dark" id="perda">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">Faça a conta do seu mercado</p><h2>Quanto você pode estar <em>perdendo</em> sem ver?</h2><p>No varejo de alimentos, a média de perda é de <b style="color:#fff">R$ 2,39 a cada R$ 100 vendidos</b>, entre vencimento, quebra e furto. Arraste e veja no seu caso.</p></div>
+  <div class="calc rv">
+   <div class="calc-in">
+    <label for="fat">Quanto o seu mercado vende por mês?</label>
+    <div class="val" id="fatV">R$ 50.000</div>
+    <input type="range" id="fat" min="10000" max="300000" step="5000" value="50000" aria-describedby="fatV">
+    <div class="range-l"><span>R$ 10 mil</span><span>R$ 300 mil</span></div>
+   </div>
+   <div class="calc-out">
+    <div class="out"><small>Perda média por mês</small><b id="perMes">R$ 1.195</b></div>
+    <div class="out big"><small>Perda média por ano</small><b id="perAno">R$ 14.340</b></div>
+   </div>
+  </div>
+  <p class="src">Base: índice médio de perdas do varejo alimentar de 2,39% do faturamento (Pesquisa Abrappe/KPMG de Prevenção de Perdas). É uma média do setor; cada mercado tem a sua realidade.</p>
+ </div>
+</section>
+
+<section id="como">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">O que o sistema faz por você</p><h2>Ele trabalha <em>enquanto você atende</em></h2></div>
+  <div class="grid3">
+   <div class="card rv"><div class="ic t-red">⏰</div><h3>Avisa o que vai vencer</h3><p>Com dias de antecedência e sugestão de oferta, antes de virar prejuízo.</p></div>
+   <div class="card rv"><div class="ic t-orange">📅</div><h3>Diz o dia certo de pedir</h3><p>Calcula pela sua venda e pelo prazo do fornecedor. Não falta e não sobra.</p></div>
+   <div class="card rv"><div class="ic t-green">📲</div><h3>Manda o pedido no WhatsApp</h3><p>O pedido sai pronto. Você confere e envia, ou deixa ir sozinho.</p></div>
+   <div class="card rv"><div class="ic t-purple">🏷️</div><h3>Mostra o preço certo</h3><p>Avisa quando o custo sobe na nota e sugere o preço novo.</p></div>
+   <div class="card rv"><div class="ic t-blue">📒</div><h3>Organiza o fiado</h3><p>Limite para cada cliente, extrato e cobrança educada pelo WhatsApp.</p></div>
+   <div class="card rv"><div class="ic t-teal">📊</div><h3>Mostra se deu lucro</h3><p>Na tela do celular: o que mais vende, o que dá lucro e onde está a perda.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="alt" id="facil">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">Alimentar o sistema é fácil</p><h2>Você <em>quase não precisa</em> digitar</h2><p>No começo, nós cadastramos tudo para você. Depois, o sistema se alimenta sozinho.</p></div>
+  <div class="steps">
+   <div class="step rv"><h3>A nota entra sozinha</h3><p>Chegou mercadoria? Você envia o arquivo da nota fiscal e os produtos, as quantidades e as validades entram de uma vez.</p></div>
+   <div class="step rv"><h3>As vendas vêm do caixa</h3><p>O sistema lê as vendas do caixa que você já usa. Não precisa trocar de sistema nem lançar venda por venda.</p></div>
+   <div class="step rv"><h3>O resto, pelo celular</h3><p>Para conferir, aponte a câmera para o código de barras. O nome aparece sozinho e você só digita a quantidade.</p></div>
+  </div>
+  <div class="banner rv">Fornecedor sem nota? Leva <b>10 segundos</b>: escolhe o produto, digita a quantidade e a validade. Pronto.</div>
+ </div>
+</section>
+
+<section id="dia">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">Simulação</p><h2>Um dia no seu mercado <em>com o sistema</em></h2><p>Poucos minutos por dia, e tudo sob controle.</p></div>
+  <div class="tl">
+   <div class="row rv"><span class="h">7h</span><p>Abre o celular: <b>“3 produtos vencem esta semana.”</b> Coloca em oferta.</p><span class="ok">1 minuto</span></div>
+   <div class="row rv"><span class="h">9h</span><p>Aviso: <b>“O leite acaba na quinta. Pedido pronto.”</b> Toca em Enviar.</p><span class="ok">1 toque</span></div>
+   <div class="row rv"><span class="h">11h</span><p>Chega o fornecedor. Envia o arquivo da nota e tudo entra no estoque.</p><span class="ok">30 segundos</span></div>
+   <div class="row rv"><span class="h">15h</span><p>Dona Maria compra no fiado: lança <b>R$ 42,90</b>. Ainda está dentro do limite.</p><span class="ok">10 segundos</span></div>
+   <div class="row rv"><span class="h">18h</span><p>Conta só a prateleira de bebidas. O sistema mostra o que sumiu.</p><span class="ok">5 minutos</span></div>
+   <div class="row rv"><span class="h">20h</span><p>Fecha a loja e vê quanto vendeu, quanto lucrou e o que pedir amanhã.</p><span class="ok">1 olhada</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="alt" id="pedido">
+ <div class="wrap duo">
+  <div class="rv">
+   <p class="eyebrow">Simulação</p>
+   <h2>O pedido chega <em>pronto</em> no WhatsApp</h2>
+   <ul class="chk x"><li><svg aria-hidden="true"><use href="#i-x"/></svg>Andar pela loja anotando o que falta</li><li><svg aria-hidden="true"><use href="#i-x"/></svg>Fazer a conta de cabeça</li><li><svg aria-hidden="true"><use href="#i-x"/></svg>Esquecer algum item no pedido</li></ul>
+   <ul class="chk"><li><svg aria-hidden="true"><use href="#i-chk"/></svg><span>O sistema monta o pedido de cada fornecedor <b>no dia certo</b></span></li><li><svg aria-hidden="true"><use href="#i-chk"/></svg><span>Você confere e toca em <b>Enviar</b>, ou deixa ir sozinho</span></li></ul>
+  </div>
+  <div class="rv">
+   <div class="wa-phone" role="img" aria-label="Exemplo de pedido enviado pelo WhatsApp ao fornecedor">
+    <div class="wa-scr">
+     <div class="wa-bar"><i>🚚</i>Distribuidora do Bairro</div>
+     <div class="wa-body">
+      <p class="bubble">Olá! Aqui é do <b>Mercadinho Bom Preço</b>.<br>Segue o pedido nº 1042:<br><br>• 20 un — Feijão Carioca 1kg<br>• 10 un — Café Torrado 500g<br>• 10 un — Arroz Tipo 1 5kg<br><br>Entrega até sexta, por favor.<br>Obrigado! — Seu José</p>
+      <p class="wa-ok">✔ Aprovar e enviar</p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="antes">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">A diferença na prática</p><h2>Antes e <em>depois</em> do sistema</h2></div>
+  <div class="ad rv">
+   <div class="r hd"><div class="a">Antes 😓</div><div class="d">Depois 😊</div></div>
+   <div class="r"><div class="a">O produto vence escondido no fundo da prateleira</div><div class="d">Aviso dias antes, com sugestão de oferta</div></div>
+   <div class="r"><div class="a">Pedido no chute: sobra uma coisa e falta outra</div><div class="d">Quantidade certa, calculada pela venda</div></div>
+   <div class="r"><div class="a">Fiado no caderno, sem saber o total</div><div class="d">Saldo, limite e cobrança pelo WhatsApp</div></div>
+   <div class="r"><div class="a">Não sabe se o produto dá lucro</div><div class="d">A margem de cada produto na tela</div></div>
+   <div class="r"><div class="a">Fechar a loja para fazer balanço</div><div class="d">Contar uma prateleira por dia, em minutos</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="dark" id="setor">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">O mercado de bairro está crescendo</p><h2>Quem se organiza agora <em>sai na frente</em></h2></div>
+  <div class="nums">
+   <div class="num rv"><b>416 mil</b><p>mercearias no Brasil: o maior canal do varejo em número de lojas.</p><small>Fonte: NielsenIQ (2025)</small></div>
+   <div class="num rv"><b>+5,3%</b><p>foi o crescimento do faturamento dos minimercados em 2025, acima da média do setor.</p><small>Fonte: Scanntech, Radar Varejo de Vizinhança</small></div>
+   <div class="num rv"><b>2,39%</b><p>do faturamento é a perda média do varejo de alimentos. Quem controla, perde menos.</p><small>Fonte: Abrappe/KPMG</small></div>
+  </div>
+ </div>
+</section>
+
+<section id="planos">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">Investimento</p><h2>Custa pouco e <em>se paga sozinho</em></h2></div>
+  <div class="plans">
+   <div class="plan rv"><h3>Essencial</h3><p class="price">R$ 149<span>/mês</span></p>
+    <ul><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Estoque por seção e validade</li><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Avisos de vencimento e falta</li><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Pedido no WhatsApp com 1 toque</li><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Fiado digital com limite</li></ul>
+    <a class="btn btn-ghost wa-link" data-msg="essencial" href="#contato">Quero o Essencial</a></div>
+   <div class="plan pro rv"><span class="tag">Mais completo</span><h3>PRO</h3><p class="price">R$ 199<span>/mês</span></p>
+    <ul><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Tudo do Essencial</li><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Pedido enviado automaticamente</li><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Nota fiscal entra sozinha</li><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Preço certo e margem de cada produto</li><li><svg aria-hidden="true"><use href="#i-chk"/></svg>Mais vendidos, perdas e contagem rápida</li></ul>
+    <a class="btn btn-wa wa-link" data-msg="pro" href="#contato"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quero o PRO</a></div>
+   <div class="plan dia rv"><h3>Faça a conta</h3><p class="price">R$ 7/dia</p><p>Evitar R$ 7 de perda por dia já paga o plano PRO. É menos do que uma caixa de leite vencida.</p>
+    <a class="btn btn-gold wa-link" data-msg="conta" href="#contato" style="margin-top:auto">Quero uma demonstração</a></div>
+  </div>
+  <p class="impl rv">Implantação: <b>R$ 697</b>, paga uma vez. Nós cadastramos seus produtos, configuramos e ensinamos a usar no seu celular.</p>
+ </div>
+</section>
+
+<section class="alt" id="contato">
+ <div class="wrap duo">
+  <div class="rv">
+   <p class="eyebrow">Próximo passo</p>
+   <h2>Vamos colocar no <em>seu mercado?</em></h2>
+   <ul class="chk"><li><svg aria-hidden="true"><use href="#i-chk"/></svg><span>Você me passa a lista de produtos ou o arquivo do seu caixa</span></li><li><svg aria-hidden="true"><use href="#i-chk"/></svg><span>Eu cadastro tudo e deixo pronto no seu celular</span></li><li><svg aria-hidden="true"><use href="#i-chk"/></svg><span>Em poucos dias você já recebe os avisos e os pedidos prontos</span></li></ul>
+  </div>
+  <form class="form rv" id="form">
+   <label>Seu nome<input name="nome" required autocomplete="name"></label>
+   <div class="two"><label>Nome do mercado<input name="mercado" required></label><label>Cidade<input name="cidade" required></label></div>
+   <label>Como você controla o estoque hoje?<select name="controle"><option>No caderno</option><option>De cabeça</option><option>Com planilha</option><option>Com outro sistema</option></select></label>
+   <button class="btn btn-wa" type="submit"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar pelo WhatsApp</button>
+  </form>
+ </div>
+</section>
+
+<section id="duvidas">
+ <div class="wrap">
+  <div class="head rv"><p class="eyebrow">Dúvidas comuns</p><h2>Perguntas <em>frequentes</em></h2></div>
+  <div class="faq rv">
+   <details><summary>Preciso entender de computador?</summary><p>Não. Tudo funciona no celular, com botões grandes e avisos em português simples. Nós ensinamos a usar no seu próprio celular.</p></details>
+   <details><summary>Preciso trocar o sistema do meu caixa?</summary><p>Não. O Gestor Mercado PRO trabalha junto com o caixa que você já usa: ele lê as vendas e as notas fiscais e devolve os avisos e os pedidos prontos.</p></details>
+   <details><summary>Quem cadastra os produtos?</summary><p>Nós. Na implantação, cadastramos seus produtos, fornecedores e validades a partir da sua lista, do arquivo do caixa ou das notas fiscais.</p></details>
+   <details><summary>E se o fornecedor não emite nota?</summary><p>Sem problema. A entrada manual leva poucos segundos: produto, quantidade e validade.</p></details>
+   <details><summary>O pedido vai sozinho para o fornecedor?</summary><p>Você escolhe, fornecedor por fornecedor: conferir antes e enviar com 1 toque, ou deixar o envio automático.</p></details>
+   <details><summary>Tenho padaria junto. Funciona?</summary><p>Funciona. O sistema também tem seções de padaria e mostra quanto pão, bolo e salgado produzir no dia, para não faltar de manhã nem sobrar à noite.</p></details>
+   <details><summary>Atende a minha cidade?</summary><p>Sim. A implantação e o suporte são feitos à distância, pelo WhatsApp, para qualquer cidade do Brasil.</p></details>
+  </div>
+ </div>
+</section>
+
+<section class="final">
+ <div class="wrap rv">
+  <h2>Menos produto no lixo. <em>Mais dinheiro no caixa.</em></h2>
+  <p>Me chame no WhatsApp e eu mostro o sistema funcionando com exemplos de um mercado como o seu.</p>
+  <a class="btn btn-gold wa-link" data-msg="final" href="#contato"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quero ver funcionando</a>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 AAS Tecnologia Editorial · Gestor Mercado PRO</span><span>Atendimento em todo o Brasil pelo WhatsApp</span></div></footer>
+<a class="float wa-link" data-msg="flutuante" href="#contato" aria-label="Falar no WhatsApp"><svg aria-hidden="true" style="color:#fff"><use href="#i-wa"/></svg></a>
+
+<script>
+/* ====== WhatsApp: número e mensagens em um único lugar ====== */
+var WHATS = ''; // ex.: '5519999999999' — preencher com o número da AAS
+var msgs = {
+ topo:'Olá, Alisson! Vi a apresentação do Gestor Mercado PRO e quero saber mais.',
+ hero:'Olá, Alisson! Vi a apresentação do Gestor Mercado PRO e quero ver o sistema funcionando.',
+ essencial:'Olá, Alisson! Tenho interesse no plano Essencial do Gestor Mercado PRO.',
+ pro:'Olá, Alisson! Tenho interesse no plano PRO do Gestor Mercado PRO.',
+ conta:'Olá, Alisson! Fiz a conta da perda no meu mercado e quero uma demonstração do Gestor Mercado PRO.',
+ final:'Olá, Alisson! Quero ver o Gestor Mercado PRO funcionando no meu mercado.',
+ flutuante:'Olá, Alisson! Vim pela apresentação do Gestor Mercado PRO.'
+};
+function waUrl(t){return 'https://wa.me/'+WHATS+'?text='+encodeURIComponent(t)}
+document.querySelectorAll('.wa-link').forEach(function(a){
+ if(!WHATS)return; // sem número, os botões levam ao formulário de contato
+ a.href=waUrl(msgs[a.dataset.msg]||msgs.topo);a.target='_blank';a.rel='noopener noreferrer';
+});
+document.getElementById('form').addEventListener('submit',function(e){
+ e.preventDefault();var f=new FormData(this);
+ var t='Olá, Alisson! Vi a apresentação do Gestor Mercado PRO.\n\nNome: '+f.get('nome')+'\nMercado: '+f.get('mercado')+'\nCidade: '+f.get('cidade')+'\nHoje controlo o estoque: '+f.get('controle')+'\n\nQuero uma demonstração.';
+ var a=document.createElement('a');a.href=waUrl(t);a.target='_blank';a.rel='noopener noreferrer';document.body.appendChild(a);a.click();a.remove();
+});
+/* ====== calculadora de perda ====== */
+var fat=document.getElementById('fat');
+function brl(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})}
+function calc(){var v=+fat.value;document.getElementById('fatV').textContent=brl(v);document.getElementById('perMes').textContent=brl(v*0.0239);document.getElementById('perAno').textContent=brl(v*0.0239*12)}
+fat.addEventListener('input',calc);calc();
+/* ====== header e revelação ====== */
+var hd=document.getElementById('top');
+function sc(){hd.classList.toggle('scrolled',window.scrollY>30)}
+window.addEventListener('scroll',sc,{passive:true});sc();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll('.rv').forEach(function(el){io.observe(el)})}
+else document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')});
+</script>
+</body>
+</html>
