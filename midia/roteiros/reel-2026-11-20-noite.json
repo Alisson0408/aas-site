@@ -1,0 +1,9 @@
+{"trilha": 0,
+ "capa": {"eyebrow":"RESTAURANTES E DELIVERY","linhas":["Sexta, 19h30.","Bateu a fome.","Vai pedir de quem?"],"ouro":[2],"selo":"VOCÊ ESCOLHERIA QUAL?"},
+ "cenas": [
+ {"t":"texto","eyebrow":"RESTAURANTES E DELIVERY","linhas":["Sexta, 19h30.","Bateu a fome.","Vai pedir de quem?"],"ouro":[2],"sub":"Ele decide em segundos.","size_sub":44,"dur":2.4},
+ {"t":"escolha","eyebrow":"DUAS OPÇÕES NA TELA","pergunta":"Em qual ele clica?","opcoes":[{"letra":"A","rotulo":"perfil","texto":"Cardápio em foto de story, preço no direct."},{"letra":"B","rotulo":"site","texto":"Cardápio, horário e botão de pedido em um link."}],"dica":"Com fome, ninguém pergunta preço.","certa":1,"dur":4.2},
+ {"t":"portfolio","eyebrow":"ASSIM, NA PRÁTICA","projetos":["brasa-burger"],"por":2.2},
+ {"t":"numero","eyebrow":"NO AR EM","grande":"7 dias","linhas":["A partir de R$ 700.","Domínio e hospedagem inclusos."],"dur":2.6},
+ {"t":"cta","linhas":["Na próxima sexta,","seja a opção B."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.2}
+]}
