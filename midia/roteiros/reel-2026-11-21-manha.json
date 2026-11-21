@@ -1,0 +1,9 @@
+{"trilha": 2,
+ "capa": {"eyebrow":"SÁBADO DE PLANEJAR","linhas":["Site não é coisa","de empresa grande."],"ouro":[1],"selo":"MITO OU VERDADE?"},
+ "cenas": [
+ {"t":"texto","eyebrow":"SÁBADO DE PLANEJAR","linhas":["Site não é coisa","de empresa grande."],"ouro":[1],"sub":"É o próximo passo de quem está começando.","size_sub":42,"dur":2.6},
+ {"t":"mito","eyebrow":"MITO OU VERDADE","mito":"“Primeiro eu cresço, depois faço o site.”","destaque":"R$ 600","verdade":["Página de vendas a partir de R$ 600.","Domínio e hospedagem inclusos."],"dur":3.8},
+ {"t":"portfolio","eyebrow":"MARCAS DE UMA PESSOA SÓ","projetos":["christian-gois","vanessa-oliveira"],"por":1.5},
+ {"t":"texto","eyebrow":"O PLANO DA SEMANA","linhas":["Sábado: decide.","Segunda: começa.","Em 7 dias: no ar."],"ouro":[2],"dur":3.2},
+ {"t":"cta","linhas":["O próximo passo","está no link da bio."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.2}
+]}
