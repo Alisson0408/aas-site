@@ -1,0 +1,9 @@
+{"slides":[
+ {"t":"texto","eyebrow":"PSICÓLOGOS E TERAPEUTAS","linhas":["Seu futuro paciente","vai pesquisar","o seu nome."],"ouro":[2],"size":100,"sub":"4 coisas que ele precisa encontrar. Salve."},
+ {"t":"check","eyebrow":"ITEM 1 DE 4","sinal":"Quem você é, sem jargão.","desc":"Formação, abordagem e registro profissional (CRP) em uma linguagem que o paciente entende.","dica":"A confiança começa antes da conversa."},
+ {"t":"check","eyebrow":"ITEM 2 DE 4","sinal":"Como funciona o atendimento.","desc":"Online ou presencial, duração da sessão e como marcar a primeira conversa.","dica":"Cada dúvida respondida é uma barreira a menos."},
+ {"t":"check","eyebrow":"ITEM 3 DE 4","sinal":"Um botão para agendar.","desc":"WhatsApp a um toque, visível em qualquer parte da página, no celular.","dica":"Quanto mais fácil, mais perto da 1ª sessão."},
+ {"t":"check","eyebrow":"ITEM 4 DE 4","sinal":"Um endereço que é seu.","desc":"seunome.com.br passa mais seriedade do que um link qualquer na bio.","dica":"Na AAS, domínio e hospedagem vêm inclusos."},
+ {"t":"portfolio","eyebrow":"PROJETO EM DESTAQUE","projeto":"christian-gois","legenda":"Site de psicanálise clínica criado pela AAS."},
+ {"t":"cta","linhas":["Seu consultório merece","um site à altura."],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Site institucional a partir de R$ 700  ·  7 dias"}
+]}
