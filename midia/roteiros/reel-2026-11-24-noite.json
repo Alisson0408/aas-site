@@ -1,0 +1,8 @@
+{"trilha": 0,
+ "capa": {"eyebrow":"MITO OU VERDADE?","linhas":["Você não precisa","entender de","tecnologia."],"ouro":[2],"selo":"QUEM FAZ O QUÊ"},
+ "cenas": [
+ {"t":"texto","eyebrow":"VOCÊ JÁ PENSOU ISSO?","linhas":["“Não entendo nada","de tecnologia.”"],"ouro":[1],"sub":"Para ter um site, não precisa.","size_sub":42,"dur":2.4},
+ {"t":"versus","eyebrow":"QUEM FAZ O QUÊ","lados":[{"rotulo":"SUA PARTE","grande":"Você","itens":["Conta a sua história","Envia fotos e textos","Aprova o resultado"],"destaque":false},{"rotulo":"PARTE DA AAS","grande":"AAS","itens":["Domínio e hospedagem","Design e código","No ar em 7 dias"],"destaque":true}],"rodape":"Nenhuma linha de código para você.","dur":4.8},
+ {"t":"numero","eyebrow":"QUER MUDAR ALGO?","grande":"4","linhas":["rodadas de alterações","antes da entrega. É só pedir."],"dur":2.8},
+ {"t":"cta","linhas":["Você conta a história.","A gente cuida do resto."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.2}
+]}
