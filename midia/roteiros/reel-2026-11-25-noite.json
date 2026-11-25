@@ -1,0 +1,9 @@
+{"trilha": 2,
+ "capa": {"eyebrow":"SÉRIE SITE X INSTAGRAM","linhas":["Instagram é aluguel.","Site é casa própria."],"ouro":[1],"selo":"EM 15 SEGUNDOS","size":94},
+ "cenas": [
+ {"t":"texto","eyebrow":"NO INSTAGRAM","linhas":["O algoritmo decide","quem vê você."],"ouro":[1],"dur":2.2},
+ {"t":"texto","eyebrow":"NO SEU SITE","linhas":["Você decide o que","o cliente encontra."],"ouro":[1],"sub":"Com o nome da sua marca no endereço.","size_sub":40,"dur":2.4},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["adao-rosa-monteiro","christian-gois"],"por":1.1},
+ {"t":"numero","eyebrow":"DA CHAVE NA MÃO AO SITE NO AR","grande":"7 dias","linhas":["Domínio e hospedagem","já inclusos."],"dur":2.8},
+ {"t":"cta","linhas":["Continue no Instagram.","Mas more no seu site."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.0}
+]}
