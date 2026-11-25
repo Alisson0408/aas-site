@@ -1,0 +1,9 @@
+{"trilha": 1,
+ "capa": {"eyebrow":"COMEÇANDO O DIA","linhas":["Site profissional","não é caro."],"ouro":[1],"selo":"RESPOSTA NO FIM"},
+ "cenas": [
+ {"t":"texto","eyebrow":"ANTES DE DESISTIR","linhas":["“Site deve custar","uma fortuna.”"],"ouro":[1],"sub":"Quanto você chuta? A resposta vem no fim.","size_sub":38,"dur":2.6},
+ {"t":"lista","eyebrow":"O QUE JÁ VEM JUNTO","itens":["Domínio e hospedagem","No ar em 7 dias","4 rodadas de alterações","Garantia de 90 dias"],"dur":3.4},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["mesa-rosa","denise-resende"],"por":1.1},
+ {"t":"numero","eyebrow":"PÁGINA DE VENDAS · A PARTIR DE","grande":"R$ 600","linhas":["Esse é o ponto de partida.","Pix ou cartão."],"dur":3.0},
+ {"t":"cta","linhas":["Hoje é um bom dia","para tirar do papel."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.0}
+]}
