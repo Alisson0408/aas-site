@@ -78,7 +78,7 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
 <div class="gate" id="gate">
   <form class="box" id="gform">
     <h1 style="font-size:2rem">Cozinha da <em>Iracema</em></h1>
-    <p>Área só da Iracema. Digite o PIN para ver as fichas técnicas e os custos.</p>
+    <p>Área só da Iracema. Digite o PIN uma vez: neste celular ele fica lembrado.</p>
     <label for="pin" style="text-align:left">PIN</label>
     <input id="pin" inputmode="numeric" autocomplete="off" maxlength="8">
     <p class="found no" id="pinerr"></p>
@@ -92,14 +92,15 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
 <div class="wrap">
   <div class="intro">
     <h1>Ficha técnica <em>do pedido</em></h1>
-    <p>Cole a mensagem que o cliente mandou no WhatsApp. A ficha mostra a receita exata, os ingredientes, quanto você vai gastar e o seu lucro. O cliente nunca vê nada disso.</p>
+    <p>Toque no link que vem no fim de cada pedido do WhatsApp e a ficha abre pronta: receita exata, ingredientes, quanto você vai gastar e o seu lucro. O cliente nunca vê nada disso.</p>
+    <p class="found ok" id="viaLink" style="font-size:16px"></p>
   </div>
 
   <div class="box">
     <div class="grid">
       <div>
         <label for="msg">Mensagem do cliente</label>
-        <textarea id="msg" placeholder="Cole aqui a mensagem do WhatsApp (ela termina com: Código do pedido: PUD-M8-G1)"></textarea>
+        <textarea id="msg" placeholder="Se preferir, cole aqui a mensagem do cliente (ela tem: Pedido nº PUD-M8-G1)"></textarea>
         <p class="found" id="found"></p>
       </div>
       <div>
@@ -199,10 +200,10 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
 
   // acesso
   const abrir = () => { $('gate').classList.add('hidden'); $('app').classList.remove('hidden'); };
-  try{ if(sessionStorage.getItem('pudim-ok')==='1') abrir(); }catch(e){}
+  try{ if(localStorage.getItem('pudim-ok')==='1') abrir(); }catch(e){}
   $('gform').addEventListener('submit', e => {
     e.preventDefault();
-    if($('pin').value.trim()===PIN){ try{sessionStorage.setItem('pudim-ok','1')}catch(e){} abrir(); }
+    if($('pin').value.trim()===PIN){ try{localStorage.setItem('pudim-ok','1')}catch(e){} abrir(); }
     else $('pinerr').textContent = 'PIN incorreto.';
   });
 
@@ -324,6 +325,15 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     try{ await navigator.clipboard.writeText($('copy').dataset.ficha); $('copied').textContent = 'Ficha copiada.'; }
     catch(e){ $('copied').textContent = 'Não deu para copiar aqui. Use o botão do WhatsApp.'; }
   });
+  function doLink(){
+    const h = location.hash.match(/pedido-M(\d+)-G(\d+)/i);
+    if(!h) return;
+    $('m').value = +h[1]; $('g').value = +h[2];
+    $('viaLink').textContent = `Pedido aberto pelo link do WhatsApp: ${h[1]} pequeno${h[1]==='1'?'':'s'} + ${h[2]} grande${h[2]==='1'?'':'s'}.`;
+    calc();
+  }
+  addEventListener('hashchange', doLink);
+  doLink();
   calc();
 }
 </script>

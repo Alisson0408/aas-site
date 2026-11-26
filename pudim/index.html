@@ -407,6 +407,7 @@ body.has-bar .fab{bottom:100px}
   /* ===== CONFIGURAÇÃO ÚNICA (número e preços de venda) ===== */
   const WHATS = '5534988586329'; // número de teste do Alisson — trocar pelo da Iracema
   const FONE = '(34) 98858-6329';
+  const FICHA = 'https://aastecnologiaeditorial.com.br/pudim/cozinha.html'; // ficha técnica (só a Iracema, com PIN)
   const PRODUTOS = [
     {id:'M', nome:'Pudim pequeno (mini)', curto:'Pudim pequeno', tam:'Mini pudim · forminha de 120 ml com tampa', img:'pudim-calda', alt:'Fatia de pudim recebendo calda de caramelo', preco:8, badge:'Ideal para presentear', desc:'Porção individual, lisinha e com bastante calda. Perfeito para lembrancinhas, festas e sobremesa do dia.', quick:[4,8,20]},
     {id:'G', nome:'Pudim grande (500 g)', curto:'Pudim grande', tam:'500 g · forma com tampa, serve a família', img:'pudim-fatia', alt:'Pudim grande inteiro com uma fatia servida no prato', preco:35, badge:'Para a família', desc:'O pudim de família: cremoso, firme na medida e com aquela calda escorrendo pelos lados.', quick:[2,4]}
@@ -481,7 +482,7 @@ body.has-bar .fab{bottom:100px}
     if(nome) t += `\nNome: ${nome}`;
     t += `\nData: ${d}\n${ent==='Entrega' ? 'Entrega' + (bairro ? ' no bairro ' + bairro : '') : 'Vou retirar'}`;
     if($('obs').value.trim()) t += `\nObservação: ${$('obs').value.trim()}`;
-    return t + `\n\nCódigo do pedido: ${codigo}`;
+    return t + `\n\nPedido nº ${codigo}\nLink do pedido para a Iracema: ${FICHA}#pedido-M${qty.M}-G${qty.G}`;
   }
   function atualizaLink(){
     const tot = render(), tem = qty.M + qty.G > 0;
