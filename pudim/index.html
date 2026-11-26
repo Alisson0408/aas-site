@@ -166,6 +166,13 @@ details p{color:var(--muted);margin:12px 0 0}
 footer{padding:50px 0 40px;font-size:14px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
 footer a{color:var(--muted)}
+.bar{position:fixed;left:50%;bottom:16px;z-index:55;transform:translate(-50%,140%);width:min(640px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--choc);color:#f6ecdf;border-radius:18px;padding:12px 12px 12px 20px;box-shadow:0 24px 60px #2f1a1166;transition:transform .45s}
+.bar.on{transform:translate(-50%,0)}
+.bar b{display:block;color:#fff;font-size:15px}
+.bar span{font-size:14px;color:#e6d2bb}
+.bar .btn{padding:14px 20px}
+body.has-bar .fab{bottom:100px}
+.card .order-link{width:100%;margin-top:6px}
 .fab{position:fixed;right:20px;bottom:20px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 16px 40px #25d36670;transition:.3s}
 .fab:hover{transform:scale(1.08)}
 .rv{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s}
@@ -193,6 +200,8 @@ footer a{color:var(--muted)}
   .pr b{font-size:1.4rem}
   .pr{padding:12px 12px}
   .pr span{font-size:12.5px;white-space:nowrap}
+  .card h3{font-size:1.55rem}
+  .card .body{padding:24px}
   .final{padding:60px 7%;border-radius:24px}
   .final .btn{width:100%;white-space:normal}
 }
@@ -243,7 +252,7 @@ footer a{color:var(--muted)}
       <a href="#cardapio">Cardápio</a>
       <a href="#essencia">Nossa essência</a>
       <a href="#duvidas">Dúvidas</a>
-      <a class="btn btn-choc btn-sm" href="#pedido">Encomendar ↗</a>
+      <a class="btn btn-choc btn-sm order-link" href="#cardapio">Encomendar ↗</a>
     </nav>
   </div>
 </header>
@@ -258,7 +267,7 @@ footer a{color:var(--muted)}
       <div class="prices" id="heroPrices"></div>
       <div class="ctas">
         <a class="btn btn-choc" href="#cardapio">Ver o cardápio ↗</a>
-        <a class="btn btn-ghost wa-link" data-msg="hero" href="#">Pedir pelo WhatsApp</a>
+        <a class="btn btn-ghost order-link" href="#cardapio">Pedir pelo WhatsApp</a>
       </div>
       <div class="trust"><span class="dot"></span>Sob encomenda em Uberlândia · respondemos no WhatsApp</div>
       
@@ -293,12 +302,12 @@ footer a{color:var(--muted)}
     <div class="head rv">
       <span class="eyebrow">Fazer encomenda</span>
       <h2>Monte seu pedido <em>em 1 minuto.</em></h2>
-      <p>Preencha os dados e toque em enviar. O WhatsApp abre com a mensagem pronta.</p>
+      <p>Seus pudins já estão aqui. Se quiser, complete os dados abaixo (é opcional) e toque em enviar: o pedido chega pronto no WhatsApp da Iracema.</p>
     </div>
     <div class="order">
       <form class="box rv" id="form" novalidate>
         <div class="grid2">
-          <div class="field"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" placeholder="Como podemos te chamar?"></div>
+          <div class="field"><label for="nome">Seu nome (opcional)</label><input id="nome" autocomplete="name" placeholder="Como podemos te chamar?"></div>
           <div class="field"><label for="data">Para quando?</label><input id="data" type="date"></div>
         </div>
         <div class="field">
@@ -308,14 +317,14 @@ footer a{color:var(--muted)}
             <label><input type="radio" name="ent" value="Retirada"><span>Retirada</span></label>
           </div>
         </div>
-        <div class="field" id="f-bairro"><label for="bairro">Bairro para entrega</label><input id="bairro" placeholder="Ex.: Santa Mônica"></div>
+        <div class="field" id="f-bairro"><label for="bairro">Bairro para entrega (opcional)</label><input id="bairro" placeholder="Ex.: Santa Mônica"></div>
         <div class="field"><label for="obs">Observação (opcional)</label><textarea id="obs" placeholder="Ex.: é para presente, horário preferido…"></textarea></div>
       </form>
       <aside class="summary rv" aria-live="polite">
         <h3>Seu pedido</h3>
         <ul class="lines" id="lines"></ul>
         <div class="total"><span>Total</span><b id="total">R$ 0,00</b></div>
-        <a class="btn btn-wa" id="send" href="#" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-wa order-link" id="send" href="#cardapio">
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
           Enviar pedido no WhatsApp
         </a>
@@ -374,8 +383,8 @@ footer a{color:var(--muted)}
   <div class="wrap">
     <div class="final rv">
       <h2>Bateu vontade de <em>pudim?</em></h2>
-      <p>Monte seu pedido agora e receba a resposta da Iracema direto no WhatsApp.</p>
-      <a class="btn btn-wa wa-link" data-msg="final" href="#">Falar com a Iracema no WhatsApp</a>
+      <p>Escolha as quantidades e envie. O pedido chega pronto para a Iracema no WhatsApp.</p>
+      <a class="btn btn-wa order-link" href="#cardapio">Enviar meu pedido para a Iracema</a>
     </div>
   </div>
 </section>
@@ -388,7 +397,8 @@ footer a{color:var(--muted)}
   </div>
 </footer>
 
-<a class="fab wa-link" data-msg="fab" href="#" aria-label="Chamar no WhatsApp">
+<div class="bar" id="bar" aria-live="polite"><div><b id="barQ"></b><span id="barT"></span></div><a class="btn btn-wa order-link" href="#cardapio">Enviar pedido ↗</a></div>
+<a class="fab wa-link" data-msg="fab" href="#" aria-label="Tirar uma dúvida no WhatsApp">
   <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
 </a>
 
@@ -402,8 +412,6 @@ footer a{color:var(--muted)}
     {id:'G', nome:'Pudim grande (500 g)', curto:'Pudim grande', tam:'500 g · forma com tampa, serve a família', img:'pudim-fatia', alt:'Pudim grande inteiro com uma fatia servida no prato', preco:35, badge:'Para a família', desc:'O pudim de família: cremoso, firme na medida e com aquela calda escorrendo pelos lados.', quick:[2,4]}
   ];
   const msgs = {
-    hero:'Olá, Iracema! Vi o site e quero encomendar pudim. Pode me passar as opções?',
-    final:'Olá, Iracema! Vi o site do Pudim da Iracema e quero fazer uma encomenda.',
     fab:'Olá, Iracema! Vim pelo site e tenho uma dúvida sobre os pudins.'
   };
   /* ========================================================= */
@@ -431,6 +439,7 @@ footer a{color:var(--muted)}
             <button type="button" data-add="${p.id}" data-n="1" aria-label="Aumentar">+</button>
           </div>
         </div>
+        <a class="btn btn-wa order-link" href="#cardapio">Enviar pedido no WhatsApp</a>
       </div>
     </article>`).join('');
 
@@ -462,24 +471,36 @@ footer a{color:var(--muted)}
   $('data').min = hoje.toISOString().slice(0,10);
 
   function mensagem(tot){
-    const nome = $('nome').value.trim() || '(sem nome)';
+    const nome = $('nome').value.trim();
     const ent = document.querySelector('input[name=ent]:checked').value;
     const d = $('data').value ? $('data').value.split('-').reverse().join('/') : 'a combinar';
-    const itens = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]} ${p.nome} (${brl(qty[p.id]*p.preco)})`);
+    const itens = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]}x ${p.nome}: ${brl(qty[p.id]*p.preco)}`);
     const codigo = 'PUD-M' + qty.M + '-G' + qty.G;
     const bairro = $('bairro').value.trim();
-    let t = `Olá, Iracema! Quero fazer uma encomenda pelo site.\n\nNome: ${nome}\nPedido: ${itens.join(' + ')}\nTotal: ${brl(tot)}\nData: ${d}\n${ent}${ent==='Entrega' && bairro ? ' no bairro ' + bairro : ''}`;
+    let t = `Olá, Iracema! Quero fazer esta encomenda pelo site:\n\n${itens.map(i=>'- '+i).join('\n')}\nTotal: ${brl(tot)}\n`;
+    if(nome) t += `\nNome: ${nome}`;
+    t += `\nData: ${d}\n${ent==='Entrega' ? 'Entrega' + (bairro ? ' no bairro ' + bairro : '') : 'Vou retirar'}`;
     if($('obs').value.trim()) t += `\nObservação: ${$('obs').value.trim()}`;
     return t + `\n\nCódigo do pedido: ${codigo}`;
   }
-  const atualizaLink = () => { $('send').href = wa(mensagem(render())); };
+  function atualizaLink(){
+    const tot = render(), tem = qty.M + qty.G > 0;
+    const url = tem ? wa(mensagem(tot)) : '#cardapio';
+    document.querySelectorAll('.order-link').forEach(a => {
+      a.href = url;
+      if(tem){ a.target = '_blank'; a.rel = 'noopener noreferrer'; } else { a.removeAttribute('target'); }
+    });
+    const partes = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]} ${p.curto.replace('Pudim ','')}${qty[p.id]>1?'s':''}`);
+    $('barQ').textContent = partes.join(' + ');
+    $('barT').textContent = 'Total ' + brl(tot);
+    $('bar').classList.toggle('on', tem);
+    document.body.classList.toggle('has-bar', tem);
+  }
   ['input','change'].forEach(ev => $('form').addEventListener(ev, atualizaLink));
-  document.addEventListener('click', e => { if(e.target.closest('[data-add]')) atualizaLink(); });
-
-  $('send').addEventListener('click', e => {
-    if(!qty.M && !qty.G){ e.preventDefault(); $('err').textContent = 'Escolha pelo menos um pudim no cardápio.'; $('cardapio').scrollIntoView(); return; }
-    if(!$('nome').value.trim()){ e.preventDefault(); $('err').textContent = 'Digite seu nome para a Iracema saber quem é.'; $('nome').focus(); return; }
-    atualizaLink();
+  document.addEventListener('click', e => {
+    if(e.target.closest('[data-add]')) atualizaLink();
+    const o = e.target.closest('.order-link');
+    if(o && !(qty.M + qty.G)){ $('err').textContent = 'Escolha a quantidade de pudins para enviar o pedido.'; }
   });
 
   document.querySelectorAll('.wa-link').forEach(a => { a.href = wa(msgs[a.dataset.msg] || msgs.final); a.target = '_blank'; a.rel = 'noopener noreferrer'; });
