@@ -75,7 +75,7 @@ header.scrolled{background:#fdf8f1d9;backdrop-filter:blur(14px);-webkit-backdrop
 .art::before,.art::after{content:"";position:absolute;width:54px;height:54px;border:2px solid var(--caramel);z-index:2}
 .art::before{top:-14px;right:-14px;border-left:0;border-bottom:0}
 .art::after{bottom:-14px;left:-14px;border-right:0;border-top:0}
-.prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:540px;margin:0 0 30px}
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:600px;margin:0 0 30px}
 .pr{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--caramel);border-radius:0 14px 14px 0;padding:14px 18px;box-shadow:0 10px 24px #4a2a1c12}
 .pr span{display:block;font-size:14px;color:var(--muted)}
 .pr b{font-family:var(--serif);font-size:1.7rem;color:var(--choc);white-space:nowrap}
@@ -88,7 +88,10 @@ header.scrolled{background:#fdf8f1d9;backdrop-filter:blur(14px);-webkit-backdrop
 .track span::after{content:"✦";font-style:normal;color:var(--caramel2);font-size:.9rem}
 /* cardápio */
 #cardapio{background:var(--bg2)}
-.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.copo-art{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#fbe9cf,#e2c39a)}
+.copo-art svg{height:82%;width:auto}
+.price.cons{font-size:1.5rem}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px #4a2a1c14;transition:.4s}
 .card:hover{transform:translateY(-6px);box-shadow:0 40px 90px #4a2a1c22}
 .card .pic{aspect-ratio:16/11;position:relative;overflow:hidden;background:#ead2b0}
@@ -183,6 +186,7 @@ body.has-bar .fab{bottom:100px}
 @keyframes drip{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.12)}}
 .drip{transform-box:fill-box;transform-origin:top;animation:drip 5s ease-in-out infinite}
 @media(max-width:980px){
+  .menu{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hero .wrap,.order,.ess{grid-template-columns:1fr}
   .art{max-width:520px;margin:0 auto;order:-1}
   .seal{left:4%}
@@ -193,6 +197,8 @@ body.has-bar .fab{bottom:100px}
 @media(max-width:620px){
   section{padding:70px 0}
   .menu,.grid2{grid-template-columns:1fr}
+  .prices{grid-template-columns:1fr 1fr}
+  .prices .pr:last-child{grid-column:1/-1}
   .ctas .btn{width:100%}
   form.box,.summary{padding:24px}
   .hero{padding-top:100px}
@@ -263,7 +269,7 @@ body.has-bar .fab{bottom:100px}
     <div>
       <span class="eyebrow">Feito com carinho, para você</span>
       <h1>Pudim cremoso, <em>calda que escorre.</em></h1>
-      <p class="lead">Pudim de leite condensado feito em casa, <strong>lisinho por dentro</strong> e com calda de caramelo no ponto. Escolha <strong>mini pudins</strong> para presentear ou o <strong>pudim grande de 500 g</strong> para dividir.</p>
+      <p class="lead">Pudim de leite condensado feito em casa, <strong>lisinho por dentro</strong> e com calda de caramelo no ponto. Escolha <strong>mini pudins</strong> para presentear, o <strong>pudim grande de 500 g</strong> para dividir ou o <strong>pudim no copo personalizado</strong> para sua festa.</p>
       <div class="prices" id="heroPrices"></div>
       <div class="ctas">
         <a class="btn btn-choc" href="#cardapio">Ver o cardápio ↗</a>
@@ -274,15 +280,15 @@ body.has-bar .fab{bottom:100px}
     </div>
     <div class="art rv">
       <div class="photo"><img src="img/pudim-inteiro.jpg" alt="Pudim de leite condensado inteiro coberto de calda de caramelo em prato de cerâmica" width="1124" height="1400" fetchpriority="high"></div>
-      <div class="seal"><b>Feito sob encomenda</b>Pequeno e grande</div>
+      <div class="seal"><b>Aceitamos encomendas</b>Festas, casamentos e lembrancinhas</div>
     </div>
   </div>
 </section>
 
 <div class="marquee" aria-hidden="true">
   <div class="track">
-    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Uberlândia · MG</span>
-    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Uberlândia · MG</span>
+    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Festas, casamentos e lembrancinhas</span><span>Uberlândia · MG</span>
+    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Festas, casamentos e lembrancinhas</span><span>Uberlândia · MG</span>
   </div>
 </div>
 
@@ -290,7 +296,7 @@ body.has-bar .fab{bottom:100px}
   <div class="wrap">
     <div class="head rv">
       <span class="eyebrow">Cardápio</span>
-      <h2>Dois tamanhos, <em>o mesmo capricho.</em></h2>
+      <h2>Três jeitos, <em>o mesmo capricho.</em></h2>
       <p>Escolha as quantidades aqui embaixo. Seu pedido é montado automaticamente e enviado para a Iracema pelo WhatsApp.</p>
     </div>
     <div class="menu" id="menu"></div>
@@ -374,7 +380,8 @@ body.has-bar .fab{bottom:100px}
       <details><summary>Vocês entregam em qual região?</summary><p>Atendemos Uberlândia. Informe o seu bairro no pedido e a Iracema confirma a entrega e a taxa, se houver.</p></details>
       <details><summary>Como faço o pagamento?</summary><p>O pagamento é combinado diretamente com a Iracema pelo WhatsApp, depois que ela confirma o seu pedido.</p></details>
       <details><summary>Como conservar o pudim?</summary><p>Mantenha na geladeira, com a tampa fechada. Fica ainda mais gostoso bem geladinho.</p></details>
-      <details><summary>Posso pedir para festa ou evento?</summary><p>Pode sim. Use os botões de quantidade rápida no cardápio (+8 ou +20) ou fale com a gente pelo WhatsApp para combinar.</p></details>
+      <details><summary>Posso pedir para festa ou evento?</summary><p>Pode sim. Aceitamos encomendas para festas, casamentos, lembrancinhas e pedidos personalizados. Use os botões de quantidade rápida no cardápio e envie o pedido.</p></details>
+      <details><summary>Como funciona o pudim no copo personalizado?</summary><p>É o pudim no copo americano com tampa, com etiqueta do seu logo ou nome e fitinha, ideal para lembrancinhas. Também personalizamos na forminha de mini pudim. Como o valor depende da personalização e da quantidade, escolha quantos copos quer e envie o pedido: a Iracema passa o valor pelo WhatsApp.</p></details>
     </div>
   </div>
 </section>
@@ -409,31 +416,45 @@ body.has-bar .fab{bottom:100px}
   const FONE = '(34) 98414-3152';
   const FICHA = 'https://aastecnologiaeditorial.com.br/pudim/cozinha.html'; // ficha técnica (só a Iracema, com PIN)
   const PRODUTOS = [
-    {id:'M', nome:'Pudim pequeno (mini)', curto:'Pudim pequeno', tam:'Mini pudim · forminha de 120 ml com tampa', img:'pudim-calda', alt:'Fatia de pudim recebendo calda de caramelo', preco:8, badge:'Ideal para presentear', desc:'Porção individual, lisinha e com bastante calda. Perfeito para lembrancinhas, festas e sobremesa do dia.', quick:[4,8,20]},
-    {id:'G', nome:'Pudim grande (500 g)', curto:'Pudim grande', tam:'500 g · forma com tampa, serve a família', img:'pudim-fatia', alt:'Pudim grande inteiro com uma fatia servida no prato', preco:35, badge:'Para a família', desc:'O pudim de família: cremoso, firme na medida e com aquela calda escorrendo pelos lados.', quick:[2,4]}
+    {id:'M', nome:'Pudim pequeno (mini)', curto:'Pudim pequeno', plural:'pequenos', rot:'mini', tam:'Mini pudim · forminha de 120 ml com tampa, pronto para entrega', img:'pudim-mini', alt:'Mini pudim de leite condensado na forminha com tampa', preco:8, badge:'Ideal para presentear', desc:'Porção individual, lisinha e com bastante calda. Perfeito para lembrancinhas, festas e sobremesa do dia.', quick:[4,8,20]},
+    {id:'G', nome:'Pudim grande (500 g)', curto:'Pudim grande', plural:'grandes', rot:'500 g', tam:'500 g · forma com tampa, pronto para entrega', img:'pudim-grande', alt:'Pudim grande de leite condensado liso, coberto de calda', preco:35, badge:'Para a família', desc:'O pudim de família: lisinho, cremoso e com aquela calda escorrendo pelos lados.', quick:[2,4]},
+    {id:'C', nome:'Pudim no copo (personalizado)', curto:'Pudim no copo', plural:'copos', rot:'personalizado', tam:'Copo americano com tampa, etiqueta com o seu logo ou nome e fitinha', img:'', alt:'', preco:0, badge:'Festas e lembrancinhas', desc:'Para eventos, festas, casamentos e lembrancinhas. Personalizamos com o seu logo ou do jeito que você quiser.', quick:[10,20,50]}
   ];
   const msgs = {
     fab:'Olá, Iracema! Vim pelo site e tenho uma dúvida sobre os pudins.'
   };
   /* ========================================================= */
 
-  const qty = {M:0, G:0};
-  document.getElementById('heroPrices').innerHTML = PRODUTOS.map(p => `<div class="pr"><span>${p.curto}${p.id==='G'?' · 500 g':' · mini'}</span><b>${p.preco.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</b></div>`).join('');
+  const qty = {M:0, G:0, C:0};
+  const valor = p => p.preco ? p.preco.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}) : 'Sob consulta';
+  document.getElementById('heroPrices').innerHTML = PRODUTOS.map(p => `<div class="pr"><span>${p.curto} · ${p.rot}</span><b>${valor(p)}</b></div>`).join('');
   const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
   const wa = t => 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(t);
   const $ = id => document.getElementById(id);
 
+  const COPO = `<div class="copo-art"><svg viewBox="0 0 200 240" role="img" aria-label="Pudim no copo americano com tampa, etiqueta e fitinha">
+    <ellipse cx="100" cy="226" rx="70" ry="9" fill="#4a2a1c" opacity=".15"/>
+    <path d="M44 40 L58 220 Q100 232 142 220 L156 40 Z" fill="#fff" opacity=".35" stroke="#fff" stroke-width="3"/>
+    <path d="M50 108 L58 220 Q100 232 142 220 L150 108 Q100 118 50 108Z" fill="#f2c978"/>
+    <path d="M47 76 L50 108 Q100 118 150 108 L153 76 Q100 86 47 76Z" fill="#8f4a1a"/>
+    <path d="M60 120 L66 205" stroke="#fff6dc" stroke-width="7" stroke-linecap="round" opacity=".6"/>
+    <rect x="38" y="26" width="124" height="18" rx="6" fill="#fff" opacity=".85"/>
+    <path d="M52 150 Q100 162 148 150" stroke="#b07a45" stroke-width="5" fill="none"/>
+    <path d="M100 157 l-14 12 M100 157 l14 12" stroke="#b07a45" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="100" cy="185" r="22" fill="#fffdf9" stroke="#b07a45" stroke-width="2"/>
+    <text x="100" y="183" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="11" fill="#4a2a1c">seu</text>
+    <text x="100" y="196" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="11" fill="#4a2a1c">logo</text></svg></div>`;
   $('menu').innerHTML = PRODUTOS.map(p => `
     <article class="card rv">
       <div class="pic"><span class="badge">${p.badge}</span>
-        <img src="img/${p.img}-thumb.jpg" alt="${p.alt}" loading="lazy" width="562" height="700"></div>
+        ${p.img ? `<img src="img/${p.img}-thumb.jpg" alt="${p.alt}" loading="lazy" width="562" height="700">` : COPO}</div>
       <div class="body">
         <h3>${p.nome}</h3>
         <p>${p.desc}</p>
         <p style="font-size:14px">${p.tam}</p>
         <div class="quick">${p.quick.map(n=>`<button type="button" data-add="${p.id}" data-n="${n}">+${n}</button>`).join('')}</div>
         <div class="row">
-          <span class="price">${brl(p.preco)} <small>/ unidade</small></span>
+          ${p.preco ? `<span class="price">${brl(p.preco)} <small>/ unidade</small></span>` : `<span class="price cons">Sob consulta <small>/ valor pelo WhatsApp</small></span>`}
           <div class="stepper" aria-label="Quantidade de ${p.nome}">
             <button type="button" data-add="${p.id}" data-n="-1" aria-label="Diminuir">−</button>
             <output id="q${p.id}" aria-live="polite">0</output>
@@ -448,10 +469,10 @@ body.has-bar .fab{bottom:100px}
     let tot = 0, html = '';
     PRODUTOS.forEach(p => {
       $('q'+p.id).textContent = qty[p.id];
-      if(qty[p.id] > 0){ const s = qty[p.id]*p.preco; tot += s; html += `<li><span>${qty[p.id]}× ${p.nome}</span><span>${brl(s)}</span></li>`; }
+      if(qty[p.id] > 0){ const s = qty[p.id]*p.preco; tot += s; html += `<li><span>${qty[p.id]}× ${p.nome}</span><span>${p.preco ? brl(s) : 'a combinar'}</span></li>`; }
     });
     $('lines').innerHTML = html || '<li class="empty">Escolha seus pudins no cardápio.</li>';
-    $('total').textContent = brl(tot);
+    $('total').textContent = brl(tot) + (qty.C ? ' + copos' : '');
     return tot;
   }
 
@@ -475,25 +496,25 @@ body.has-bar .fab{bottom:100px}
     const nome = $('nome').value.trim();
     const ent = document.querySelector('input[name=ent]:checked').value;
     const d = $('data').value ? $('data').value.split('-').reverse().join('/') : 'a combinar';
-    const itens = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]}x ${p.nome}: ${brl(qty[p.id]*p.preco)}`);
-    const codigo = 'PUD-M' + qty.M + '-G' + qty.G;
+    const itens = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]}x ${p.nome}: ${p.preco ? brl(qty[p.id]*p.preco) : 'valor a combinar (personalização)'}`);
+    const codigo = 'PUD-M' + qty.M + '-G' + qty.G + '-C' + qty.C;
     const bairro = $('bairro').value.trim();
-    let t = `Olá, Iracema! Quero fazer esta encomenda pelo site:\n\n${itens.map(i=>'- '+i).join('\n')}\nTotal: ${brl(tot)}\n`;
+    let t = `Olá, Iracema! Quero fazer esta encomenda pelo site:\n\n${itens.map(i=>'- '+i).join('\n')}\nTotal: ${brl(tot)}${qty.C ? ' + pudim no copo a combinar' : ''}\n`;
     if(nome) t += `\nNome: ${nome}`;
     t += `\nData: ${d}\n${ent==='Entrega' ? 'Entrega' + (bairro ? ' no bairro ' + bairro : '') : 'Vou retirar'}`;
     if($('obs').value.trim()) t += `\nObservação: ${$('obs').value.trim()}`;
-    return t + `\n\nPedido nº ${codigo}\nLink do pedido para a Iracema: ${FICHA}#pedido-M${qty.M}-G${qty.G}`;
+    return t + `\n\nPedido nº ${codigo}\nLink do pedido para a Iracema: ${FICHA}#pedido-M${qty.M}-G${qty.G}-C${qty.C}`;
   }
   function atualizaLink(){
-    const tot = render(), tem = qty.M + qty.G > 0;
+    const tot = render(), tem = qty.M + qty.G + qty.C > 0;
     const url = tem ? wa(mensagem(tot)) : '#cardapio';
     document.querySelectorAll('.order-link').forEach(a => {
       a.href = url;
       if(tem){ a.target = '_blank'; a.rel = 'noopener noreferrer'; } else { a.removeAttribute('target'); }
     });
-    const partes = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]} ${p.curto.replace('Pudim ','')}${qty[p.id]>1?'s':''}`);
+    const partes = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]} ${qty[p.id]>1 ? p.plural : p.plural.replace(/s$/,'')}`);
     $('barQ').textContent = partes.join(' + ');
-    $('barT').textContent = 'Total ' + brl(tot);
+    $('barT').textContent = 'Total ' + brl(tot) + (qty.C ? ' + copos a combinar' : '');
     $('bar').classList.toggle('on', tem);
     document.body.classList.toggle('has-bar', tem);
   }
@@ -501,7 +522,7 @@ body.has-bar .fab{bottom:100px}
   document.addEventListener('click', e => {
     if(e.target.closest('[data-add]')) atualizaLink();
     const o = e.target.closest('.order-link');
-    if(o && !(qty.M + qty.G)){ $('err').textContent = 'Escolha a quantidade de pudins para enviar o pedido.'; }
+    if(o && !(qty.M + qty.G + qty.C)){ $('err').textContent = 'Escolha a quantidade de pudins para enviar o pedido.'; }
   });
 
   document.querySelectorAll('.wa-link').forEach(a => { a.href = wa(msgs[a.dataset.msg] || msgs.final); a.target = '_blank'; a.rel = 'noopener noreferrer'; });
