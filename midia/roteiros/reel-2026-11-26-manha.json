@@ -1,0 +1,10 @@
+{"trilha": 0,
+ "capa_dur": 0.5,
+ "capa": {"eyebrow":"TESTE DE BOM DIA","linhas":["Se pesquisarem","seu nome hoje,","o que aparece?"],"ouro":[2],"selo":"FAÇA O TESTE","size":108},
+ "cenas": [
+ {"t":"texto","eyebrow":"FAÇA AGORA, LEVA 10 SEGUNDOS","linhas":["Abra o Google.","Digite o nome","da sua marca."],"ouro":[2],"dur":2.3},
+ {"t":"texto","eyebrow":"SE APARECEU SÓ ISSO","linhas":["Um perfil.","Um WhatsApp."],"ouro":[1],"sub":"O cliente fica sem saber se pode confiar.","size_sub":40,"dur":2.5},
+ {"t":"portfolio","eyebrow":"É ISTO QUE ELE QUERIA ACHAR","projetos":["vanessa-oliveira","denise-resende"],"por":1.1},
+ {"t":"numero","eyebrow":"SEU SITE NO AR EM","grande":"7 dias","linhas":["Domínio com o seu nome","e hospedagem inclusos."],"dur":2.8},
+ {"t":"cta","linhas":["Na próxima pesquisa,","apareça do seu jeito."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.0}
+]}

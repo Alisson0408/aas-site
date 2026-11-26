@@ -21,6 +21,7 @@ Roteiro de Reel: {"cenas": [ ... ]}  — tipos de cena:
   {"t":"cta","linhas":["Sua marca merece","ser extraordinária."],"botao":"PEÇA SEU ORÇAMENTO","dur":3.4}
 CAPA (obrigatória, vira o 1º quadro do Reel e a miniatura no feed):
   {"capa":{"eyebrow":"...","linhas":["...","..."],"ouro":[1],"selo":"VÍDEO DE 20s"}}  — sem "capa", usa a 1ª cena já montada.
+  "capa_dur": 0.5  (opcional, padrão 1.0 s) — tempo da capa parada no início; a capa continua sendo o 1º quadro.
 Roteiro de carrossel: {"slides": [ ...mesmos tipos, sem dur; "portfolio" usa 1 projeto: "projeto":"..." ]}
 """
 import json, math, os, subprocess, sys, wave
@@ -379,7 +380,7 @@ def desenhar_capa(rot, W=1080, H=1920):
 # ---------------- REEL ----------------
 def reel(rot, saida):
     W, H, FPS = 1080, 1920, 30
-    cenas = rot['cenas']; tl = []; CAPA = 1.0; t = CAPA
+    cenas = rot['cenas']; tl = []; CAPA = float(rot.get('capa_dur', 1.0)); t = CAPA
     capa = desenhar_capa(rot, W, H); capa.save(os.path.splitext(saida)[0] + '-capa.jpg', quality=92)
     for c in cenas:
         d = c.get('por', 1.4) * len(c['projetos']) + .6 if c['t'] == 'portfolio' else c.get('dur', 3.4)
@@ -391,8 +392,8 @@ def reel(rot, saida):
                           '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p', tmp], stdin=subprocess.PIPE)
     for i in range(N):
         tt = i / FPS
-        if tt < CAPA:  # capa parada; dissolve para a 1ª cena nos últimos 0,3 s
-            kf = clamp((tt - (CAPA - .3)) / .3)
+        if tt < CAPA:  # capa parada; dissolve para a 1ª cena nos últimos 0,3 s (ou menos, se capa_dur for curta)
+            fd = min(.3, CAPA / 2); kf = clamp((tt - (CAPA - fd)) / fd)
             if kf <= 0: p.stdin.write(capa.tobytes()); continue
         idx = max([j for j, (t0, d, c) in enumerate(tl) if t0 <= tt] or [0])
         t0, d, c = tl[idx]; s = tt - t0
