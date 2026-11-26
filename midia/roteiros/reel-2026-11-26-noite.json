@@ -1,0 +1,11 @@
+{"trilha": 1,
+ "capa_dur": 0.5,
+ "capa": {"eyebrow":"SINAL DE QUE VOCÊ PRECISA DE UM SITE","linhas":["Seu WhatsApp","não é vitrine."],"ouro":[1],"selo":"3 SINAIS","size":104},
+ "cenas": [
+ {"t":"texto","eyebrow":"FIM DO DIA E VOCÊ AINDA ESTÁ","linhas":["Mandando foto,","preço e endereço.","Um por um."],"ouro":[2],"dur":2.3},
+ {"t":"lista","eyebrow":"SE ISSO ACONTECE TODO DIA","itens":["Repete o mesmo preço","Reenvia as mesmas fotos","Explica como pedir de novo"],"dur":3.2},
+ {"t":"texto","eyebrow":"A SAÍDA","linhas":["Um site responde","por você."],"ouro":[1],"sub":"Fotos, serviços e contato num link só.","size_sub":40,"dur":2.4},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["mesa-rosa","christian-gois"],"por":1.1},
+ {"t":"numero","eyebrow":"PÁGINA DE VENDAS A PARTIR DE","grande":"R$ 600","linhas":["Em 7 dias, com domínio","e hospedagem inclusos."],"dur":2.8},
+ {"t":"cta","linhas":["O site apresenta.","Você fecha a venda."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.0}
+]}
