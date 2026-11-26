@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cozinha da Iracema — Ficha Técnica</title>
+<meta name="theme-color" content="#4a2a1c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: caderno de receitas da doceira, prático e claro
+IDEA: ficha técnica de cozinha profissional presa na parede
+PICTURE: o resultado do pedido em números grandes (receitas, gasto, lucro)
+COLOUR and TYPE: creme + chocolate + caramelo; Playfair Display + DM Sans
+LAYOUT: pedido em cima, ficha completa logo abaixo, preços dos insumos no fim
+*/
+:root{color-scheme:light;--bg:#fdf8f1;--bg2:#f6ecdf;--panel:#fffdf9;--choc:#4a2a1c;--caramel:#b07a45;--caramel2:#d9a066;--ink:#3a2418;--muted:#7b6556;--line:#4a2a1c1f;--wa:#25d366;--ok:#2f7d4f;--bad:#b4442a;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);overflow-x:clip}
+.wrap{width:min(1100px,92%);margin:0 auto}
+h1,h2,h3{font-family:var(--serif);color:var(--choc);letter-spacing:-.02em;line-height:1.1;margin:0}
+h1{font-size:clamp(2rem,4.5vw,3.2rem)}
+h1 em,h2 em{color:var(--caramel);font-style:italic}
+h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:16px}
+.top{background:var(--choc);color:#f6ecdf;padding:22px 0}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.top b{font-family:var(--serif);font-size:1.3rem;color:#fff}
+.top a{color:#e6d2bb;font-size:14px}
+.intro{padding:40px 0 10px}
+.intro p{color:var(--muted);max-width:680px;margin:12px 0 0}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 24px 60px #4a2a1c10;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+label{display:block;font-size:14px;font-weight:700;color:var(--choc);margin-bottom:6px}
+input,textarea{width:100%;font:16px var(--sans);color:var(--ink);background:#fff;border:1px solid #4a2a1c2e;border-radius:12px;padding:12px 14px;min-height:48px}
+textarea{min-height:120px;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--caramel2);outline-offset:2px}
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+.found{font-size:14px;font-weight:700;margin:8px 0 0;min-height:1.2em}
+.found.ok{color:var(--ok)}.found.no{color:var(--bad)}
+.stepper{display:flex;align-items:center;border:1px solid #4a2a1c33;border-radius:999px;overflow:hidden;background:#fff;width:100%;max-width:200px}
+.stepper button{flex:none;width:44px;height:48px;border:0;background:none;font:700 20px var(--sans);color:var(--choc);cursor:pointer}
+.stepper input{flex:1;width:40px;border:0;text-align:center;font-weight:700;font-size:18px;min-height:48px;padding:0}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:24px}
+.kpi{background:var(--choc);color:#f0dfca;border-radius:18px;padding:20px}
+.kpi span{font-size:13px;display:block}
+.kpi b{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;display:block;white-space:nowrap;line-height:1.15;margin-top:4px}
+.kpi small{font-size:12.5px;color:#e2cdb5}
+.kpi.light{background:var(--bg2);color:var(--muted)}.kpi.light b{color:var(--choc)}.kpi.light small{color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:700}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.sum td{font-weight:700;color:var(--choc);border-top:2px solid var(--choc);border-bottom:0}
+ol{margin:0;padding-left:22px}
+ol li{margin-bottom:10px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 22px;border-radius:12px;font:700 15px var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;min-height:48px}
+.btn-wa{background:var(--wa);color:#063b1c}
+.btn-ghost{background:#fff;border-color:#4a2a1c40;color:var(--choc)}
+.btn-choc{background:var(--choc);color:#fff}
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tag{display:inline-block;font-size:11.5px;background:#b07a4522;color:#8a5a2b;border-radius:999px;padding:2px 9px;margin-left:6px;font-weight:700;vertical-align:middle}
+.gate{min-height:100svh;display:grid;place-items:center;padding:24px}
+.gate .box{max-width:400px;width:100%;text-align:center}
+.gate p{color:var(--muted)}
+.hidden{display:none!important}
+footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
+@media(max-width:860px){.grid,.prices{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.box{padding:20px}.kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi{padding:14px}.actions .btn{width:100%}table{font-size:14px}.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <form class="box" id="gform">
+    <h1 style="font-size:2rem">Cozinha da <em>Iracema</em></h1>
+    <p>Área só da Iracema. Digite o PIN para ver as fichas técnicas e os custos.</p>
+    <label for="pin" style="text-align:left">PIN</label>
+    <input id="pin" inputmode="numeric" autocomplete="off" maxlength="8">
+    <p class="found no" id="pinerr"></p>
+    <button class="btn btn-choc" style="width:100%">Entrar</button>
+  </form>
+</div>
+
+<div id="app" class="hidden">
+<div class="top"><div class="wrap"><b>Cozinha da Iracema</b><a href="index.html">← Ver o site dos clientes</a></div></div>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>Ficha técnica <em>do pedido</em></h1>
+    <p>Cole a mensagem que o cliente mandou no WhatsApp. A ficha mostra a receita exata, os ingredientes, quanto você vai gastar e o seu lucro. O cliente nunca vê nada disso.</p>
+  </div>
+
+  <div class="box">
+    <div class="grid">
+      <div>
+        <label for="msg">Mensagem do cliente</label>
+        <textarea id="msg" placeholder="Cole aqui a mensagem do WhatsApp (ela termina com: Código do pedido: PUD-M8-G1)"></textarea>
+        <p class="found" id="found"></p>
+      </div>
+      <div>
+        <div class="grid3" style="grid-template-columns:1fr 1fr">
+          <div><label for="m">Mini pudins</label><div class="stepper"><button type="button" data-s="m" data-n="-1" aria-label="Menos mini">−</button><input id="m" type="number" min="0" value="8"><button type="button" data-s="m" data-n="1" aria-label="Mais mini">+</button></div></div>
+          <div><label for="g">Pudins 500 g</label><div class="stepper"><button type="button" data-s="g" data-n="-1" aria-label="Menos 500 g">−</button><input id="g" type="number" min="0" value="0"><button type="button" data-s="g" data-n="1" aria-label="Mais 500 g">+</button></div></div>
+        </div>
+        <p class="hint">Ou digite as quantidades direto aqui.</p>
+        <div class="grid3" style="grid-template-columns:1fr 1fr;margin-top:14px">
+          <div><label for="pm">Preço do mini (R$)</label><input id="pm" type="number" step="0.5" min="0"></div>
+          <div><label for="pg">Preço do 500 g (R$)</label><input id="pg" type="number" step="0.5" min="0"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpis" aria-live="polite">
+    <div class="kpi"><span>Receitas para fazer</span><b id="kRec">1</b><small id="kRecS"></small></div>
+    <div class="kpi"><span>Gasto total</span><b id="kGasto">R$ 0</b><small>ingredientes + formas + gás</small></div>
+    <div class="kpi light"><span>Você recebe</span><b id="kVenda">R$ 0</b><small>valor do pedido</small></div>
+    <div class="kpi light"><span>Lucro estimado</span><b id="kLucro">R$ 0</b><small id="kMargem"></small></div>
+  </div>
+
+  <div class="grid">
+    <div class="box">
+      <h2>Ingredientes <em>exatos</em></h2>
+      <table><thead><tr><th>Ingrediente</th><th class="n">Quantidade</th></tr></thead><tbody id="tIng"></tbody></table>
+      <p class="hint" id="baseHint"></p>
+    </div>
+    <div class="box">
+      <h2>Lista de <em>compras</em></h2>
+      <table><thead><tr><th>Comprar</th><th class="n">Qtd.</th><th class="n">Pagar</th></tr></thead><tbody id="tCompra"></tbody></table>
+      <p class="hint">Embalagens fechadas. O que sobrar fica para os próximos pedidos.</p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>Custos <em>detalhados</em></h2>
+    <table><thead><tr><th>Item</th><th class="n">Usado</th><th class="n">Custo</th></tr></thead><tbody id="tCusto"></tbody></table>
+    <p class="hint" id="unitHint"></p>
+  </div>
+
+  <div class="box">
+    <h2>Modo de <em>preparo</em></h2>
+    <ol id="preparo"></ol>
+    <p class="hint">Tempos de forno são referência: cada forno é diferente. O pudim está pronto quando o centro balança só um pouco.</p>
+  </div>
+
+  <div class="box">
+    <h2>Enviar a ficha <em>para mim</em></h2>
+    <p class="hint" style="margin:0 0 14px">Manda a ficha completa para o seu WhatsApp, para consultar na cozinha.</p>
+    <div class="actions">
+      <a class="btn btn-wa" id="sendMe" href="#" target="_blank" rel="noopener noreferrer">Enviar ficha no meu WhatsApp</a>
+      <button class="btn btn-ghost" id="copy" type="button">Copiar ficha</button>
+    </div>
+    <p class="found ok" id="copied"></p>
+  </div>
+
+  <div class="box">
+    <h2>Preços dos <em>insumos</em></h2>
+    <p class="hint" style="margin:0 0 16px">Atualize quando os preços mudarem. Fica salvo neste celular.</p>
+    <div class="prices" id="prices"></div>
+    <div class="actions" style="margin-top:16px"><button class="btn btn-ghost" id="reset" type="button">Voltar aos preços padrão</button></div>
+  </div>
+</div>
+<footer><div class="wrap">Cozinha da Iracema · ficha técnica interna · site por AAS Tecnologia Editorial</div></footer>
+</div>
+
+<script>
+{
+  /* ===== CONFIGURAÇÃO ===== */
+  const PIN = '7319';                 // trocar antes de publicar
+  const WHATS_IRACEMA = '5534988586329'; // número de teste do Alisson
+  const VENDA = {m:8, g:35};          // mesmos preços do site
+  // Receita base: rende 8 minis (120 ml) OU 2 pudins de 500 g. 1 pudim de 500 g = 4 minis.
+  const RENDE_MINIS = 8, MINIS_POR_G = 4;
+  const PADRAO = {
+    lc:7.00,      // caixa de leite condensado (395 g)
+    leite:5.00,   // caixa de leite 1 L
+    ovo:1.25,     // por ovo
+    ninho:13.00,  // pacote de leite em pó 500 g
+    acucar:5.00,  // pacote de açúcar cristal 1 kg (estimado)
+    baunilha:0.50,// por receita (estimado)
+    gas:1.50,     // gás por fornada/receita (estimado)
+    fMini:1.45,   // forma mini 120 ml com tampa, por unidade (pacote c/10 ≈ R$ 14,50)
+    fG:5.50       // forma 500 ml com tampa, por unidade (pacote c/6 ≈ R$ 33)
+  };
+  const ROTULO = {lc:'Leite condensado (caixa)',leite:'Leite (caixa 1 L)',ovo:'Ovo (unidade)',ninho:'Leite em pó (500 g)',acucar:'Açúcar cristal (1 kg)',baunilha:'Baunilha (por receita)',gas:'Gás (por receita)',fMini:'Forma mini (unidade)',fG:'Forma 500 g (unidade)'};
+  const ESTIMADO = ['acucar','baunilha','gas','fMini','fG'];
+  /* ======================== */
+
+  const $ = id => document.getElementById(id);
+  const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  const num = (v,d=0) => v.toLocaleString('pt-BR',{maximumFractionDigits:d});
+  let P = {...PADRAO};
+  try{ Object.assign(P, JSON.parse(localStorage.getItem('pudim-precos')||'{}')); }catch(e){}
+
+  // acesso
+  const abrir = () => { $('gate').classList.add('hidden'); $('app').classList.remove('hidden'); };
+  try{ if(sessionStorage.getItem('pudim-ok')==='1') abrir(); }catch(e){}
+  $('gform').addEventListener('submit', e => {
+    e.preventDefault();
+    if($('pin').value.trim()===PIN){ try{sessionStorage.setItem('pudim-ok','1')}catch(e){} abrir(); }
+    else $('pinerr').textContent = 'PIN incorreto.';
+  });
+
+  $('pm').value = VENDA.m; $('pg').value = VENDA.g;
+
+  $('prices').innerHTML = Object.keys(PADRAO).map(k => `
+    <div><label for="p_${k}">${ROTULO[k]}${ESTIMADO.includes(k)?'<span class="tag">estimado</span>':''}</label>
+    <input id="p_${k}" data-p="${k}" type="number" step="0.05" min="0" value="${P[k]}"></div>`).join('');
+
+  function calc(){
+    const m = Math.max(0, Math.floor(+$('m').value||0));
+    const g = Math.max(0, Math.floor(+$('g').value||0));
+    const eq = m + g*MINIS_POR_G;                  // em "minis"
+    const exato = eq / RENDE_MINIS;                // receitas proporcionais
+    const rec = eq ? Math.ceil(exato) : 0;         // receitas inteiras para fazer
+    const sobra = rec*RENDE_MINIS - eq;
+
+    // ingredientes das receitas inteiras
+    const ing = [
+      ['Leite condensado', `${rec} caixa${rec===1?'':'s'} (${num(rec*395)} g)`],
+      ['Leite', `${num(rec*600)} ml`],
+      ['Ovos', `${rec*4} unidades`],
+      ['Leite em pó Ninho', `${num(rec*40)} g`],
+      ['Baunilha (opcional)', `${rec} colher${rec===1?'':'es'} de chá`],
+      ['Açúcar cristal (calda)', `${num(rec*300)} g`],
+      ['Água (calda)', `${num(rec*200)} ml`],
+      ['Formas mini 120 ml', `${m} unidade${m===1?'':'s'}`],
+      ['Formas 500 ml', `${g} unidade${g===1?'':'s'}`]
+    ];
+
+    // custo do que é usado (receitas inteiras)
+    const c = {
+      lc: rec*P.lc, leite: rec*0.6*P.leite, ovo: rec*4*P.ovo, ninho: rec*40/500*P.ninho,
+      acucar: rec*0.3*P.acucar, baunilha: rec*P.baunilha, gas: rec*P.gas, fMini: m*P.fMini, fG: g*P.fG
+    };
+    const usado = {lc:`${rec} cx`, leite:`${num(rec*600)} ml`, ovo:`${rec*4} un`, ninho:`${num(rec*40)} g`, acucar:`${num(rec*300)} g`, baunilha:`${rec} rec.`, gas:`${rec} fornada${rec===1?'':'s'}`, fMini:`${m} un`, fG:`${g} un`};
+    const nomes = {lc:'Leite condensado',leite:'Leite',ovo:'Ovos',ninho:'Leite em pó',acucar:'Açúcar cristal',baunilha:'Baunilha',gas:'Gás',fMini:'Formas mini',fG:'Formas 500 g'};
+    const gasto = Object.values(c).reduce((a,b)=>a+b,0);
+    const custoReceita = P.lc + 0.6*P.leite + 4*P.ovo + 40/500*P.ninho + 0.3*P.acucar + P.baunilha + P.gas;
+    const custoMini = custoReceita/RENDE_MINIS + P.fMini;
+    const custoG = custoReceita/RENDE_MINIS*MINIS_POR_G + P.fG;
+    const venda = m*(+$('pm').value||0) + g*(+$('pg').value||0);
+    const lucro = venda - gasto;  // o que sobra depois de pagar tudo que foi usado
+
+    // compras (embalagens fechadas)
+    const compra = [
+      ['Leite condensado', `${rec} cx`, rec*P.lc],
+      ['Leite 1 L', `${Math.ceil(rec*0.6)} cx`, Math.ceil(rec*0.6)*P.leite],
+      ['Ovos', `${rec*4} un`, rec*4*P.ovo],
+      ['Leite em pó 500 g', `${Math.ceil(rec*40/500)} pct`, Math.ceil(rec*40/500)*P.ninho],
+      ['Açúcar cristal 1 kg', `${Math.ceil(rec*0.3)} pct`, Math.ceil(rec*0.3)*P.acucar],
+      ['Formas mini (pct c/10)', `${Math.ceil(m/10)} pct`, Math.ceil(m/10)*10*P.fMini],
+      ['Formas 500 ml (pct c/6)', `${Math.ceil(g/6)} pct`, Math.ceil(g/6)*6*P.fG]
+    ].filter(r => r[2] > 0);
+    const totCompra = compra.reduce((a,r)=>a+r[2],0);
+
+    // render
+    $('kRec').textContent = rec;
+    $('kRecS').textContent = rec ? (sobra ? `sobra massa para +${sobra} mini${sobra>1?'s':''}` : 'sem sobra de massa') : 'escolha as quantidades';
+    $('kGasto').textContent = brl(gasto);
+    $('kVenda').textContent = brl(venda);
+    $('kLucro').textContent = brl(lucro);
+    $('kLucro').style.color = lucro < 0 ? 'var(--bad)' : '';
+    $('kMargem').textContent = venda ? `margem de ${num(lucro/venda*100)}%` : '';
+
+    $('tIng').innerHTML = ing.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td></tr>`).join('');
+    $('baseHint').textContent = `Base: 1 receita rende 8 minis ou 2 pudins de 500 g. Este pedido usa ${num(exato,2)} receita${exato===1?'':'s'}; arredondamos para ${rec} inteira${rec===1?'':'s'}.`;
+    $('tCompra').innerHTML = compra.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n">${brl(r[2])}</td></tr>`).join('') + `<tr class="sum"><td>Total no mercado</td><td></td><td class="n">${brl(totCompra)}</td></tr>`;
+    $('tCusto').innerHTML = Object.keys(c).filter(k=>c[k]>0).map(k=>`<tr><td>${nomes[k]}</td><td class="n">${usado[k]}</td><td class="n">${brl(c[k])}</td></tr>`).join('') + `<tr class="sum"><td>Gasto total de produção</td><td></td><td class="n">${brl(gasto)}</td></tr>`;
+    $('unitHint').textContent = (sobra ? `A massa que sobra rende mais ${sobra} mini${sobra>1?'s':''}: se vender, é lucro extra. ` : '') + `Custo por unidade: mini ${brl(custoMini)} · 500 g ${brl(custoG)}. Lucro por unidade: mini ${brl((+$('pm').value||0)-custoMini)} · 500 g ${brl((+$('pg').value||0)-custoG)}.`;
+
+    const minF = m ? 'minis: 35 a 40 min' : '', gF = g ? '500 g: 55 a 60 min' : '';
+    $('preparo').innerHTML = [
+      `Calda: leve ao fogo ${num(rec*300)} g de açúcar até derreter e ficar dourado. Junte ${num(rec*200)} ml de água com cuidado e mexa até virar uma calda lisa.`,
+      `Espalhe a calda no fundo das formas${m?` (${m} mini${m>1?'s':''})`:''}${g?`${m?' e':''} (${g} de 500 g)`:''} e deixe esfriar.`,
+      `Massa: bata no liquidificador ${rec} caixa${rec>1?'s':''} de leite condensado, ${num(rec*600)} ml de leite, ${rec*4} ovos, ${num(rec*40)} g de leite em pó e a baunilha. Bata uma receita por vez se o copo for pequeno.`,
+      `Coe a massa e despeje nas formas por cima da calda.`,
+      `Asse em banho-maria no forno a 180 °C, coberto com papel-alumínio (${[minF,gF].filter(Boolean).join(' · ') || 'conforme o tamanho'}).`,
+      `Espere esfriar, tampe e leve à geladeira por pelo menos 6 horas antes de entregar.`
+    ].map(t=>`<li>${t}</li>`).join('');
+
+    const ficha = `FICHA TÉCNICA DO PEDIDO\n\nPedido: ${m} mini + ${g} de 500 g\nReceitas para fazer: ${rec}${sobra?` (sobra massa para ${sobra} mini)`:''}\n\nINGREDIENTES\n${ing.map(r=>`${r[0]}: ${r[1]}`).join('\n')}\n\nCUSTOS\n${Object.keys(c).filter(k=>c[k]>0).map(k=>`${nomes[k]}: ${brl(c[k])}`).join('\n')}\nGasto total: ${brl(gasto)}\n\nValor do pedido: ${brl(venda)}\nLucro estimado: ${brl(lucro)}${venda?` (${num(lucro/venda*100)}%)`:''}`;
+    $('sendMe').href = 'https://wa.me/' + WHATS_IRACEMA + '?text=' + encodeURIComponent(ficha);
+    $('copy').dataset.ficha = ficha;
+  }
+
+  $('msg').addEventListener('input', () => {
+    const t = $('msg').value;
+    const k = t.match(/PUD-M(\d+)-G(\d+)/i);
+    let m = null, g = null;
+    if(k){ m = +k[1]; g = +k[2]; }
+    else {
+      const a = t.match(/(\d+)\s*(?:x\s*)?mini/i), b = t.match(/(\d+)\s*(?:x\s*)?pudi(?:m|ns)\s*(?:de\s*)?500/i);
+      if(a) m = +a[1]; if(b) g = +b[1];
+      if(a && !b) g = 0; if(b && !a) m = 0;
+    }
+    if(m===null && g===null){ $('found').textContent = t.trim() ? 'Não achei as quantidades. Digite ao lado.' : ''; $('found').className = 'found no'; return; }
+    $('m').value = m; $('g').value = g;
+    $('found').textContent = `Pedido encontrado: ${m} mini + ${g} de 500 g`; $('found').className = 'found ok';
+    calc();
+  });
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-s]'); if(!b) return;
+    const i = $(b.dataset.s); i.value = Math.max(0, (+i.value||0) + +b.dataset.n); calc();
+  });
+  ['m','g','pm','pg'].forEach(id => $(id).addEventListener('input', calc));
+  $('prices').addEventListener('input', e => {
+    const k = e.target.dataset.p; if(!k) return;
+    P[k] = Math.max(0, +e.target.value || 0);
+    try{ localStorage.setItem('pudim-precos', JSON.stringify(P)); }catch(err){}
+    calc();
+  });
+  $('reset').addEventListener('click', () => {
+    P = {...PADRAO}; try{ localStorage.removeItem('pudim-precos'); }catch(e){}
+    Object.keys(P).forEach(k => $('p_'+k).value = P[k]); calc();
+  });
+  $('copy').addEventListener('click', async () => {
+    try{ await navigator.clipboard.writeText($('copy').dataset.ficha); $('copied').textContent = 'Ficha copiada.'; }
+    catch(e){ $('copied').textContent = 'Não deu para copiar aqui. Use o botão do WhatsApp.'; }
+  });
+  calc();
+}
+</script>
+</body>
+</html>

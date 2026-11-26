@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pudim da Iracema — Pudins Artesanais</title>
+<meta name="description" content="Pudim de leite condensado artesanal em Uberlândia: mini pudim e pudim de 500 g, feitos sob encomenda com calda de caramelo no ponto. Peça pelo WhatsApp.">
+<meta name="theme-color" content="#4a2a1c">
+<meta property="og:title" content="Pudim da Iracema — Pudins Artesanais">
+<meta property="og:description" content="Mini pudim e pudim de 500 g sob encomenda. Cremoso, sem furinhos, com calda que escorre.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: acolhedor, caseiro e caprichado — o mesmo tom do Mesa Rosa
+IDEA: uma vitrine de doceria de bairro, com caderno de encomendas
+PICTURE: pudim grande e minis desenhados, calda escorrendo, em prato de louça
+COLOUR and TYPE: creme + chocolate + caramelo; Playfair Display + DM Sans
+LAYOUT: hero de tela cheia, cardápio com contador, caderno de pedido que vira WhatsApp
+*/
+:root{color-scheme:light;--bg:#fdf8f1;--bg2:#f6ecdf;--panel:#fffdf9;--choc:#4a2a1c;--choc2:#2f1a11;--caramel:#b07a45;--caramel2:#d9a066;--ink:#3a2418;--muted:#7b6556;--line:#4a2a1c1f;--wa:#25d366;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--sans);overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1180px,90%);margin:0 auto}
+h1,h2,h3{font-family:var(--serif);color:var(--choc);letter-spacing:-.02em;line-height:1.05;margin:0}
+h1{font-size:clamp(2.8rem,6vw,5.4rem)}
+h2{font-size:clamp(2.1rem,4.2vw,3.5rem);text-wrap:balance}
+h1 em,h2 em{color:var(--caramel);font-style:italic}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--caramel);margin-bottom:18px}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+section{padding:110px 0}
+.head{max-width:720px;margin-bottom:54px}
+.head p{color:var(--muted);margin:16px 0 0}
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:.35s}
+header.scrolled{background:#fdf8f1d9;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:84px;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo .mark{width:46px;height:46px;border-radius:50%;background:var(--choc);display:grid;place-items:center;flex:none}
+.logo b{font-family:var(--serif);font-size:1.45rem;color:var(--choc);display:block;line-height:1}
+.logo small{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.nav nav{display:flex;align-items:center;gap:30px}
+.nav nav a{text-decoration:none;font-size:15px;font-weight:500}
+.nav nav a:not(.btn):hover{color:var(--caramel)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 26px;border-radius:12px;font:700 15px var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:.3s;white-space:nowrap}
+.btn:hover{transform:translateY(-3px)}
+.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--caramel2);outline-offset:3px}
+.btn-choc{background:var(--choc);color:#fff;box-shadow:0 14px 34px #4a2a1c40}
+.btn-choc:hover{background:var(--choc2)}
+.btn-ghost{border-color:#4a2a1c40;color:var(--choc);background:transparent}
+.btn-ghost:hover{border-color:var(--choc)}
+.btn-wa{background:var(--wa);color:#063b1c;box-shadow:0 14px 34px #25d36640}
+.btn-sm{padding:12px 20px;border-radius:999px;font-size:14px}
+/* hero */
+.hero{min-height:100svh;padding:120px 0 70px;display:flex;align-items:center;background:radial-gradient(900px 600px at 85% 35%,#f1d9b8 0,transparent 60%),radial-gradient(500px 400px at 10% 90%,#f6e7d3 0,transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.hero p.lead{font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--muted);max-width:540px;margin:26px 0 34px}
+.hero p.lead strong{color:var(--choc)}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.trust{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:14px;color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 0 #25d36680;animation:blink 2s infinite}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.tags span{background:var(--panel);border-left:3px solid var(--caramel);padding:9px 16px;border-radius:0 10px 10px 0;font-weight:500;font-size:15px;box-shadow:0 10px 24px #4a2a1c12}
+.art{position:relative}
+.art svg{width:100%;height:auto;filter:drop-shadow(0 40px 60px #4a2a1c30)}
+.art .float{animation:float 6s ease-in-out infinite;transform-origin:center}
+.seal{position:absolute;left:0;top:10%;background:#fffdf9e6;backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:0 30px 60px #4a2a1c22;font-size:14px}
+.seal b{display:block;font-family:var(--serif);font-size:1.25rem;color:var(--choc)}
+/* marquee */
+.marquee{background:var(--choc);color:#f6ecdf;overflow:hidden;padding:18px 0}
+.track{display:flex;gap:48px;width:max-content;animation:marq 32s linear infinite}
+.track span{font-family:var(--serif);font-style:italic;font-size:1.2rem;white-space:nowrap;display:flex;align-items:center;gap:48px}
+.track span::after{content:"✦";font-style:normal;color:var(--caramel2);font-size:.9rem}
+/* cardápio */
+#cardapio{background:var(--bg2)}
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px #4a2a1c14;transition:.4s}
+.card:hover{transform:translateY(-6px);box-shadow:0 40px 90px #4a2a1c22}
+.card .pic{background:radial-gradient(circle at 50% 60%,#f4dfc2,#ead2b0);aspect-ratio:16/10;display:grid;place-items:center;position:relative}
+.card .pic svg{width:62%;height:auto}
+.badge{position:absolute;top:18px;left:18px;background:var(--choc);color:#fff;font-size:12px;font-weight:700;padding:7px 14px;border-radius:999px;letter-spacing:.04em}
+.card .body{padding:30px;display:flex;flex-direction:column;gap:14px;flex:1}
+.card h3{font-size:1.9rem}
+.card p{margin:0;color:var(--muted)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
+.price{font-family:var(--serif);font-size:2rem;color:var(--choc);white-space:nowrap}
+.price small{font:500 14px var(--sans);color:var(--muted)}
+.stepper{display:flex;align-items:center;border:1px solid #4a2a1c33;border-radius:999px;overflow:hidden;background:#fff}
+.stepper button{width:46px;height:46px;border:0;background:none;font:700 20px var(--sans);color:var(--choc);cursor:pointer}
+.stepper button:hover{background:var(--bg2)}
+.stepper output{min-width:44px;text-align:center;font-weight:700;font-size:18px}
+.quick{display:flex;gap:8px;flex-wrap:wrap}
+.quick button{border:1px dashed #b07a4588;background:none;color:var(--caramel);border-radius:999px;padding:8px 14px;font:700 13px var(--sans);cursor:pointer;min-height:38px}
+.quick button:hover{background:#b07a4514}
+/* pedido */
+.order{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:start}
+form.box,.summary{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:0 30px 70px #4a2a1c12}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+label{display:block;font-size:14px;font-weight:700;color:var(--choc);margin-bottom:6px}
+input,select,textarea{width:100%;font:16px var(--sans);color:var(--ink);background:#fff;border:1px solid #4a2a1c2e;border-radius:12px;padding:14px 16px;min-height:50px}
+textarea{min-height:90px;resize:vertical}
+.field{margin-bottom:16px}
+.seg{display:flex;gap:10px}
+.seg label{flex:1;margin:0;cursor:pointer}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:block;text-align:center;padding:14px;border:1px solid #4a2a1c2e;border-radius:12px;font-weight:500;background:#fff}
+.seg input:checked+span{background:var(--choc);color:#fff;border-color:var(--choc)}
+.seg input:focus-visible+span{outline:3px solid var(--caramel2);outline-offset:2px}
+.summary{position:sticky;top:104px;background:var(--choc);color:#f6ecdf;border:0}
+.summary h3{color:#fff;font-size:1.7rem;margin-bottom:18px}
+.lines{list-style:none;margin:0 0 18px;padding:0}
+.lines li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff1f}
+.lines li span:last-child{white-space:nowrap;font-weight:700}
+.empty{color:#e9d6c0;font-style:italic}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:6px 0 24px}
+.total b{font-family:var(--serif);font-size:2.4rem;color:#fff;white-space:nowrap}
+.summary .btn{width:100%}
+.summary .note{font-size:13px;color:#e2cdb5;margin:14px 0 0}
+.err{color:#ffd2c2;font-size:14px;margin:10px 0 0;min-height:1em}
+/* passos */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.step{border-top:1px solid var(--line);padding-top:24px}
+.step i{font-family:var(--serif);font-style:italic;font-size:2.6rem;color:var(--caramel2);display:block;line-height:1;margin-bottom:12px}
+.step h3{font-size:1.4rem;margin-bottom:8px}
+.step p{margin:0;color:var(--muted)}
+/* essência */
+#essencia{background:var(--bg2)}
+.ess{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.frame{position:relative;border-radius:28px;background:radial-gradient(circle at 50% 40%,#fbe9cf,#e8cba4);padding:40px;box-shadow:0 40px 100px #4a2a1c2a}
+.frame::before,.frame::after{content:"";position:absolute;width:44px;height:44px;border:2px solid var(--caramel)}
+.frame::before{top:-12px;left:-12px;border-right:0;border-bottom:0}
+.frame::after{bottom:-12px;right:-12px;border-left:0;border-top:0}
+.checks{list-style:none;padding:0;margin:26px 0 34px;display:grid;gap:14px}
+.checks li{display:flex;gap:14px;align-items:flex-start}
+.checks svg{flex:none;margin-top:3px}
+/* faq */
+.faq{max-width:820px}
+details{border-bottom:1px solid var(--line);padding:22px 0}
+summary{cursor:pointer;list-style:none;font-family:var(--serif);font-size:1.3rem;color:var(--choc);display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--sans);color:var(--caramel);font-size:1.6rem;line-height:1;transition:.3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);margin:12px 0 0}
+/* cta */
+.final{background:var(--choc);color:#f6ecdf;text-align:center;border-radius:32px;padding:80px 8%;position:relative;overflow:hidden}
+.final h2{color:#fff}
+.final h2 em{color:var(--caramel2)}
+.final p{max-width:560px;margin:18px auto 34px;color:#e6d2bb}
+footer{padding:50px 0 40px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--muted)}
+.fab{position:fixed;right:20px;bottom:20px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 16px 40px #25d36670;transition:.3s}
+.fab:hover{transform:scale(1.08)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+@keyframes blink{70%{box-shadow:0 0 0 10px #25d36600}100%{box-shadow:0 0 0 0 #25d36600}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes drip{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.12)}}
+.drip{transform-box:fill-box;transform-origin:top;animation:drip 5s ease-in-out infinite}
+@media(max-width:980px){
+  .hero .wrap,.order,.ess{grid-template-columns:1fr}
+  .art{max-width:520px;margin:0 auto;order:-1}
+  .seal{left:0}
+  .steps{grid-template-columns:1fr}
+  .summary{position:static}
+  .nav nav a:not(.btn){display:none}
+}
+@media(max-width:620px){
+  section{padding:70px 0}
+  .menu,.grid2{grid-template-columns:1fr}
+  .ctas .btn{width:100%}
+  form.box,.summary{padding:24px}
+  .hero{padding-top:100px}
+  .logo small{display:none}
+  .final{padding:60px 7%;border-radius:24px}
+  .final .btn{width:100%;white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e7b25c"/><stop offset=".35" stop-color="#f6d58e"/><stop offset=".6" stop-color="#f2c978"/><stop offset="1" stop-color="#d79b47"/>
+    </linearGradient>
+    <linearGradient id="gCar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a531f"/><stop offset="1" stop-color="#6b3412"/>
+    </linearGradient>
+    <radialGradient id="gTop" cx=".4" cy=".35" r=".8">
+      <stop offset="0" stop-color="#c2732f"/><stop offset=".6" stop-color="#8f4a1a"/><stop offset="1" stop-color="#6b3412"/>
+    </radialGradient>
+    <radialGradient id="gPlate" cx=".5" cy=".4" r=".7">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".8" stop-color="#f3ebe0"/><stop offset="1" stop-color="#e2d4c2"/>
+    </radialGradient>
+    <symbol id="pudim" viewBox="0 0 300 230">
+      <ellipse cx="150" cy="200" rx="146" ry="26" fill="#4a2a1c" opacity=".12"/>
+      <path d="M48 70 L22 182 Q150 222 278 182 L252 70 Z" fill="url(#gBody)"/>
+      <path d="M22 182 Q150 222 278 182 L276 190 Q150 232 24 190 Z" fill="#c98a3c"/>
+      <path d="M70 92 L56 170" stroke="#fff6dc" stroke-width="10" stroke-linecap="round" opacity=".55"/>
+      <ellipse cx="150" cy="70" rx="102" ry="26" fill="url(#gTop)"/>
+      <g fill="url(#gCar)">
+        <path class="drip" d="M58 78 Q60 112 66 118 Q72 112 72 86 Z"/>
+        <path class="drip" style="animation-delay:-1.4s" d="M96 92 Q98 140 106 146 Q114 140 112 96 Z"/>
+        <path class="drip" style="animation-delay:-2.6s" d="M150 96 Q150 124 157 130 Q164 124 164 95 Z"/>
+        <path class="drip" style="animation-delay:-.7s" d="M196 92 Q197 152 205 158 Q213 152 212 88 Z"/>
+        <path class="drip" style="animation-delay:-3.3s" d="M234 80 Q236 104 241 109 Q246 104 246 76 Z"/>
+      </g>
+      <ellipse cx="128" cy="62" rx="44" ry="8" fill="#ffd9a8" opacity=".45"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Pudim da Iracema, início">
+      <span class="mark"><svg width="30" height="24" aria-hidden="true"><use href="#pudim"/></svg></span>
+      <span><b>Pudim da Iracema</b><small>Pudins artesanais</small></span>
+    </a>
+    <nav aria-label="Menu principal">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#essencia">Nossa essência</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a class="btn btn-choc btn-sm" href="#pedido">Encomendar ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Feito com carinho, para você</span>
+      <h1>Pudim cremoso, <em>calda que escorre.</em></h1>
+      <p class="lead">Pudim de leite condensado feito em casa, <strong>lisinho por dentro</strong> e com calda de caramelo no ponto. Escolha <strong>mini pudins</strong> para presentear ou o <strong>pudim de 500 g</strong> para dividir.</p>
+      <div class="ctas">
+        <a class="btn btn-choc" href="#cardapio">Ver o cardápio ↗</a>
+        <a class="btn btn-ghost wa-link" data-msg="hero" href="#">Pedir pelo WhatsApp</a>
+      </div>
+      <div class="trust"><span class="dot"></span>Sob encomenda em Uberlândia · respondemos no WhatsApp</div>
+      <div class="tags"><span>♡ Feito com amor</span><span>✳ Receita caseira</span><span>⌂ Sob encomenda</span></div>
+    </div>
+    <div class="art rv">
+      <svg viewBox="0 0 520 470" role="img" aria-label="Pudim grande com calda de caramelo e dois mini pudins em um prato">
+        <ellipse cx="260" cy="392" rx="240" ry="56" fill="url(#gPlate)"/>
+        <ellipse cx="260" cy="386" rx="196" ry="40" fill="none" stroke="#d8c6ae" stroke-width="2"/>
+        <g class="float"><use href="#pudim" x="90" y="120" width="340" height="261"/></g>
+        <use href="#pudim" x="4" y="318" width="150" height="115"/>
+        <use href="#pudim" x="372" y="322" width="140" height="107"/>
+      </svg>
+      <div class="seal"><b>2 tamanhos</b>Mini pudim e 500 g</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Uberlândia · MG</span>
+    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Uberlândia · MG</span>
+  </div>
+</div>
+
+<section id="cardapio">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Cardápio</span>
+      <h2>Dois tamanhos, <em>o mesmo capricho.</em></h2>
+      <p>Escolha as quantidades aqui embaixo. Seu pedido é montado automaticamente e enviado para a Iracema pelo WhatsApp.</p>
+    </div>
+    <div class="menu" id="menu"></div>
+  </div>
+</section>
+
+<section id="pedido">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Fazer encomenda</span>
+      <h2>Monte seu pedido <em>em 1 minuto.</em></h2>
+      <p>Preencha os dados e toque em enviar. O WhatsApp abre com a mensagem pronta.</p>
+    </div>
+    <div class="order">
+      <form class="box rv" id="form" novalidate>
+        <div class="grid2">
+          <div class="field"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" placeholder="Como podemos te chamar?"></div>
+          <div class="field"><label for="data">Para quando?</label><input id="data" type="date"></div>
+        </div>
+        <div class="field">
+          <label id="lbl-ent">Entrega ou retirada</label>
+          <div class="seg" role="radiogroup" aria-labelledby="lbl-ent">
+            <label><input type="radio" name="ent" value="Entrega" checked><span>Entrega</span></label>
+            <label><input type="radio" name="ent" value="Retirada"><span>Retirada</span></label>
+          </div>
+        </div>
+        <div class="field" id="f-bairro"><label for="bairro">Bairro para entrega</label><input id="bairro" placeholder="Ex.: Santa Mônica"></div>
+        <div class="field"><label for="obs">Observação (opcional)</label><textarea id="obs" placeholder="Ex.: é para presente, horário preferido…"></textarea></div>
+      </form>
+      <aside class="summary rv" aria-live="polite">
+        <h3>Seu pedido</h3>
+        <ul class="lines" id="lines"></ul>
+        <div class="total"><span>Total</span><b id="total">R$ 0,00</b></div>
+        <a class="btn btn-wa" id="send" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+          Enviar pedido no WhatsApp
+        </a>
+        <p class="err" id="err"></p>
+        <p class="note">Pagamento e horário são combinados direto com a Iracema na conversa.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Como funciona</span><h2>Do seu pedido <em>à sua mesa.</em></h2></div>
+    <div class="steps">
+      <div class="step rv"><i>i.</i><h3>Você escolhe</h3><p>Monte o pedido no cardápio: quantos minis, quantos de 500 g e para quando.</p></div>
+      <div class="step rv"><i>ii.</i><h3>A Iracema confirma</h3><p>Ela responde no WhatsApp, confirma o dia e combina pagamento e entrega.</p></div>
+      <div class="step rv"><i>iii.</i><h3>Feito no dia</h3><p>Seu pudim é preparado especialmente para o seu pedido e entregue geladinho.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="essencia">
+  <div class="wrap ess">
+    <div class="frame rv">
+      <svg viewBox="0 0 300 230" role="img" aria-label="Pudim de leite condensado com calda"><use href="#pudim"/></svg>
+    </div>
+    <div class="rv">
+      <span class="eyebrow">Nossa essência</span>
+      <h2>Receita de casa, <em>feita com tempo.</em></h2>
+      <p style="color:var(--muted);margin-top:18px">Cada pudim é assado em banho-maria, devagar, do jeito que se faz em casa. Nada de pressa: é isso que deixa a massa lisinha e a calda brilhando.</p>
+      <ul class="checks">
+        <li><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b07a45"/><path d="m7 12.5 3.2 3L17 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Leite condensado, leite, ovos e calda de açúcar caramelizado</li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b07a45"/><path d="m7 12.5 3.2 3L17 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Forma com tampa: chega inteiro e já pronto para presentear</li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b07a45"/><path d="m7 12.5 3.2 3L17 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Feito sob encomenda, para chegar fresquinho</li>
+      </ul>
+      <a class="btn btn-choc" href="#pedido">Quero encomendar ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="duvidas">
+  <div class="wrap">
+    <div class="head rv"><span class="eyebrow">Dúvidas</span><h2>Perguntas <em>frequentes.</em></h2></div>
+    <div class="faq rv">
+      <details><summary>Com quanto tempo de antecedência devo pedir?</summary><p>Como tudo é feito sob encomenda, o ideal é pedir com pelo menos 1 dia de antecedência. Para festas e quantidades grandes, fale com a gente antes.</p></details>
+      <details><summary>Qual a diferença entre o mini e o de 500 g?</summary><p>O mini pudim vem em forminha individual de 120 ml com tampa, ótimo para lembrancinhas e festas. O de 500 g serve a família e vem em forma com tampa.</p></details>
+      <details><summary>Vocês entregam em qual região?</summary><p>Atendemos Uberlândia. Informe o seu bairro no pedido e a Iracema confirma a entrega e a taxa, se houver.</p></details>
+      <details><summary>Como faço o pagamento?</summary><p>O pagamento é combinado diretamente com a Iracema pelo WhatsApp, depois que ela confirma o seu pedido.</p></details>
+      <details><summary>Como conservar o pudim?</summary><p>Mantenha na geladeira, com a tampa fechada. Fica ainda mais gostoso bem geladinho.</p></details>
+      <details><summary>Posso pedir para festa ou evento?</summary><p>Pode sim. Use os botões de quantidade rápida no cardápio (+8 ou +20) ou fale com a gente pelo WhatsApp para combinar.</p></details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="final rv">
+      <h2>Bateu vontade de <em>pudim?</em></h2>
+      <p>Monte seu pedido agora e receba a resposta da Iracema direto no WhatsApp.</p>
+      <a class="btn btn-wa wa-link" data-msg="final" href="#">Falar com a Iracema no WhatsApp</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano"></span> Pudim da Iracema · Uberlândia, MG · WhatsApp <span id="fone"></span></span>
+    <span><a href="cozinha.html">Área da cozinha</a> · Site por <a href="https://aastecnologiaeditorial.com.br" target="_blank" rel="noopener noreferrer">AAS Tecnologia Editorial</a></span>
+  </div>
+</footer>
+
+<a class="fab wa-link" data-msg="fab" href="#" aria-label="Chamar no WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+</a>
+
+<script>
+{
+  /* ===== CONFIGURAÇÃO ÚNICA (número e preços de venda) ===== */
+  const WHATS = '5534988586329'; // número de teste do Alisson — trocar pelo da Iracema
+  const FONE = '(34) 98858-6329';
+  const PRODUTOS = [
+    {id:'M', nome:'Mini pudim', tam:'forminha 120 ml com tampa', preco:8, badge:'Ideal para presentear', desc:'Porção individual, lisinha e com bastante calda. Perfeito para lembrancinhas, festas e sobremesa do dia.', quick:[4,8,20]},
+    {id:'G', nome:'Pudim 500 g', tam:'forma de 500 ml com tampa', preco:35, badge:'Para a família', desc:'O pudim de família: cremoso, firme na medida e com aquela calda escorrendo pelos lados.', quick:[2,4]}
+  ];
+  const msgs = {
+    hero:'Olá, Iracema! Vi o site e quero encomendar pudim. Pode me passar as opções?',
+    final:'Olá, Iracema! Vi o site do Pudim da Iracema e quero fazer uma encomenda.',
+    fab:'Olá, Iracema! Vim pelo site e tenho uma dúvida sobre os pudins.'
+  };
+  /* ========================================================= */
+
+  const qty = {M:0, G:0};
+  const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  const wa = t => 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(t);
+  const $ = id => document.getElementById(id);
+
+  $('menu').innerHTML = PRODUTOS.map(p => `
+    <article class="card rv">
+      <div class="pic"><span class="badge">${p.badge}</span>
+        <svg viewBox="0 0 300 230" role="img" aria-label="${p.nome}"><use href="#pudim"/></svg></div>
+      <div class="body">
+        <h3>${p.nome}</h3>
+        <p>${p.desc}</p>
+        <p style="font-size:14px">${p.tam}</p>
+        <div class="quick">${p.quick.map(n=>`<button type="button" data-add="${p.id}" data-n="${n}">+${n}</button>`).join('')}</div>
+        <div class="row">
+          <span class="price">${brl(p.preco)} <small>/ unidade</small></span>
+          <div class="stepper" aria-label="Quantidade de ${p.nome}">
+            <button type="button" data-add="${p.id}" data-n="-1" aria-label="Diminuir">−</button>
+            <output id="q${p.id}" aria-live="polite">0</output>
+            <button type="button" data-add="${p.id}" data-n="1" aria-label="Aumentar">+</button>
+          </div>
+        </div>
+      </div>
+    </article>`).join('');
+
+  function render(){
+    let tot = 0, html = '';
+    PRODUTOS.forEach(p => {
+      $('q'+p.id).textContent = qty[p.id];
+      if(qty[p.id] > 0){ const s = qty[p.id]*p.preco; tot += s; html += `<li><span>${qty[p.id]}× ${p.nome}</span><span>${brl(s)}</span></li>`; }
+    });
+    $('lines').innerHTML = html || '<li class="empty">Escolha seus pudins no cardápio.</li>';
+    $('total').textContent = brl(tot);
+    return tot;
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-add]');
+    if(!b) return;
+    const id = b.dataset.add;
+    qty[id] = Math.max(0, Math.min(500, qty[id] + Number(b.dataset.n)));
+    $('err').textContent = '';
+    render();
+  });
+
+  document.querySelectorAll('input[name=ent]').forEach(r => r.addEventListener('change', () => {
+    $('f-bairro').style.display = document.querySelector('input[name=ent]:checked').value === 'Entrega' ? '' : 'none';
+  }));
+
+  const hoje = new Date(); hoje.setMinutes(hoje.getMinutes() - hoje.getTimezoneOffset());
+  $('data').min = hoje.toISOString().slice(0,10);
+
+  function mensagem(tot){
+    const nome = $('nome').value.trim() || '(sem nome)';
+    const ent = document.querySelector('input[name=ent]:checked').value;
+    const d = $('data').value ? $('data').value.split('-').reverse().join('/') : 'a combinar';
+    const itens = PRODUTOS.filter(p => qty[p.id]).map(p => `${qty[p.id]} ${p.nome} (${brl(qty[p.id]*p.preco)})`);
+    const codigo = 'PUD-M' + qty.M + '-G' + qty.G;
+    const bairro = $('bairro').value.trim();
+    let t = `Olá, Iracema! Quero fazer uma encomenda pelo site.\n\nNome: ${nome}\nPedido: ${itens.join(' + ')}\nTotal: ${brl(tot)}\nData: ${d}\n${ent}${ent==='Entrega' && bairro ? ' no bairro ' + bairro : ''}`;
+    if($('obs').value.trim()) t += `\nObservação: ${$('obs').value.trim()}`;
+    return t + `\n\nCódigo do pedido: ${codigo}`;
+  }
+  const atualizaLink = () => { $('send').href = wa(mensagem(render())); };
+  ['input','change'].forEach(ev => $('form').addEventListener(ev, atualizaLink));
+  document.addEventListener('click', e => { if(e.target.closest('[data-add]')) atualizaLink(); });
+
+  $('send').addEventListener('click', e => {
+    if(!qty.M && !qty.G){ e.preventDefault(); $('err').textContent = 'Escolha pelo menos um pudim no cardápio.'; $('cardapio').scrollIntoView(); return; }
+    if(!$('nome').value.trim()){ e.preventDefault(); $('err').textContent = 'Digite seu nome para a Iracema saber quem é.'; $('nome').focus(); return; }
+    atualizaLink();
+  });
+
+  document.querySelectorAll('.wa-link').forEach(a => { a.href = wa(msgs[a.dataset.msg] || msgs.final); a.target = '_blank'; a.rel = 'noopener noreferrer'; });
+
+  const hdr = document.querySelector('header');
+  const onScroll = () => hdr.classList.toggle('scrolled', scrollY > 30);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  $('ano').textContent = new Date().getFullYear();
+  $('fone').textContent = FONE;
+  atualizaLink();
+}
+</script>
+</body>
+</html>
