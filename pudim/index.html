@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#4a2a1c">
 <meta property="og:title" content="Pudim da Iracema — Pudins Artesanais">
 <meta property="og:description" content="Mini pudim e pudim de 500 g sob encomenda. Cremoso, sem furinhos, com calda que escorre.">
+<meta property="og:image" content="https://aastecnologiaeditorial.com.br/pudim/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,9 +69,17 @@ header.scrolled{background:#fdf8f1d9;backdrop-filter:blur(14px);-webkit-backdrop
 .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
 .tags span{background:var(--panel);border-left:3px solid var(--caramel);padding:9px 16px;border-radius:0 10px 10px 0;font-weight:500;font-size:15px;box-shadow:0 10px 24px #4a2a1c12}
 .art{position:relative}
-.art svg{width:100%;height:auto;filter:drop-shadow(0 40px 60px #4a2a1c30)}
-.art .float{animation:float 6s ease-in-out infinite;transform-origin:center}
-.seal{position:absolute;left:0;top:10%;background:#fffdf9e6;backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:0 30px 60px #4a2a1c22;font-size:14px}
+.photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 100px #4a2a1c40}
+.photo img{width:100%;height:100%;object-fit:cover;animation:zoom 20s ease-in-out infinite alternate}
+.photo::after{content:"";position:absolute;inset:auto 0 0;height:40%;background:linear-gradient(transparent,#2f1a1166)}
+.art::before,.art::after{content:"";position:absolute;width:54px;height:54px;border:2px solid var(--caramel);z-index:2}
+.art::before{top:-14px;right:-14px;border-left:0;border-bottom:0}
+.art::after{bottom:-14px;left:-14px;border-right:0;border-top:0}
+.prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:540px;margin:0 0 30px}
+.pr{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--caramel);border-radius:0 14px 14px 0;padding:14px 18px;box-shadow:0 10px 24px #4a2a1c12}
+.pr span{display:block;font-size:14px;color:var(--muted)}
+.pr b{font-family:var(--serif);font-size:1.7rem;color:var(--choc);white-space:nowrap}
+.seal{position:absolute;left:-6%;bottom:9%;z-index:3;background:#fffdf9e6;backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:0 30px 60px #4a2a1c22;font-size:14px}
 .seal b{display:block;font-family:var(--serif);font-size:1.25rem;color:var(--choc)}
 /* marquee */
 .marquee{background:var(--choc);color:#f6ecdf;overflow:hidden;padding:18px 0}
@@ -82,8 +91,9 @@ header.scrolled{background:#fdf8f1d9;backdrop-filter:blur(14px);-webkit-backdrop
 .menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px #4a2a1c14;transition:.4s}
 .card:hover{transform:translateY(-6px);box-shadow:0 40px 90px #4a2a1c22}
-.card .pic{background:radial-gradient(circle at 50% 60%,#f4dfc2,#ead2b0);aspect-ratio:16/10;display:grid;place-items:center;position:relative}
-.card .pic svg{width:62%;height:auto}
+.card .pic{aspect-ratio:16/11;position:relative;overflow:hidden;background:#ead2b0}
+.card .pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.card:hover .pic img{transform:scale(1.05)}
 .badge{position:absolute;top:18px;left:18px;background:var(--choc);color:#fff;font-size:12px;font-weight:700;padding:7px 14px;border-radius:999px;letter-spacing:.04em}
 .card .body{padding:30px;display:flex;flex-direction:column;gap:14px;flex:1}
 .card h3{font-size:1.9rem}
@@ -132,7 +142,8 @@ textarea{min-height:90px;resize:vertical}
 /* essência */
 #essencia{background:var(--bg2)}
 .ess{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
-.frame{position:relative;border-radius:28px;background:radial-gradient(circle at 50% 40%,#fbe9cf,#e8cba4);padding:40px;box-shadow:0 40px 100px #4a2a1c2a}
+.frame{position:relative;border-radius:28px;box-shadow:0 40px 100px #4a2a1c2a}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:70% 80%;border-radius:28px}
 .frame::before,.frame::after{content:"";position:absolute;width:44px;height:44px;border:2px solid var(--caramel)}
 .frame::before{top:-12px;left:-12px;border-right:0;border-bottom:0}
 .frame::after{bottom:-12px;right:-12px;border-left:0;border-top:0}
@@ -161,13 +172,13 @@ footer a{color:var(--muted)}
 .rv.in{opacity:1;transform:none}
 @keyframes blink{70%{box-shadow:0 0 0 10px #25d36600}100%{box-shadow:0 0 0 0 #25d36600}}
 @keyframes marq{to{transform:translateX(-50%)}}
-@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes zoom{to{transform:scale(1.08)}}
 @keyframes drip{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.12)}}
 .drip{transform-box:fill-box;transform-origin:top;animation:drip 5s ease-in-out infinite}
 @media(max-width:980px){
   .hero .wrap,.order,.ess{grid-template-columns:1fr}
   .art{max-width:520px;margin:0 auto;order:-1}
-  .seal{left:0}
+  .seal{left:4%}
   .steps{grid-template-columns:1fr}
   .summary{position:static}
   .nav nav a:not(.btn){display:none}
@@ -179,6 +190,9 @@ footer a{color:var(--muted)}
   form.box,.summary{padding:24px}
   .hero{padding-top:100px}
   .logo small{display:none}
+  .pr b{font-size:1.4rem}
+  .pr{padding:12px 12px}
+  .pr span{font-size:12.5px;white-space:nowrap}
   .final{padding:60px 7%;border-radius:24px}
   .final .btn{width:100%;white-space:normal}
 }
@@ -240,23 +254,18 @@ footer a{color:var(--muted)}
     <div>
       <span class="eyebrow">Feito com carinho, para você</span>
       <h1>Pudim cremoso, <em>calda que escorre.</em></h1>
-      <p class="lead">Pudim de leite condensado feito em casa, <strong>lisinho por dentro</strong> e com calda de caramelo no ponto. Escolha <strong>mini pudins</strong> para presentear ou o <strong>pudim de 500 g</strong> para dividir.</p>
+      <p class="lead">Pudim de leite condensado feito em casa, <strong>lisinho por dentro</strong> e com calda de caramelo no ponto. Escolha <strong>mini pudins</strong> para presentear ou o <strong>pudim grande de 500 g</strong> para dividir.</p>
+      <div class="prices" id="heroPrices"></div>
       <div class="ctas">
         <a class="btn btn-choc" href="#cardapio">Ver o cardápio ↗</a>
         <a class="btn btn-ghost wa-link" data-msg="hero" href="#">Pedir pelo WhatsApp</a>
       </div>
       <div class="trust"><span class="dot"></span>Sob encomenda em Uberlândia · respondemos no WhatsApp</div>
-      <div class="tags"><span>♡ Feito com amor</span><span>✳ Receita caseira</span><span>⌂ Sob encomenda</span></div>
+      
     </div>
     <div class="art rv">
-      <svg viewBox="0 0 520 470" role="img" aria-label="Pudim grande com calda de caramelo e dois mini pudins em um prato">
-        <ellipse cx="260" cy="392" rx="240" ry="56" fill="url(#gPlate)"/>
-        <ellipse cx="260" cy="386" rx="196" ry="40" fill="none" stroke="#d8c6ae" stroke-width="2"/>
-        <g class="float"><use href="#pudim" x="90" y="120" width="340" height="261"/></g>
-        <use href="#pudim" x="4" y="318" width="150" height="115"/>
-        <use href="#pudim" x="372" y="322" width="140" height="107"/>
-      </svg>
-      <div class="seal"><b>2 tamanhos</b>Mini pudim e 500 g</div>
+      <div class="photo"><img src="img/pudim-inteiro.jpg" alt="Pudim de leite condensado inteiro coberto de calda de caramelo em prato de cerâmica" width="1124" height="1400" fetchpriority="high"></div>
+      <div class="seal"><b>Feito sob encomenda</b>Pequeno e grande</div>
     </div>
   </div>
 </section>
@@ -331,7 +340,7 @@ footer a{color:var(--muted)}
 <section id="essencia">
   <div class="wrap ess">
     <div class="frame rv">
-      <svg viewBox="0 0 300 230" role="img" aria-label="Pudim de leite condensado com calda"><use href="#pudim"/></svg>
+      <img src="img/pudim-fatia.jpg" alt="Fatia de pudim com calda de caramelo e folha de hortelã, com o pudim inteiro ao fundo" loading="lazy" width="1124" height="1400">
     </div>
     <div class="rv">
       <span class="eyebrow">Nossa essência</span>
@@ -352,7 +361,7 @@ footer a{color:var(--muted)}
     <div class="head rv"><span class="eyebrow">Dúvidas</span><h2>Perguntas <em>frequentes.</em></h2></div>
     <div class="faq rv">
       <details><summary>Com quanto tempo de antecedência devo pedir?</summary><p>Como tudo é feito sob encomenda, o ideal é pedir com pelo menos 1 dia de antecedência. Para festas e quantidades grandes, fale com a gente antes.</p></details>
-      <details><summary>Qual a diferença entre o mini e o de 500 g?</summary><p>O mini pudim vem em forminha individual de 120 ml com tampa, ótimo para lembrancinhas e festas. O de 500 g serve a família e vem em forma com tampa.</p></details>
+      <details><summary>Qual a diferença entre o pequeno e o grande?</summary><p>O pudim pequeno (mini) vem em forminha individual de 120 ml com tampa e custa R$ 8,00, ótimo para lembrancinhas e festas. O pudim grande tem 500 g, serve a família, vem em forma com tampa e custa R$ 35,00.</p></details>
       <details><summary>Vocês entregam em qual região?</summary><p>Atendemos Uberlândia. Informe o seu bairro no pedido e a Iracema confirma a entrega e a taxa, se houver.</p></details>
       <details><summary>Como faço o pagamento?</summary><p>O pagamento é combinado diretamente com a Iracema pelo WhatsApp, depois que ela confirma o seu pedido.</p></details>
       <details><summary>Como conservar o pudim?</summary><p>Mantenha na geladeira, com a tampa fechada. Fica ainda mais gostoso bem geladinho.</p></details>
@@ -389,8 +398,8 @@ footer a{color:var(--muted)}
   const WHATS = '5534988586329'; // número de teste do Alisson — trocar pelo da Iracema
   const FONE = '(34) 98858-6329';
   const PRODUTOS = [
-    {id:'M', nome:'Mini pudim', tam:'forminha 120 ml com tampa', preco:8, badge:'Ideal para presentear', desc:'Porção individual, lisinha e com bastante calda. Perfeito para lembrancinhas, festas e sobremesa do dia.', quick:[4,8,20]},
-    {id:'G', nome:'Pudim 500 g', tam:'forma de 500 ml com tampa', preco:35, badge:'Para a família', desc:'O pudim de família: cremoso, firme na medida e com aquela calda escorrendo pelos lados.', quick:[2,4]}
+    {id:'M', nome:'Pudim pequeno (mini)', curto:'Pudim pequeno', tam:'Mini pudim · forminha de 120 ml com tampa', img:'pudim-calda', alt:'Fatia de pudim recebendo calda de caramelo', preco:8, badge:'Ideal para presentear', desc:'Porção individual, lisinha e com bastante calda. Perfeito para lembrancinhas, festas e sobremesa do dia.', quick:[4,8,20]},
+    {id:'G', nome:'Pudim grande (500 g)', curto:'Pudim grande', tam:'500 g · forma com tampa, serve a família', img:'pudim-fatia', alt:'Pudim grande inteiro com uma fatia servida no prato', preco:35, badge:'Para a família', desc:'O pudim de família: cremoso, firme na medida e com aquela calda escorrendo pelos lados.', quick:[2,4]}
   ];
   const msgs = {
     hero:'Olá, Iracema! Vi o site e quero encomendar pudim. Pode me passar as opções?',
@@ -400,6 +409,7 @@ footer a{color:var(--muted)}
   /* ========================================================= */
 
   const qty = {M:0, G:0};
+  document.getElementById('heroPrices').innerHTML = PRODUTOS.map(p => `<div class="pr"><span>${p.curto}${p.id==='G'?' · 500 g':' · mini'}</span><b>${p.preco.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</b></div>`).join('');
   const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
   const wa = t => 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(t);
   const $ = id => document.getElementById(id);
@@ -407,7 +417,7 @@ footer a{color:var(--muted)}
   $('menu').innerHTML = PRODUTOS.map(p => `
     <article class="card rv">
       <div class="pic"><span class="badge">${p.badge}</span>
-        <svg viewBox="0 0 300 230" role="img" aria-label="${p.nome}"><use href="#pudim"/></svg></div>
+        <img src="img/${p.img}-thumb.jpg" alt="${p.alt}" loading="lazy" width="562" height="700"></div>
       <div class="body">
         <h3>${p.nome}</h3>
         <p>${p.desc}</p>
