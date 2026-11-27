@@ -105,13 +105,15 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
       </div>
       <div>
         <div class="grid3" style="grid-template-columns:1fr 1fr">
-          <div><label for="m">Mini pudins</label><div class="stepper"><button type="button" data-s="m" data-n="-1" aria-label="Menos mini">−</button><input id="m" type="number" min="0" value="0"><button type="button" data-s="m" data-n="1" aria-label="Mais mini">+</button></div></div>
+          <div><label for="p">Minis 80 ml</label><div class="stepper"><button type="button" data-s="p" data-n="-1" aria-label="Menos mini 80">−</button><input id="p" type="number" min="0" value="0"><button type="button" data-s="p" data-n="1" aria-label="Mais mini 80">+</button></div></div>
+          <div><label for="m">Minis 120 ml</label><div class="stepper"><button type="button" data-s="m" data-n="-1" aria-label="Menos mini">−</button><input id="m" type="number" min="0" value="0"><button type="button" data-s="m" data-n="1" aria-label="Mais mini">+</button></div></div>
           <div><label for="g">Pudins 500 g</label><div class="stepper"><button type="button" data-s="g" data-n="-1" aria-label="Menos 500 g">−</button><input id="g" type="number" min="0" value="0"><button type="button" data-s="g" data-n="1" aria-label="Mais 500 g">+</button></div></div>
           <div><label for="c">Pudins no copo</label><div class="stepper"><button type="button" data-s="c" data-n="-1" aria-label="Menos copo">−</button><input id="c" type="number" min="0" value="0"><button type="button" data-s="c" data-n="1" aria-label="Mais copo">+</button></div></div>
         </div>
         <p class="hint">Ou digite as quantidades direto aqui.</p>
         <div class="grid3" style="grid-template-columns:1fr 1fr;margin-top:14px">
-          <div><label for="pm">Preço do mini (R$)</label><input id="pm" type="number" step="0.5" min="0"></div>
+          <div><label for="pp">Preço do mini 80 ml (R$)</label><input id="pp" type="number" step="0.5" min="0"></div>
+          <div><label for="pm">Preço do mini 120 ml (R$)</label><input id="pm" type="number" step="0.5" min="0"></div>
           <div><label for="pg">Preço do 500 g (R$)</label><input id="pg" type="number" step="0.5" min="0"></div>
           <div><label for="pc">Preço do copo (R$)</label><input id="pc" type="number" step="0.5" min="0"></div>
         </div>
@@ -176,7 +178,7 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
   /* ===== CONFIGURAÇÃO ===== */
   const PIN = '7319';                 // trocar antes de publicar
   const WHATS_IRACEMA = '5534984143152'; // WhatsApp da Iracema
-  const VENDA = {m:8, g:35, c:10};    // mini e 500 g = preços do site; copo = valor combinado no WhatsApp (ajuste por pedido)
+  const VENDA = {p:6, m:8, g:35, c:13.5};    // mini e 500 g = preços do site; copo = valor combinado no WhatsApp (ajuste por pedido)
   // Receita base: rende 8 minis (120 ml) OU 2 pudins de 500 g. 1 pudim de 500 g = 4 minis.
   const RENDE_MINIS = 8, MINIS_POR_G = 4;
   const PADRAO = {
@@ -187,6 +189,7 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     acucar:5.00,  // pacote de açúcar cristal 1 kg (estimado)
     baunilha:0.50,// por receita (estimado)
     gas:1.50,     // gás por fornada/receita (estimado)
+    fMini80:1.20, // forma mini 80 ml com tampa, por unidade (estimado)
     fMini:1.45,   // forma mini 120 ml com tampa, por unidade (pacote c/10 ≈ R$ 14,50)
     fG:5.50,      // forma 500 ml com tampa, por unidade (pacote c/6 ≈ R$ 33)
     creme:3.50,   // creme de leite caixinha 200 g (estimado)
@@ -197,8 +200,8 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
   };
   // Pudim no copo: receita própria, rende 6 copos.
   const RENDE_COPOS = 6;
-  const ROTULO = {lc:'Leite condensado (caixa)',leite:'Leite (caixa 1 L)',ovo:'Ovo (unidade)',ninho:'Leite em pó (500 g)',acucar:'Açúcar cristal (1 kg)',baunilha:'Baunilha (por receita)',gas:'Gás (por receita)',fMini:'Forma mini (unidade)',fG:'Forma 500 g (unidade)',creme:'Creme de leite (200 g)',copo:'Copo americano (unidade)',tampa:'Tampa do copo (unidade)',etiqueta:'Etiqueta personalizada',fita:'Fitinha (por copo)'};
-  const ESTIMADO = ['acucar','baunilha','gas','fMini','fG','creme','fita'];
+  const ROTULO = {lc:'Leite condensado (caixa)',leite:'Leite (caixa 1 L)',ovo:'Ovo (unidade)',ninho:'Leite em pó (500 g)',acucar:'Açúcar cristal (1 kg)',baunilha:'Baunilha (por receita)',gas:'Gás (por receita)',fMini80:'Forma mini 80 ml (unidade)',fMini:'Forma mini 120 ml (unidade)',fG:'Forma 500 g (unidade)',creme:'Creme de leite (200 g)',copo:'Copo de vidro americano (unidade)',tampa:'Tampa do copo (unidade)',etiqueta:'Etiqueta personalizada',fita:'Fitinha (por copo)'};
+  const ESTIMADO = ['acucar','baunilha','gas','fMini80','fMini','fG','creme','fita'];
   /* ======================== */
 
   const $ = id => document.getElementById(id);
@@ -216,22 +219,23 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     else $('pinerr').textContent = 'PIN incorreto.';
   });
 
-  $('pm').value = VENDA.m; $('pg').value = VENDA.g; $('pc').value = VENDA.c;
+  $('pp').value = VENDA.p; $('pm').value = VENDA.m; $('pg').value = VENDA.g; $('pc').value = VENDA.c;
 
   $('prices').innerHTML = Object.keys(PADRAO).map(k => `
     <div><label for="p_${k}">${ROTULO[k]}${ESTIMADO.includes(k)?'<span class="tag">estimado</span>':''}</label>
     <input id="p_${k}" data-p="${k}" type="number" step="0.05" min="0" value="${P[k]}"></div>`).join('');
 
   function calc(){
+    const p80 = Math.max(0, Math.floor(+$('p').value||0));
     const m = Math.max(0, Math.floor(+$('m').value||0));
     const g = Math.max(0, Math.floor(+$('g').value||0));
     const c = Math.max(0, Math.floor(+$('c').value||0));
     const pl = (n,s,p) => n===1 ? s : p;
     // receita tradicional (mini e 500 g)
-    const eq = m + g*MINIS_POR_G;
+    const eq = p80*80/120 + m + g*MINIS_POR_G;
     const exato = eq / RENDE_MINIS;
     const rec = eq ? Math.ceil(exato) : 0;
-    const sobra = rec*RENDE_MINIS - eq;
+    const sobra = Math.floor(rec*RENDE_MINIS - eq + 1e-9);
     // receita do copo
     const recC = c ? Math.ceil(c / RENDE_COPOS) : 0;
     const sobraC = recC*RENDE_COPOS - c;
@@ -245,6 +249,7 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
       ['Baunilha (opcional)', `${rec} colher${rec>1?'es':''} de chá`],
       ['Açúcar cristal (calda)', `${num(rec*300)} g`],
       ['Água (calda)', `${num(rec*200)} ml`],
+      ...(p80 ? [['Formas mini 80 ml', `${p80} ${pl(p80,'unidade','unidades')}`]] : []),
       ...(m ? [['Formas mini 120 ml', `${m} ${pl(m,'unidade','unidades')}`]] : []),
       ...(g ? [['Formas 500 ml', `${g} ${pl(g,'unidade','unidades')}`]] : []));
     if(recC) ing.push(['Pudim no copo', `${recC} receita${recC>1?'s':''}`, true],
@@ -255,7 +260,7 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
       ['Pasta de baunilha (opcional)', `${recC} colher${recC>1?'es':''} de sobremesa`],
       ['Açúcar (calda)', `${recC*2} xícaras (≈ ${num(recC*360)} g)`],
       ['Água (calda)', `${recC} xícara${recC>1?'s':''} (${num(recC*240)} ml)`],
-      ['Copos americanos com tampa', `${c} ${pl(c,'unidade','unidades')}`],
+      ['Copos de vidro com tampa', `${c} ${pl(c,'unidade','unidades')}`],
       ['Etiquetas e fitinhas', `${c} de cada`]);
 
     const linhas = [ // [nome, usado, custo]
@@ -267,7 +272,8 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
       ['Açúcar', `${num(rec*300+recC*360)} g`, (rec*0.3+recC*0.36)*P.acucar],
       ['Baunilha', `${rec+recC} rec.`, (rec+recC)*P.baunilha],
       ['Gás', `${rec+recC} fornada${rec+recC>1?'s':''}`, (rec+recC)*P.gas],
-      ['Formas mini', `${m} un`, m*P.fMini],
+      ['Formas mini 80 ml', `${p80} un`, p80*P.fMini80],
+      ['Formas mini 120 ml', `${m} un`, m*P.fMini],
       ['Formas 500 g', `${g} un`, g*P.fG],
       ['Copos', `${c} un`, c*P.copo],
       ['Tampas dos copos', `${c} un`, c*P.tampa],
@@ -279,10 +285,11 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     const custoReceita = P.lc + 0.6*P.leite + 4*P.ovo + 40/500*P.ninho + 0.3*P.acucar + P.baunilha + P.gas;
     const custoReceitaC = P.lc + 0.2*P.leite + 3*P.ovo + P.creme + 0.36*P.acucar + P.baunilha + P.gas;
     const custoMini = custoReceita/RENDE_MINIS + P.fMini;
+    const custoMini80 = custoReceita/RENDE_MINIS*80/120 + P.fMini80;
     const custoG = custoReceita/RENDE_MINIS*MINIS_POR_G + P.fG;
     const custoCopo = custoReceitaC/RENDE_COPOS + P.copo + P.tampa + P.etiqueta + P.fita;
-    const vm = +$('pm').value||0, vg = +$('pg').value||0, vc = +$('pc').value||0;
-    const venda = m*vm + g*vg + c*vc;
+    const vp = +$('pp').value||0, vm = +$('pm').value||0, vg = +$('pg').value||0, vc = +$('pc').value||0;
+    const venda = p80*vp + m*vm + g*vg + c*vc;
     const lucro = venda - gasto;
 
     const leiteL = Math.ceil((rec*600+recC*200)/1000), ninhoP = Math.ceil(rec*40/500), acucarK = Math.ceil((rec*300+recC*360)/1000);
@@ -293,7 +300,8 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
       ['Leite em pó 500 g', `${ninhoP} pct`, ninhoP*P.ninho],
       ['Creme de leite 200 g', `${recC} cx`, recC*P.creme],
       ['Açúcar cristal 1 kg', `${acucarK} pct`, acucarK*P.acucar],
-      ['Formas mini (pct c/10)', `${Math.ceil(m/10)} pct`, Math.ceil(m/10)*10*P.fMini],
+      ['Formas mini 80 ml (pct c/10)', `${Math.ceil(p80/10)} pct`, Math.ceil(p80/10)*10*P.fMini80],
+      ['Formas mini 120 ml (pct c/10)', `${Math.ceil(m/10)} pct`, Math.ceil(m/10)*10*P.fMini],
       ['Formas 500 ml (pct c/6)', `${Math.ceil(g/6)} pct`, Math.ceil(g/6)*6*P.fG],
       ['Copos com tampa', `${c} un`, c*(P.copo+P.tampa)],
       ['Etiquetas + fitinhas', `${c} un`, c*(P.etiqueta+P.fita)]
@@ -313,14 +321,14 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     $('kMargem').textContent = venda ? `margem de ${num(lucro/venda*100)}%` : '';
 
     $('tIng').innerHTML = ing.map(r => r[2] ? `<tr><th colspan="2" style="color:var(--caramel);padding-top:16px">${r[0]} · ${r[1]}</th></tr>` : `<tr><td>${r[0]}</td><td class="n">${r[1]}</td></tr>`).join('') || '<tr><td colspan="2">Escolha as quantidades.</td></tr>';
-    $('baseHint').textContent = 'Base: a receita tradicional rende 8 minis ou 2 pudins de 500 g; a receita do copo rende 6 copos. As receitas são arredondadas para cima.';
+    $('baseHint').textContent = 'Base: a receita tradicional rende 8 minis de 120 ml (ou 12 de 80 ml) ou 2 pudins de 500 g; a receita do copo rende 6 copos. As receitas são arredondadas para cima.';
     $('tCompra').innerHTML = compra.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n">${brl(r[2])}</td></tr>`).join('') + `<tr class="sum"><td>Total no mercado</td><td></td><td class="n">${brl(totCompra)}</td></tr>`;
     $('tCusto').innerHTML = linhas.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n">${brl(r[2])}</td></tr>`).join('') + `<tr class="sum"><td>Gasto total de produção</td><td></td><td class="n">${brl(gasto)}</td></tr>`;
-    $('unitHint').textContent = (sobras.length ? `A massa que sobra rende ${sobras.join(' e ')}: se vender, é lucro extra. ` : '') + `Custo por unidade: mini ${brl(custoMini)} · 500 g ${brl(custoG)} · copo ${brl(custoCopo)}. Lucro por unidade: mini ${brl(vm-custoMini)} · 500 g ${brl(vg-custoG)} · copo ${brl(vc-custoCopo)}.`;
+    $('unitHint').textContent = (sobras.length ? `A massa que sobra rende ${sobras.join(' e ')}: se vender, é lucro extra. ` : '') + `Custo por unidade: mini 80 ml ${brl(custoMini80)} · mini 120 ml ${brl(custoMini)} · 500 g ${brl(custoG)} · copo ${brl(custoCopo)}. Lucro por unidade: mini 80 ml ${brl(vp-custoMini80)} · mini 120 ml ${brl(vm-custoMini)} · 500 g ${brl(vg-custoG)} · copo ${brl(vc-custoCopo)}.`;
 
     const passos = [];
     if(rec){
-      const minF = m ? 'minis: 35 a 40 min' : '', gF = g ? '500 g: 55 a 60 min' : '';
+      const minF = (m||p80) ? 'minis: 30 a 40 min' : '', gF = g ? '500 g: 55 a 60 min' : '';
       passos.push(`<b>Pudim tradicional.</b> Calda: leve ao fogo ${num(rec*300)} g de açúcar até dourar, junte ${num(rec*200)} ml de água com cuidado e mexa até ficar lisa. Espalhe nas formas e deixe esfriar.`,
         `Bata no liquidificador ${rec} caixa${rec>1?'s':''} de leite condensado, ${num(rec*600)} ml de leite, ${rec*4} ovos, ${num(rec*40)} g de leite em pó e a baunilha. Coe e despeje nas formas.`,
         `Asse em banho-maria a 180 °C, coberto com papel-alumínio (${[minF,gF].filter(Boolean).join(' · ')}).`);
@@ -333,24 +341,24 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     if(recTot) passos.push('Espere esfriar, tampe e leve à geladeira por pelo menos 6 horas antes de entregar.');
     $('preparo').innerHTML = passos.map(t=>`<li>${t}</li>`).join('');
 
-    const ficha = `FICHA TÉCNICA DO PEDIDO\n\nPedido: ${m} mini + ${g} de 500 g + ${c} no copo\nReceitas: ${rec} tradicional + ${recC} do copo\n\nINGREDIENTES\n${ing.map(r=> r[2] ? `\n${r[0].toUpperCase()} (${r[1]})` : `${r[0]}: ${r[1]}`).join('\n')}\n\nCUSTOS\n${linhas.map(r=>`${r[0]}: ${brl(r[2])}`).join('\n')}\nGasto total: ${brl(gasto)}\n\nValor do pedido: ${brl(venda)}\nLucro estimado: ${brl(lucro)}${venda?` (${num(lucro/venda*100)}%)`:''}`;
+    const ficha = `FICHA TÉCNICA DO PEDIDO\n\nPedido: ${p80} mini 80 ml + ${m} mini 120 ml + ${g} de 500 g + ${c} no copo\nReceitas: ${rec} tradicional + ${recC} do copo\n\nINGREDIENTES\n${ing.map(r=> r[2] ? `\n${r[0].toUpperCase()} (${r[1]})` : `${r[0]}: ${r[1]}`).join('\n')}\n\nCUSTOS\n${linhas.map(r=>`${r[0]}: ${brl(r[2])}`).join('\n')}\nGasto total: ${brl(gasto)}\n\nValor do pedido: ${brl(venda)}\nLucro estimado: ${brl(lucro)}${venda?` (${num(lucro/venda*100)}%)`:''}`;
     $('sendMe').href = 'https://wa.me/' + WHATS_IRACEMA + '?text=' + encodeURIComponent(ficha);
     $('copy').dataset.ficha = ficha;
   }
 
   $('msg').addEventListener('input', () => {
     const t = $('msg').value;
-    const k = t.match(/PUD-M(\d+)-G(\d+)(?:-C(\d+))?/i);
-    let m = null, g = null, c = 0;
-    if(k){ m = +k[1]; g = +k[2]; c = +(k[3]||0); }
+    const k = t.match(/PUD-(?:P(\d+)-)?M(\d+)-G(\d+)(?:-C(\d+))?/i);
+    let m = null, g = null, c = 0, p80 = 0;
+    if(k){ p80 = +(k[1]||0); m = +k[2]; g = +k[3]; c = +(k[4]||0); }
     else {
       const a = t.match(/(\d+)\s*(?:x\s*)?mini/i), b = t.match(/(\d+)\s*(?:x\s*)?pudi(?:m|ns)\s*(?:de\s*)?500/i);
       if(a) m = +a[1]; if(b) g = +b[1];
       if(a && !b) g = 0; if(b && !a) m = 0;
     }
     if(m===null && g===null){ $('found').textContent = t.trim() ? 'Não achei as quantidades. Digite ao lado.' : ''; $('found').className = 'found no'; return; }
-    $('m').value = m; $('g').value = g; $('c').value = c;
-    $('found').textContent = `Pedido encontrado: ${m} mini + ${g} de 500 g + ${c} no copo`; $('found').className = 'found ok';
+    $('p').value = p80; $('m').value = m; $('g').value = g; $('c').value = c;
+    $('found').textContent = `Pedido encontrado: ${p80} mini 80 ml + ${m} mini 120 ml + ${g} de 500 g + ${c} no copo`; $('found').className = 'found ok';
     calc();
   });
 
@@ -358,7 +366,7 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     const b = e.target.closest('[data-s]'); if(!b) return;
     const i = $(b.dataset.s); i.value = Math.max(0, (+i.value||0) + +b.dataset.n); calc();
   });
-  ['m','g','c','pm','pg','pc'].forEach(id => $(id).addEventListener('input', calc));
+  ['p','m','g','c','pp','pm','pg','pc'].forEach(id => $(id).addEventListener('input', calc));
   $('prices').addEventListener('input', e => {
     const k = e.target.dataset.p; if(!k) return;
     P[k] = Math.max(0, +e.target.value || 0);
@@ -374,11 +382,11 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:13px}
     catch(e){ $('copied').textContent = 'Não deu para copiar aqui. Use o botão do WhatsApp.'; }
   });
   function doLink(){
-    const h = location.hash.match(/pedido-M(\d+)-G(\d+)(?:-C(\d+))?/i);
+    const h = location.hash.match(/pedido-(?:P(\d+)-)?M(\d+)-G(\d+)(?:-C(\d+))?/i);
     if(!h) return;
-    const c = h[3] || '0';
-    $('m').value = +h[1]; $('g').value = +h[2]; $('c').value = +c;
-    $('viaLink').textContent = `Pedido aberto pelo link do WhatsApp: ${h[1]} pequeno${h[1]==='1'?'':'s'} + ${h[2]} grande${h[2]==='1'?'':'s'} + ${c} no copo.` + (+c ? ' Ajuste o preço do copo para o valor que você combinou.' : '');
+    const p80 = h[1] || '0', c = h[4] || '0';
+    $('p').value = +p80; $('m').value = +h[2]; $('g').value = +h[3]; $('c').value = +c;
+    $('viaLink').textContent = `Pedido aberto pelo link do WhatsApp: ${p80} mini 80 ml + ${h[2]} mini 120 ml + ${h[3]} grande${h[3]==='1'?'':'s'} + ${c} no copo.` + (+c ? ' Confira o preço do copo (R$ 13 a R$ 14) que você combinou.' : '');
     calc();
   }
   addEventListener('hashchange', doLink);
