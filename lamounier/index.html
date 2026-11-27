@@ -481,10 +481,10 @@ const WHATS = {1:'5534988586329', 2:'5534988586329'};
 const TEMPO_PREPARO_MIN = 60;      // previsão para retirada
 const TEMPO_EXTRA_DELIVERY = 20;   // soma no delivery
 const msgs = {
-  topo:'Olá, Lamounier! Vim pelo site e quero fazer um pedido. Pode me enviar o cardápio?',
-  contato1:'Olá, Lamounier! Vim pelo site e quero fazer um pedido.',
-  contato2:'Olá, Lamounier! Vim pelo site e quero fazer um pedido.',
-  duvida:'Olá, Lamounier! Vim pelo site e tenho uma dúvida antes de pedir.'
+  topo:'Olá, Lamounier! 🍕 Vim pelo site e quero fazer um pedido. Pode me enviar o cardápio? 😊',
+  contato1:'Olá, Lamounier! 🍕 Vim pelo site e quero fazer um pedido 😋',
+  contato2:'Olá, Lamounier! 🍕 Vim pelo site e quero fazer um pedido 😋',
+  duvida:'Olá, Lamounier! 😊 Vim pelo site e tenho uma dúvida antes de pedir.'
 };
 /* Cardápio: confira e ajuste os sabores com a pizzaria */
 const MENU = {
@@ -593,14 +593,17 @@ $('#sendBtn').addEventListener('click',()=>{
   if(!nome){err.textContent='Informe seu nome.';$('#nome').focus();return}
   if(sel.modo==='Delivery'&&!end){err.textContent='Informe o endereço de entrega.';$('#endereco').focus();return}
   err.textContent='';
-  const L=['*NOVO PEDIDO PELO SITE*','','Nome: '+nome,'','Sabores:',...[...cart].map(([n,q])=>'- '+q+'x '+n),
-    'Tamanho: '+sel.tamanho,'Meio a meio: '+(sel.meio.startsWith('Sim')?'sim':'não'),'',
-    'Recebimento: '+sel.modo, ...(sel.modo==='Delivery'?['Endereço: '+end]:[]),
-    ($('#hora').value==='agora'?'Previsão pelo site: ':'Horário desejado: ')+eta(),'',
-    'Pagamento: '+sel.pagamento+(sel.pagamento==='Dinheiro'&&$('#troco').value.trim()?' (troco para R$ '+$('#troco').value.trim()+')':''),
-    'Onde vou pagar: '+sel.local,
-    ...($('#obs').value.trim()?['','Observações: '+$('#obs').value.trim()]:[]),'',
-    'Estou ciente de que, após a retirada, vou receber o link para avaliar o atendimento no Google.'];
+  const deliv=sel.modo==='Delivery', pagIco={Pix:'💠',Cartão:'💳',Dinheiro:'💵'}[sel.pagamento]||'💳';
+  const L=['🍕 *NOVO PEDIDO - LAMOUNIER PIZZARIA* 🍕','','Olá! Aqui é '+nome+' e quero fazer meu pedido 😋','',
+    '🛒 *Sabores*',...[...cart].map(([n,q])=>'• '+q+'x '+n),
+    '📏 Tamanho: '+sel.tamanho,'🔀 Meio a meio: '+(sel.meio.startsWith('Sim')?'sim':'não'),'',
+    (deliv?'🛵 *Delivery*':'🏪 *Retirada no balcão*'), ...(deliv?['📍 Endereço: '+end]:[]),
+    ($('#hora').value==='agora'?'⏰ Previsão pelo site: ':'⏰ Horário desejado: ')+eta(),'',
+    pagIco+' Pagamento: '+sel.pagamento+(sel.pagamento==='Dinheiro'&&$('#troco').value.trim()?' (troco para R$ '+$('#troco').value.trim()+')':''),
+    '📌 Onde vou pagar: '+sel.local,
+    ...($('#obs').value.trim()?['','📝 Observações: '+$('#obs').value.trim()]:[]),'',
+    '⭐ Estou ciente de que, após a retirada, vou receber o link para avaliar o atendimento no Google.','',
+    'Obrigado! Fico no aguardo 😊🙏'];
   const a=document.createElement('a');a.href=wa(L.join('\n'));a.target='_blank';a.rel='noopener noreferrer';document.body.appendChild(a);a.click();a.remove();
 });
 
