@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lembrei</title>
+<meta name="description" content="Cole o convite do WhatsApp ou fale: o Lembrei agenda e te lembra.">
+<meta name="theme-color" content="#2e1a47">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lembrei">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#130c1d);--ink:light-dark(#1d1229,#f3edfb);--mut:light-dark(#6d6178,#b3a7c2);
+--plum:light-dark(#2e1a47,#22123a);--lil:light-dark(#efe8f8,#241a33);--line:light-dark(#e4dcef,#33284a);
+--coral:#ff5a3c;--card:light-dark(#ffffff,#1b1328)}
+*{box-sizing:border-box;min-width:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--plum)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip;min-height:100vh}
+h1,h2,h3{font-family:Sora,Inter,sans-serif;margin:0;line-height:1.1;text-wrap:balance}
+.band{padding:clamp(20px,4vw,44px) max(5vw,16px)}
+.wrap{max-width:760px;margin:0 auto}
+.top{background:var(--plum);color:#f6f0ff;padding-top:max(env(safe-area-inset-top),20px)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font:700 17px Sora,sans-serif}
+.brand img{width:30px;height:30px;border-radius:8px}
+.ic{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
+.ic svg{width:22px;height:22px}
+.next{margin-top:18px;display:grid;gap:4px}
+.next .lbl{font-size:14px;color:#cdbfe3}
+.next h1{font-size:clamp(28px,7vw,44px)}
+.next .when{font:600 18px Sora,sans-serif;color:#ffb3a3}
+.next .where{font-size:15px;color:#d9cdec}
+.install{display:none;margin-top:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px 14px;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:14px}
+.install.show{display:flex}
+.install button{background:#fff;color:var(--plum);border:0}
+.cap{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;margin-top:-34px;box-shadow:0 18px 40px -24px rgba(46,26,71,.55);position:relative}
+.cap h2{font-size:18px;margin:2px 0 10px}
+textarea{width:100%;min-height:120px;resize:vertical;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:16px/1.5 Inter,sans-serif;background:var(--lil);color:var(--ink)}
+textarea:focus,input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid color-mix(in srgb,var(--coral) 60%,transparent);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+button,.btn{min-height:46px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 15px Inter,sans-serif;padding:0 18px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+button:disabled{opacity:.6}
+.pri{background:var(--coral);border-color:var(--coral);color:#fff;flex:1;justify-content:center}
+.mic{width:56px;height:56px;padding:0;justify-content:center;border-radius:50%;background:var(--plum);color:#fff;border:0;flex:none}
+.mic svg{width:24px;height:24px}
+.mic.on{background:var(--coral);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 12px color-mix(in srgb,var(--coral) 25%,transparent)}}
+@media (prefers-reduced-motion:reduce){.mic.on{animation:none}}
+.live{font-size:14px;color:var(--coral);margin:8px 2px 0;min-height:1.4em;font-weight:600}
+.hint{font-size:14px;color:var(--mut);margin:6px 2px 0}
+.small{min-height:40px;padding:0 14px;font-size:14px}
+.drafts{display:grid;gap:12px;margin-top:14px}
+.draft{border:2px dashed var(--coral);border-radius:18px;padding:14px;display:grid;gap:10px;background:color-mix(in srgb,var(--coral) 6%,var(--card))}
+.draft .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.draft label{display:grid;gap:4px;font-size:13px;color:var(--mut)}
+.draft .full{grid-column:1/-1}
+input,select{min-height:44px;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font:16px Inter,sans-serif;background:var(--card);color:var(--ink);width:100%}
+.sec{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.sec h2{font-size:24px}
+.day{font:700 14px Sora,sans-serif;color:var(--coral);margin:22px 0 8px}
+.ev{display:grid;grid-template-columns:78px minmax(0,1fr);gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.ev .t{font:800 24px/1 Sora,sans-serif;white-space:nowrap}
+.ev .t small{display:block;font:500 12px Inter,sans-serif;color:var(--mut);margin-top:6px;white-space:normal}
+.ev h3{font-size:17px}
+.ev p{margin:4px 0 0;color:var(--mut);font-size:14px;overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--lil);color:var(--ink);white-space:nowrap}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.empty{padding:28px 18px;text-align:center;border:1px dashed var(--line);border-radius:18px;color:var(--mut)}
+.toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(92vw,520px);background:var(--plum);color:#fff;padding:14px 18px;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.3);display:none;z-index:9;font-weight:500}
+.toast.show{display:block}.toast.alert{background:var(--coral)}
+.sheet{position:fixed;inset:0;background:rgba(10,5,20,.55);display:none;align-items:flex-end;justify-content:center;z-index:8}
+.sheet.show{display:flex}
+.sheet>div{background:var(--card);width:min(100%,560px);border-radius:24px 24px 0 0;padding:22px 20px max(22px,env(safe-area-inset-bottom));display:grid;gap:12px;max-height:88vh;overflow:auto}
+.sheet h2{font-size:20px}
+.sheet p{margin:0;color:var(--mut);font-size:15px}
+.sheet button{width:100%;justify-content:center}
+.how{display:grid;gap:10px;font-size:15px;color:var(--mut)}
+.how b{color:var(--ink)}
+@media(max-width:600px){.draft .grid{grid-template-columns:minmax(0,1fr)}.ev{grid-template-columns:64px minmax(0,1fr)}.ev .t{font-size:20px}}
+</style>
+</head>
+<body>
+<header class="top band"><div class="wrap">
+  <div class="bar">
+    <div class="brand"><img src="icon-192.png" alt="">Lembrei</div>
+    <button class="ic" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="next" id="next"></div>
+  <div class="install" id="install"><span id="installTxt">Instale o Lembrei na tela inicial e nunca mais perca sua agenda.</span><button class="small" id="installBtn">Instalar</button></div>
+  <div style="height:34px"></div>
+</div></header>
+
+<main class="band" style="padding-top:0"><div class="wrap">
+  <section class="cap" aria-label="Novo compromisso">
+    <h2>Recebeu um convite? Cole ou fale aqui</h2>
+    <textarea id="txt" placeholder="Ex.: Oi! O aniversário da Carla é sábado às 19h no Espaço Jardim, leva refrigerante."></textarea>
+    <div class="live" id="live" aria-live="polite"></div>
+    <div class="row" style="margin-top:4px">
+      <button class="mic" id="mic" aria-label="Falar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+      <button class="pri" id="go">Agendar para mim</button>
+    </div>
+    <p class="hint">No WhatsApp: segure a mensagem, toque em Compartilhar e escolha Lembrei. Ou copie e cole aqui. Também dá para perguntar "o que tenho amanhã?".</p>
+    <div class="row"><button class="small" id="demo">Testar com um exemplo</button><button class="small" id="listen">Ouvir minha agenda</button></div>
+    <div class="drafts" id="drafts"></div>
+  </section>
+
+  <section style="margin-top:34px">
+    <div class="sec"><h2>Sua agenda</h2><span class="chip" id="status">Salvo neste celular</span></div>
+    <div id="list"></div>
+    <details id="pastBox" hidden><summary id="pastSum" style="cursor:pointer;color:var(--mut);min-height:44px;display:flex;align-items:center"></summary><div id="past"></div></details>
+  </section>
+</div></main>
+
+<div class="sheet" id="menu"><div>
+  <h2>Lembrei</h2>
+  <div class="how">
+    <p><b>Avisos:</b> ative as notificações para o Lembrei avisar no horário. Para avisos garantidos com o celular bloqueado, toque em "Salvar no calendário" em cada compromisso.</p>
+    <p><b>Sua agenda fica guardada neste celular.</b> Faça uma cópia de segurança de vez em quando e guarde no WhatsApp ou no Drive.</p>
+  </div>
+  <button id="notifBtn">Ativar notificações</button>
+  <button id="exportBtn">Fazer cópia de segurança</button>
+  <button id="importBtn">Restaurar cópia de segurança</button>
+  <input type="file" id="importFile" accept="application/json,.json" hidden>
+  <button id="closeMenu" class="pri">Fechar</button>
+</div></div>
+
+<div class="sheet" id="iosSheet"><div>
+  <h2>Instalar no iPhone</h2>
+  <p>1. Abra este endereço no Safari.</p>
+  <p>2. Toque no botão Compartilhar (o quadrado com a seta para cima).</p>
+  <p>3. Escolha "Adicionar à Tela de Início" e toque em Adicionar.</p>
+  <button class="pri" id="closeIos">Entendi</button>
+</div></div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const toLocal=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+const parseLocal=s=>{const [a,b]=String(s).split('T');const [y,m,d]=a.split('-').map(Number);const [h,mi]=(b||'09:00').split(':').map(Number);return new Date(y,m-1,d,h||0,mi||0)};
+const ISO=/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+const DIAS=['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+const MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const LEMB=[[0,'Na hora'],[15,'15 min antes'],[30,'30 min antes'],[60,'1 hora antes'],[120,'2 horas antes'],[1440,'1 dia antes'],[2880,'2 dias antes']];
+const KEY='lembrei_eventos';
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+let events=[],drafts=[];
+try{events=JSON.parse(ls(KEY)||'[]')}catch(e){events=[]}
+const alerted=new Set((()=>{try{return JSON.parse(ls('lembrei_avisados')||'[]')}catch(e){return[]}})());
+function persist(){ls(KEY,JSON.stringify(events))}
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+
+function toast(msg,alert){const t=$('#toast');t.textContent=msg;t.className='toast show'+(alert?' alert':'');clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='toast',alert?12000:3800)}
+function say(text){try{const u=new SpeechSynthesisUtterance(text);u.lang='pt-BR';const v=speechSynthesis.getVoices().find(v=>/pt[-_]BR/i.test(v.lang));if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function dayLabel(d){const t=new Date();t.setHours(0,0,0,0);const x=new Date(d);x.setHours(0,0,0,0);const diff=Math.round((x-t)/864e5);
+  if(diff===0)return'Hoje';if(diff===1)return'Amanhã';if(diff===-1)return'Ontem';return `${DIAS[d.getDay()]}, ${d.getDate()} de ${MESES[d.getMonth()]}`}
+function falado(e){const d=parseLocal(e.inicio);return `${dayLabel(d).toLowerCase()} às ${d.getHours()} horas${d.getMinutes()?' e '+d.getMinutes():''}`}
+function countdown(ms){if(ms<0)return'agora';const m=Math.round(ms/6e4);if(m<60)return`em ${m} min`;const h=Math.floor(m/60);if(h<24)return`em ${h} h ${m%60?m%60+' min':''}`.trim();const d=Math.round(h/24);return d===1?'amanhã':`em ${d} dias`}
+function lembTxt(v){const f=LEMB.find(x=>x[0]===+v);return f?f[1]:`${v} min antes`}
+
+/* ---------- entende a mensagem (funciona sem internet) ---------- */
+const NUM={'vinte e tres':23,'vinte e duas':22,'vinte e dois':22,'vinte e uma':21,'vinte e um':21,'vinte':20,'dezenove':19,'dezoito':18,'dezessete':17,'dezesseis':16,'quinze':15,'catorze':14,'quatorze':14,'treze':13,'doze':12,'onze':11,'dez':10,'nove':9,'oito':8,'sete':7,'seis':6,'cinco':5,'quatro':4,'tres':3,'duas':2,'dois':2,'uma':1,'um':1,'trinta e um':31,'trinta':30,'vinte e quatro':24,'vinte e cinco':25,'vinte e seis':26,'vinte e sete':27,'vinte e oito':28,'vinte e nove':29};
+function norm(txt){
+  let t=' '+txt.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[–—-]/g,' ')+' ';
+  t=t.replace(/\bassete\b/g,'as sete').replace(/\bmeio dia\b/g,'12h').replace(/\bmeia noite\b/g,'0h');
+  for(const k of Object.keys(NUM).sort((a,b)=>b.length-a.length))t=t.replace(new RegExp('\\b(as|a|dia|de|ate|pelas|lá pelas|umas) '+k+'\\b','g'),(m,p)=>p+' '+NUM[k]);
+  t=t.replace(/\b(\d{1,2}) e meia\b/g,'$1:30').replace(/\bas (\d{1,2}) e (\d{1,2})\b/g,(m,h,mi)=>`as ${h}:${pad(mi)}`);
+  return t;
+}
+const KW=/(anivers[aá]rio|reuni[aã]o|consulta|viagem|casamento|festa|culto|churrasco|jantar|almo[cç]o|ch[aá] de [\wÀ-ú]+|formatura|batizado|entrevista|exame|dentista|show|missa|aula|prova|encontro|visita|voo)(\s+(?:d[aoe]s?|com(?:\s+[ao]s?)?|para|pra|no|na)\s+[^\s,.!?;:()]+)?/i;
+function parse(txt){
+  const t=norm(txt),now=new Date();let d=null,m;
+  const add=n=>{const x=new Date(now);x.setDate(x.getDate()+n);return x};
+  if(/depois de amanha/.test(t))d=add(2);else if(/amanha/.test(t))d=add(1);else if(/\bhoje\b|\bhj\b|hoje a noite/.test(t))d=add(0);
+  if(!d&&(m=t.match(/\b(\d{1,2})[\/.](\d{1,2})(?:[\/.](\d{2,4}))?\b/))&&+m[2]<=12){let y=m[3]?(+m[3]<100?2000+ +m[3]:+m[3]):now.getFullYear();d=new Date(y,m[2]-1,+m[1]);if(!m[3]&&d<add(-1))d.setFullYear(y+1)}
+  const mes=['janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  if(!d&&(m=t.match(new RegExp('\\b(\\d{1,2}) de ('+mes.join('|')+')')))){d=new Date(now.getFullYear(),mes.indexOf(m[2]),+m[1]);if(d<add(-1))d.setFullYear(d.getFullYear()+1)}
+  if(!d&&(m=t.match(/\bdia (\d{1,2})\b/))){d=new Date(now.getFullYear(),now.getMonth(),+m[1]);if(d<add(-1))d.setMonth(d.getMonth()+1)}
+  if(!d){const dn=['domingo','segunda','terca','quarta','quinta','sexta','sabado'];for(let i=0;i<7;i++)if(new RegExp('\\b'+dn[i]).test(t)){d=add((i-now.getDay()+7)%7||7);break}}
+  if(!d&&/(proxima semana|semana que vem)/.test(t))d=add(7);
+  if(!d)return[];
+  let h=null,mi=0;
+  if(m=t.match(/\b(\d{1,2})\s?[:h]\s?(\d{2})\b/)){h=+m[1];mi=+m[2]}
+  else if(m=t.match(/\b(\d{1,2})\s?(h|hs|hrs|horas?)\b/))h=+m[1];
+  else if(m=t.match(/\b(?:as|a|pelas|umas) (\d{1,2})\b/))h=+m[1];
+  if(h!==null&&h<12&&/(da tarde|da noite|a noite|pm)/.test(t))h+=12;
+  if(h!==null&&(h>23||mi>59))h=null;
+  const semHora=h===null;d.setHours(semHora?9:h,semHora?0:mi,0,0);
+  const cat=/viagem|voo|passagem|rodoviaria|aeroporto|onibus/.test(t)?'viagem':/aniversario|niver/.test(t)?'aniversario':/reuniao|call|meet/.test(t)?'reuniao':/consulta|medico|dentista|exame/.test(t)?'saude':/culto|igreja|missa/.test(t)?'igreja':/festa|churrasco|casamento|formatura|cha de/.test(t)?'festa':'compromisso';
+  let titulo='';const k=txt.match(KW);
+  if(k){titulo=(k[1]+(k[2]||'')).trim();const nx=txt.slice(k.index+k[0].length).match(/^\s+([A-ZÀ-Ú][\wÀ-ú]+)/);if(k[2]&&nx)titulo+=' '+nx[1]}
+  const first=txt.split('\n').map(s=>s.trim()).find(Boolean)||'';
+  if(!titulo)titulo=first.length<=48?first:'Compromisso';
+  titulo=titulo.charAt(0).toUpperCase()+titulo.slice(1);
+  let local='';const lm=txt.match(/(?:local|endere[cç]o)\s*:\s*([^\n]{3,80})/i)||txt.match(/\b(?:no|na|em)\s+((?:[A-ZÀ-Ú][\wÀ-ú]*\.?\s?){1,4}(?:,?\s*(?:Rua|Av\.?|Avenida)[^\n.]{0,40})?)/);
+  if(lm)local=lm[1].trim().replace(/[,.]$/,'');
+  return [{titulo:titulo.slice(0,70),inicio:toLocal(d),local,notas:(semHora?'Horário a confirmar. ':'')+txt.trim().slice(0,400),lembrete:{viagem:1440,festa:120,aniversario:120}[cat]||60,categoria:cat}];
+}
+
+function analyze(){
+  const txt=$('#txt').value.trim();if(!txt){toast('Cole uma mensagem ou toque no microfone.');return}
+  const q=norm(txt).trim();
+  if(/^(o que|oque|qual|quais|tenho|me fala|minha agenda)/.test(q)&&/(agenda|hoje|amanha|semana|tenho|compromisso)/.test(q)){speakAgenda(/amanha/.test(q)?1:/hoje/.test(q)?0:null);$('#txt').value='';return}
+  const found=parse(txt);
+  if(!found.length){toast('Não achei a data. Diga o dia, por exemplo: "sábado às 19h" ou "dia 15".');say('Não achei a data nessa mensagem.');return}
+  drafts=found.map(e=>({...e,id:null}));renderDrafts();
+  say(`Entendi: ${found[0].titulo}, ${falado(found[0])}. Confere e toque em salvar.`);
+  setTimeout(()=>$('#drafts').scrollIntoView({behavior:'smooth',block:'center'}),80);
+}
+
+function renderDrafts(){
+  $('#drafts').innerHTML=drafts.map((e,i)=>{const [d,h]=e.inicio.split('T');return `<div class="draft" data-i="${i}">
+    <div class="grid">
+      <label class="full">O quê<input data-f="titulo" value="${esc(e.titulo)}"></label>
+      <label>Dia<input type="date" data-f="d" value="${esc(d)}"></label>
+      <label>Hora<input type="time" data-f="h" value="${esc(h)}"></label>
+      <label>Onde<input data-f="local" value="${esc(e.local)}" placeholder="Opcional"></label>
+      <label>Me lembrar<select data-f="lembrete">${LEMB.map(([v,t])=>`<option value="${v}"${+e.lembrete===v?' selected':''}>${t}</option>`).join('')}</select></label>
+      <label class="full">Detalhes<input data-f="notas" value="${esc(e.notas)}" placeholder="O que levar, quem convidou…"></label>
+    </div>
+    <div class="row" style="margin-top:0"><button class="pri small" data-save="${i}">${e.id?'Salvar alterações':'Salvar na agenda'}</button><button class="small" data-drop="${i}">Descartar</button></div>
+  </div>`}).join('');
+}
+function readDraft(i){const box=document.querySelector(`.draft[data-i="${i}"]`);const v=f=>box.querySelector(`[data-f="${f}"]`).value;
+  return {...drafts[i],titulo:v('titulo').trim()||'Compromisso',inicio:`${v('d')}T${v('h')||'09:00'}`,local:v('local').trim(),notas:v('notas').trim(),lembrete:+v('lembrete')}}
+function saveEvent(e){
+  const id=e.id||('e'+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+  const body={id,titulo:e.titulo,inicio:e.inicio,local:e.local||'',notas:e.notas||'',lembrete:+e.lembrete,categoria:e.categoria||'compromisso',criadoEm:e.criadoEm||new Date().toISOString()};
+  const i=events.findIndex(x=>x.id===id);if(i>=0)events[i]=body;else events.push(body);persist();render();return body;
+}
+$('#drafts').addEventListener('click',ev=>{
+  const s=ev.target.closest('[data-save]'),dr=ev.target.closest('[data-drop]');
+  if(s){const i=+s.dataset.save,e=readDraft(i);if(!ISO.test(e.inicio)){toast('Confira o dia e a hora.');return}
+    const saved=saveEvent(e);drafts.splice(i,1);renderDrafts();if(!drafts.length)$('#txt').value='';
+    toast('Agendado! Vou te lembrar '+lembTxt(saved.lembrete)+'.');say(`Pronto. ${saved.titulo} está na agenda.`);askNotif()}
+  if(dr){drafts.splice(+dr.dataset.drop,1);renderDrafts()}
+});
+
+/* ---------- calendário do celular (.ics com alarme) e Google Agenda ---------- */
+function stamp(d){return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`}
+function icsEsc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/[,;]/g,m=>'\\'+m)}
+function downloadICS(e){
+  const s=parseLocal(e.inicio),f=new Date(s.getTime()+36e5);
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Lembrei//PT-BR','BEGIN:VEVENT',`UID:${e.id}@lembrei`,`DTSTAMP:${stamp(new Date())}`,`DTSTART;TZID=America/Sao_Paulo:${stamp(s)}`,`DTEND;TZID=America/Sao_Paulo:${stamp(f)}`,`SUMMARY:${icsEsc(e.titulo)}`,`LOCATION:${icsEsc(e.local)}`,`DESCRIPTION:${icsEsc(e.notas)}`,'BEGIN:VALARM','ACTION:DISPLAY',`DESCRIPTION:${icsEsc(e.titulo)}`,`TRIGGER:-PT${Math.max(0,+e.lembrete||0)}M`,'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download=(e.titulo||'compromisso').replace(/[^\wÀ-ú ]/g,'').slice(0,40)+'.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);
+}
+function gcal(e){const s=parseLocal(e.inicio),f=new Date(s.getTime()+36e5);
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.titulo)+'&dates='+stamp(s)+'/'+stamp(f)+'&ctz=America/Sao_Paulo&details='+encodeURIComponent(e.notas||'')+'&location='+encodeURIComponent(e.local||'')}
+
+/* ---------- lista ---------- */
+function sorted(){return [...events].filter(e=>ISO.test(e.inicio)).sort((a,b)=>a.inicio<b.inicio?-1:1)}
+function evHTML(e){const d=parseLocal(e.inicio);return `<div class="ev"><div class="t">${pad(d.getHours())}:${pad(d.getMinutes())}<small>${esc(countdown(d-Date.now()))}</small></div><div>
+  <h3>${esc(e.titulo)}</h3>${e.local?`<p>${esc(e.local)}</p>`:''}${e.notas?`<p>${esc(e.notas.slice(0,160))}</p>`:''}
+  <div class="chips"><span class="chip">Lembrete ${esc(lembTxt(e.lembrete))}</span></div>
+  <div class="acts"><button class="small" data-ics="${esc(e.id)}">Salvar no calendário</button><a class="btn small" href="${gcal(e)}" target="_blank" rel="noopener">Google Agenda</a><button class="small" data-say="${esc(e.id)}">Ouvir</button><button class="small" data-edit="${esc(e.id)}">Editar</button><button class="small" data-del="${esc(e.id)}">Apagar</button></div></div></div>`}
+function render(){
+  const all=sorted(),now=Date.now();const up=all.filter(e=>parseLocal(e.inicio).getTime()>now-36e5),past=all.filter(e=>parseLocal(e.inicio).getTime()<=now-36e5);
+  let html='',last='';for(const e of up){const l=dayLabel(parseLocal(e.inicio));if(l!==last){html+=`<div class="day">${esc(l)}</div>`;last=l}html+=evHTML(e)}
+  $('#list').innerHTML=html||'<div class="empty">Sua agenda está livre. Compartilhe aqui o próximo convite que chegar no WhatsApp.</div>';
+  $('#pastBox').hidden=!past.length;$('#pastSum').textContent=`Compromissos que já passaram (${past.length})`;$('#past').innerHTML=past.reverse().map(evHTML).join('');
+  renderNext();
+}
+function renderNext(){const e=sorted().find(x=>parseLocal(x.inicio).getTime()>Date.now());const n=$('#next');
+  if(!e){n.innerHTML='<span class="lbl">Seu próximo compromisso</span><h1>Nada agendado ainda</h1><span class="where">Compartilhe um convite do WhatsApp ou fale, e eu cuido do resto.</span>';return}
+  const d=parseLocal(e.inicio);n.innerHTML=`<span class="lbl">Seu próximo compromisso</span><h1>${esc(e.titulo)}</h1><span class="when">${esc(dayLabel(d))} às ${pad(d.getHours())}:${pad(d.getMinutes())} · ${esc(countdown(d-Date.now()))}</span>${e.local?`<span class="where">${esc(e.local)}</span>`:''}`}
+document.addEventListener('click',ev=>{
+  const g=k=>ev.target.closest(`[data-${k}]`);let b;
+  if(b=g('ics')){const e=events.find(x=>x.id===b.dataset.ics);if(e){downloadICS(e);toast('Abra o arquivo baixado para salvar no calendário do celular, com o lembrete.')}}
+  if(b=g('say')){const e=events.find(x=>x.id===b.dataset.say);if(e)say(`${e.titulo}, ${falado(e)}${e.local?', em '+e.local:''}.`)}
+  if(b=g('edit')){const e=events.find(x=>x.id===b.dataset.edit);if(e){drafts=[{...e}];renderDrafts();$('.cap').scrollIntoView({behavior:'smooth'})}}
+  if(b=g('del')){if(b.dataset.ok){events=events.filter(x=>x.id!==b.dataset.del);persist();render();toast('Compromisso apagado.')}else{b.dataset.ok=1;b.textContent='Toque de novo para apagar';setTimeout(()=>{if(b.isConnected){delete b.dataset.ok;b.textContent='Apagar'}},4000)}}
+});
+function speakAgenda(offset){
+  let list=sorted().filter(e=>parseLocal(e.inicio).getTime()>Date.now());
+  if(offset!==null&&offset!==undefined)list=list.filter(e=>dayLabel(parseLocal(e.inicio))===(offset?'Amanhã':'Hoje'));
+  list=list.slice(0,5);const quando=offset===1?'amanhã':offset===0?'hoje':'nos próximos dias';
+  const msg=list.length?`Você tem ${list.length} compromisso${list.length>1?'s':''} ${quando}. `+list.map(e=>`${e.titulo}, ${falado(e)}`).join('. ')+'.':`Você não tem compromissos ${quando}.`;
+  toast(msg);say(msg);
+}
+
+/* ---------- avisos ---------- */
+let swReg=null;
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').then(r=>swReg=r).catch(()=>{});
+function askNotif(){try{if('Notification' in window&&Notification.permission==='default')Notification.requestPermission()}catch(e){}}
+function notify(title,body){try{if('Notification' in window&&Notification.permission==='granted'){const o={body,icon:'icon-192.png',badge:'icon-192.png',vibrate:[250,120,250],tag:title};if(swReg)swReg.showNotification(title,o);else new Notification(title,o)}}catch(e){}}
+function check(){const now=Date.now();
+  for(const e of events){if(!ISO.test(e.inicio))continue;const t=parseLocal(e.inicio).getTime(),key=e.id+'|'+e.inicio+'|'+e.lembrete;
+    if(now>=t-(+e.lembrete||0)*6e4&&now<t+6e4&&!alerted.has(key)){alerted.add(key);ls('lembrei_avisados',JSON.stringify([...alerted].slice(-300)));
+      const msg=`${e.titulo}, ${falado(e)}${e.local?', em '+e.local:''}.`;toast('Lembrete: '+msg,true);say('Lembrete: '+msg);notify('Lembrete: '+e.titulo,`${dayLabel(parseLocal(e.inicio))} às ${pad(parseLocal(e.inicio).getHours())}:${pad(parseLocal(e.inicio).getMinutes())}${e.local?' · '+e.local:''}`);
+      try{navigator.vibrate&&navigator.vibrate([250,120,250])}catch(x){}}}
+  renderNext();
+}
+setInterval(()=>{check();if(!document.hidden)render()},20000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){check();render()}});
+
+/* ---------- voz ---------- */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,listening=false,base='';
+$('#mic').addEventListener('click',()=>{
+  if(!SR){$('#txt').focus();toast('Toque no microfone do teclado para ditar e depois em "Agendar para mim".');return}
+  if(listening){rec&&rec.stop();return}
+  rec=new SR();rec.lang='pt-BR';rec.interimResults=true;rec.continuous=true;rec.maxAlternatives=1;
+  base=$('#txt').value.trim();let finalTxt='';
+  rec.onstart=()=>{listening=true;$('#mic').classList.add('on');$('#live').textContent='Ouvindo… fale com calma e toque de novo para terminar.'};
+  rec.onresult=ev=>{let interim='';for(let i=ev.resultIndex;i<ev.results.length;i++){const r=ev.results[i];if(r.isFinal)finalTxt+=' '+r[0].transcript;else interim+=r[0].transcript}
+    $('#txt').value=(base+' '+finalTxt).trim();$('#live').textContent=interim?'… '+interim:'Ouvindo…'};
+  rec.onerror=ev=>{if(ev.error==='not-allowed')toast('Libere o microfone para o Lembrei nas configurações do navegador.');else if(ev.error==='no-speech')toast('Não ouvi nada. Tente de novo mais perto do celular.')};
+  rec.onend=()=>{listening=false;$('#mic').classList.remove('on');$('#live').textContent='';if(finalTxt.trim())analyze()};
+  try{rec.start()}catch(e){toast('Não consegui abrir o microfone.')}
+});
+
+/* ---------- botões e menu ---------- */
+$('#go').addEventListener('click',analyze);
+$('#listen').addEventListener('click',()=>speakAgenda(null));
+$('#demo').addEventListener('click',()=>{const d=new Date();d.setDate(d.getDate()+((6-d.getDay()+7)%7||7));
+  $('#txt').value=`Oi, tudo bem? Vai ter o aniversário da Carla no sábado (${d.getDate()}/${d.getMonth()+1}) às 19h30 no Espaço Jardim. Se puder leva um refrigerante! Confirma até quinta.`;toast('Exemplo colado. Agora toque em "Agendar para mim".')});
+const sheet=id=>$(id).classList.add('show');const close=id=>$(id).classList.remove('show');
+$('#menuBtn').onclick=()=>{$('#notifBtn').textContent=('Notification' in window&&Notification.permission==='granted')?'Notificações ativadas':'Ativar notificações';sheet('#menu')};
+$('#closeMenu').onclick=()=>close('#menu');$('#closeIos').onclick=()=>close('#iosSheet');
+document.querySelectorAll('.sheet').forEach(s=>s.addEventListener('click',e=>{if(e.target===s)s.classList.remove('show')}));
+$('#notifBtn').onclick=async()=>{if(!('Notification' in window)){toast('Este navegador não mostra notificações. Use "Salvar no calendário".');return}const p=await Notification.requestPermission();toast(p==='granted'?'Notificações ativadas.':'Notificações bloqueadas. Libere nas configurações do celular.');close('#menu')};
+$('#exportBtn').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({app:'Lembrei',versao:1,eventos:events},null,1)],{type:'application/json'}));a.download=`lembrei-backup-${toLocal(new Date()).slice(0,10)}.json`;document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1000);toast('Cópia salva em Downloads. Guarde no WhatsApp ou no Drive.')};
+$('#importBtn').onclick=()=>$('#importFile').click();
+$('#importFile').onchange=async ev=>{const f=ev.target.files[0];if(!f)return;try{const j=JSON.parse(await f.text());const list=(j.eventos||[]).filter(e=>e&&e.id&&ISO.test(e.inicio));let n=0;for(const e of list){if(!events.some(x=>x.id===e.id)){events.push({id:String(e.id),titulo:String(e.titulo||'Compromisso'),inicio:e.inicio,local:String(e.local||''),notas:String(e.notas||''),lembrete:+e.lembrete||0,categoria:String(e.categoria||'compromisso'),criadoEm:e.criadoEm||''});n++}}persist();render();toast(`${n} compromisso${n===1?'':'s'} restaurado${n===1?'':'s'}.`);close('#menu')}catch(e){toast('Arquivo inválido.')}ev.target.value=''};
+
+/* ---------- instalar como app ---------- */
+let deferred=null;const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone)$('#install').classList.add('show')});
+if(isIOS&&!standalone)$('#install').classList.add('show');
+$('#installBtn').onclick=async()=>{if(deferred){deferred.prompt();await deferred.userChoice;deferred=null;$('#install').classList.remove('show')}else if(isIOS)sheet('#iosSheet');else toast('No menu do navegador (⋮), toque em "Instalar app" ou "Adicionar à tela inicial".')};
+window.addEventListener('appinstalled',()=>{$('#install').classList.remove('show');toast('Lembrei instalado na sua tela inicial!')});
+
+/* ---------- mensagem compartilhada do WhatsApp ---------- */
+const qs=new URLSearchParams(location.search);const shared=[qs.get('title'),qs.get('text'),qs.get('url')].filter(Boolean).join('\n');
+render();check();
+if(shared){$('#txt').value=shared;history.replaceState(null,'',location.pathname);setTimeout(analyze,300)}
+}
+</script>
+</body>
+</html>
