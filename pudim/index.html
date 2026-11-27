@@ -97,7 +97,7 @@ header.scrolled{background:#fdf8f1d9;backdrop-filter:blur(14px);-webkit-backdrop
 .card .pic{aspect-ratio:4/3;position:relative;overflow:hidden;background:#ead2b0}
 .card .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;transition:transform 1.2s}
 .card:hover .pic img{transform:scale(1.05)}
-.badge{position:absolute;top:18px;left:18px;background:var(--choc);color:#fff;font-size:12px;font-weight:700;padding:7px 14px;border-radius:999px;letter-spacing:.04em}
+.badge{position:absolute;z-index:2;top:18px;left:18px;background:var(--choc);color:#fff;font-size:12px;font-weight:700;padding:7px 14px;border-radius:999px;letter-spacing:.04em}
 .card .body{padding:30px;display:flex;flex-direction:column;gap:14px;flex:1}
 .card h3{font-size:1.9rem}
 .card p{margin:0;color:var(--muted)}
@@ -280,15 +280,15 @@ body.has-bar .fab{bottom:100px}
     </div>
     <div class="art rv">
       <div class="photo"><img src="img/pudim-inteiro.jpg" alt="Pudim de leite condensado inteiro coberto de calda de caramelo em prato de cerâmica" width="1124" height="1400" fetchpriority="high"></div>
-      <div class="seal"><b>Aceitamos encomendas</b>Festas, casamentos e lembrancinhas</div>
+      <div class="seal"><b>Encomendas personalizadas</b>Pedidos com 48 h de antecedência</div>
     </div>
   </div>
 </section>
 
 <div class="marquee" aria-hidden="true">
   <div class="track">
-    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Festas, casamentos e lembrancinhas</span><span>Uberlândia · MG</span>
-    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Festas, casamentos e lembrancinhas</span><span>Uberlândia · MG</span>
+    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Aniversários, batizados, casamentos e confraternizações</span><span>Encomendas personalizadas</span><span>Uberlândia · MG</span>
+    <span>Leite condensado de verdade</span><span>Calda de caramelo no ponto</span><span>Feito sob encomenda</span><span>Forma com tampa, pronto para presentear</span><span>Aniversários, batizados, casamentos e confraternizações</span><span>Encomendas personalizadas</span><span>Uberlândia · MG</span>
   </div>
 </div>
 
@@ -314,7 +314,7 @@ body.has-bar .fab{bottom:100px}
       <form class="box rv" id="form" novalidate>
         <div class="grid2">
           <div class="field"><label for="nome">Seu nome (opcional)</label><input id="nome" autocomplete="name" placeholder="Como podemos te chamar?"></div>
-          <div class="field"><label for="data">Para quando?</label><input id="data" type="date"></div>
+          <div class="field"><label for="data">Para quando? (48 h de antecedência)</label><input id="data" type="date"></div>
         </div>
         <div class="field">
           <label id="lbl-ent">Entrega ou retirada</label>
@@ -347,7 +347,7 @@ body.has-bar .fab{bottom:100px}
     <div class="steps">
       <div class="step rv"><i>i.</i><h3>Você escolhe</h3><p>Monte o pedido no cardápio: quantos minis, quantos de 500 g e para quando.</p></div>
       <div class="step rv"><i>ii.</i><h3>A Iracema confirma</h3><p>Ela responde no WhatsApp, confirma o dia e combina pagamento e entrega.</p></div>
-      <div class="step rv"><i>iii.</i><h3>Feito no dia</h3><p>Seu pudim é preparado especialmente para o seu pedido e entregue geladinho.</p></div>
+      <div class="step rv"><i>iii.</i><h3>Pronto na sua data</h3><p>Seu pudim é preparado para a data combinada e entregue geladinho, já na embalagem com tampa.</p></div>
     </div>
   </div>
 </section>
@@ -364,7 +364,7 @@ body.has-bar .fab{bottom:100px}
       <ul class="checks">
         <li><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b07a45"/><path d="m7 12.5 3.2 3L17 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Leite condensado, leite, ovos e calda de açúcar caramelizado</li>
         <li><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b07a45"/><path d="m7 12.5 3.2 3L17 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Forma com tampa: chega inteiro e já pronto para presentear</li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b07a45"/><path d="m7 12.5 3.2 3L17 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Feito sob encomenda, para chegar fresquinho</li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#b07a45"/><path d="m7 12.5 3.2 3L17 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Encomendas personalizadas para aniversários, batizados, casamentos e confraternizações</li>
       </ul>
       <a class="btn btn-choc" href="#pedido">Quero encomendar ↗</a>
     </div>
@@ -375,12 +375,12 @@ body.has-bar .fab{bottom:100px}
   <div class="wrap">
     <div class="head rv"><span class="eyebrow">Dúvidas</span><h2>Perguntas <em>frequentes.</em></h2></div>
     <div class="faq rv">
-      <details><summary>Com quanto tempo de antecedência devo pedir?</summary><p>Como tudo é feito sob encomenda, o ideal é pedir com pelo menos 1 dia de antecedência. Para festas e quantidades grandes, fale com a gente antes.</p></details>
+      <details><summary>Com quanto tempo de antecedência devo pedir?</summary><p>Faça seu pedido com até 48 horas de antecedência. Assim a Iracema prepara tudo com calma para a data que você escolher.</p></details>
       <details><summary>Qual a diferença entre o pequeno e o grande?</summary><p>O pudim pequeno (mini) vem em forminha individual de 120 ml com tampa e custa R$ 8,00, ótimo para lembrancinhas e festas. O pudim grande tem 500 g, serve a família, vem em forma com tampa e custa R$ 35,00.</p></details>
       <details><summary>Vocês entregam em qual região?</summary><p>Atendemos Uberlândia. Informe o seu bairro no pedido e a Iracema confirma a entrega e a taxa, se houver.</p></details>
       <details><summary>Como faço o pagamento?</summary><p>O pagamento é combinado diretamente com a Iracema pelo WhatsApp, depois que ela confirma o seu pedido.</p></details>
       <details><summary>Como conservar o pudim?</summary><p>Mantenha na geladeira, com a tampa fechada. Fica ainda mais gostoso bem geladinho.</p></details>
-      <details><summary>Posso pedir para festa ou evento?</summary><p>Pode sim. Aceitamos encomendas para festas, casamentos, lembrancinhas e pedidos personalizados. Use os botões de quantidade rápida no cardápio e envie o pedido.</p></details>
+      <details><summary>Posso pedir para festa ou evento?</summary><p>Pode sim. Aceitamos encomendas personalizadas para festas de aniversário, confraternizações, batizados, casamentos, chás e lembrancinhas. Use os botões de quantidade rápida no cardápio e envie o pedido.</p></details>
       <details><summary>Como funciona o pudim no copo personalizado?</summary><p>É o pudim no copo americano com tampa, com etiqueta do seu logo ou nome e fitinha, ideal para lembrancinhas. Também personalizamos na forminha de mini pudim. Como o valor depende da personalização e da quantidade, escolha quantos copos quer e envie o pedido: a Iracema passa o valor pelo WhatsApp.</p></details>
     </div>
   </div>
@@ -418,7 +418,7 @@ body.has-bar .fab{bottom:100px}
   const PRODUTOS = [
     {id:'M', nome:'Pudim pequeno (mini)', curto:'Pudim pequeno', plural:'pequenos', rot:'mini', tam:'Mini pudim · forminha de 120 ml com tampa, pronto para entrega', img:'pudim-mini', alt:'Mini pudim lisinho na forminha com tampa e fitinha, pronto para entrega', preco:8, badge:'Ideal para presentear', desc:'Porção individual, lisinha e com bastante calda. Perfeito para lembrancinhas, festas e sobremesa do dia.', quick:[4,8,20]},
     {id:'G', nome:'Pudim grande (500 g)', curto:'Pudim grande', plural:'grandes', rot:'500 g', tam:'500 g · forma com tampa, pronto para entrega', img:'pudim-grande', alt:'Pudim grande liso com calda na embalagem com tampa, pronto para entrega', preco:35, badge:'Para a família', desc:'O pudim de família: lisinho, cremoso e com aquela calda escorrendo pelos lados.', quick:[2,4]},
-    {id:'C', nome:'Pudim no copo (personalizado)', curto:'Pudim no copo', plural:'copos', rot:'personalizado', tam:'Copo americano com tampa, etiqueta com o seu logo ou nome e fitinha', img:'', alt:'', preco:0, badge:'Festas e lembrancinhas', desc:'Para eventos, festas, casamentos e lembrancinhas. Personalizamos com o seu logo ou do jeito que você quiser.', quick:[10,20,50]}
+    {id:'C', nome:'Pudim no copo (personalizado)', curto:'Pudim no copo', plural:'copos', rot:'personalizado', tam:'Copo americano com tampa, etiqueta com o seu logo ou nome e fitinha', img:'pudim-copo', alt:'Pudim lisinho com calda na embalagem com tampa, para lembrancinhas', preco:0, badge:'Festas e lembrancinhas', desc:'Para aniversários, confraternizações, batizados, casamentos e lembrancinhas. Personalizamos com o seu logo ou do jeito que você quiser.', quick:[10,20,50]}
   ];
   const msgs = {
     fab:'Olá, Iracema! Vim pelo site e tenho uma dúvida sobre os pudins.'
@@ -490,6 +490,7 @@ body.has-bar .fab{bottom:100px}
   }));
 
   const hoje = new Date(); hoje.setMinutes(hoje.getMinutes() - hoje.getTimezoneOffset());
+  hoje.setDate(hoje.getDate() + 2);
   $('data').min = hoje.toISOString().slice(0,10);
 
   function mensagem(tot){
