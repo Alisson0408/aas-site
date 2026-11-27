@@ -78,6 +78,21 @@ header.scrolled{background:#0f0b09cc;backdrop-filter:blur(14px);-webkit-backdrop
 .seal b{display:block;font-family:var(--serif);font-size:1.5rem;color:var(--gold)}
 .seal span{font-size:13px;color:var(--muted)}
 .ribbon{position:absolute;right:0;top:6%;background:var(--gold);color:#1b1206;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border-radius:999px;transform:rotate(6deg);box-shadow:0 14px 30px #0008}
+/* fotos reais com degradê */
+.photo{position:absolute;inset:0;border-radius:40px;overflow:hidden;
+  -webkit-mask:radial-gradient(ellipse at 50% 50%,#000 60%,#0000 80%);mask:radial-gradient(ellipse at 50% 50%,#000 60%,#0000 80%)}
+.photo img{width:100%;height:100%;object-fit:cover;animation:zoom 20s ease-in-out infinite alternate}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.05)}}
+.pz.ph{aspect-ratio:1;overflow:hidden;-webkit-mask:radial-gradient(ellipse,#000 60%,#0000 80%);mask:radial-gradient(ellipse,#000 60%,#0000 80%)}
+.pz.ph img{width:100%;height:100%;object-fit:cover}
+.gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:300px;gap:16px}
+.gal figure{margin:0;position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+.gal figure:first-child{grid-column:span 2;grid-row:span 2}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.gal figure:hover img{transform:scale(1.06)}
+.gal figure:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0f0b0900 45%,#0f0b09d9 100%),linear-gradient(0deg,#e0312f14,#f0b94a0d)}
+.gal figcaption{position:absolute;left:22px;right:22px;bottom:18px;z-index:1;font-family:var(--serif);font-size:1.15rem;line-height:1.25}
+.gal figcaption small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
 /* marquee */
 .marquee{border-block:1px solid var(--line);overflow:hidden;padding:22px 0;background:var(--bg2)}
 .track{display:flex;gap:56px;width:max-content;animation:mq 38s linear infinite}
@@ -195,7 +210,10 @@ footer a:hover{color:var(--gold)}
   .menu{display:none}
   .ticket{position:relative;top:0}
 }
+@media(max-width:980px){.gal{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:240px}}
 @media(max-width:620px){
+  .gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px}
+  .gal figure,.gal figure:first-child{flex:0 0 78%;height:420px;scroll-snap-align:start}
   section{padding:72px 0}
   .hero{padding-top:104px}
   .ctas .btn{width:100%}
@@ -245,7 +263,7 @@ footer a:hover{color:var(--gold)}
       <div class="trust"><span class="dot"></span>Pedido direto no WhatsApp, sem aplicativo</div>
     </div>
     <div class="stage rv" aria-hidden="true">
-      <div class="spin" id="heroPizza"></div>
+      <div class="photo"><img src="assets/borda-vulcao.jpg" alt="Pizza Borda Vulcão da Lamounier, com pontas da borda recheadas de chocolate" fetchpriority="high"></div>
       <div class="ribbon">Sob nova direção</div>
       <div class="seal"><b>Lançamento</b><span>Borda Vulcão</span></div>
     </div>
@@ -262,11 +280,11 @@ footer a:hover{color:var(--gold)}
     </div>
     <div class="launch">
       <article class="lcard rv">
-        <div class="pz" id="pzVulcao"></div>
+        <div class="pz ph"><img src="assets/borda-vulcao.jpg" alt="Pizza Borda Vulcão" loading="lazy"></div>
         <div>
           <span class="tag">Novo</span>
           <h3>Borda Vulcão</h3>
-          <p>A borda vem em pontas recheadas que se abrem como pequenos vulcões, em volta de uma pizza bem servida.</p>
+          <p>Pontas da borda recheadas com chocolate cremoso, abertas como pequenos vulcões, em volta de uma pizza salgada bem servida.</p>
           <button class="add" data-add="Borda Vulcão">+ Adicionar ao pedido</button>
         </div>
       </article>
@@ -279,6 +297,22 @@ footer a:hover{color:var(--gold)}
           <button class="add" data-add="Pizza de Brócolis">+ Adicionar ao pedido</button>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<section id="galeria" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">Direto do nosso forno</div>
+      <h2>Bem recheada, do jeito que <em>chega na sua casa</em></h2>
+    </div>
+    <div class="gal rv">
+      <figure><img src="assets/saindo-do-forno.jpg" alt="Pizza recheada na caixa da Lamounier" loading="lazy"><figcaption><small>Saindo do forno</small>Recheio até a borda</figcaption></figure>
+      <figure><img src="assets/tomate-manjericao.jpg" alt="Pizza com tomate, manjericão e azeitona" loading="lazy"><figcaption><small>Clássica</small>Tomate, manjericão e azeitona</figcaption></figure>
+      <figure><img src="assets/meio-a-meio.jpg" alt="Pizza meio a meio" loading="lazy"><figcaption><small>Na dúvida</small>Peça meio a meio</figcaption></figure>
+      <figure><img src="assets/calabresa-bacon.jpg" alt="Pizza com calabresa, bacon, cebola e pimentão" loading="lazy"><figcaption><small>Caprichada</small>Calabresa, bacon, cebola e pimentão</figcaption></figure>
+      <figure><img src="assets/chocottone.jpg" alt="Pizza doce de Chocottone com creme de chocolate" loading="lazy"><figcaption><small>Doce</small>Pizza de Chocottone</figcaption></figure>
     </div>
   </div>
 </section>
@@ -389,7 +423,7 @@ footer a:hover{color:var(--gold)}
     <div class="rv">
       <div class="eyebrow">Onde estamos</div>
       <h2>Retire no balcão ou <em>peça no delivery</em></h2>
-      <p style="color:var(--muted);margin:18px 0 30px">Rua do Advogado, bairro Santo Inácio, Uberlândia (MG).</p>
+      <p style="color:var(--muted);margin:18px 0 30px">Rua do Advogado, 608, Santo Inácio, Uberlândia (MG).</p>
       <div class="contacts">
         <a class="ct wa-link" data-msg="contato1" data-num="1" href="#"><svg><use href="#i-wa"/></svg><div><small>WhatsApp</small><b>(34) 99995-8817</b></div></a>
         <a class="ct wa-link" data-msg="contato2" data-num="2" href="#"><svg><use href="#i-wa"/></svg><div><small>WhatsApp e telefone fixo</small><b>(34) 3238-9796</b></div></a>
@@ -398,8 +432,8 @@ footer a:hover{color:var(--gold)}
     </div>
     <div class="map rv">
       <div class="road"><span>Rua do Advogado</span></div>
-      <div class="pin"><svg><use href="#i-pin"/></svg><b>Lamounier Pizzaria</b><span>Santo Inácio · Uberlândia</span><br>
-        <a class="btn btn-ghost" id="mapLink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Lamounier%20Pizzaria%20Rua%20do%20Advogado%20Uberl%C3%A2ndia">Abrir no mapa</a></div>
+      <div class="pin"><svg><use href="#i-pin"/></svg><b>Lamounier Pizzaria</b><span>Rua do Advogado, 608 · Uberlândia</span><br>
+        <a class="btn btn-ghost" id="mapLink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Rua%20do%20Advogado%2C%20608%2C%20Uberl%C3%A2ndia%20MG">Abrir no mapa</a></div>
     </div>
   </div>
 </section>
@@ -442,7 +476,8 @@ footer a:hover{color:var(--gold)}
 <script>
 {
 /* ===== CONFIGURAÇÃO: edite só aqui ===== */
-const WHATS = {1:'5534999958817', 2:'553432389796'};
+/* TESTE: número do Alisson. Para entregar ao cliente: {1:'5534999958817', 2:'553432389796'} */
+const WHATS = {1:'5534988586329', 2:'5534988586329'};
 const TEMPO_PREPARO_MIN = 60;      // previsão para retirada
 const TEMPO_EXTRA_DELIVERY = 20;   // soma no delivery
 const msgs = {
@@ -453,10 +488,10 @@ const msgs = {
 };
 /* Cardápio: confira e ajuste os sabores com a pizzaria */
 const MENU = {
-  'Lançamentos':[['Borda Vulcão','Borda em pontas recheadas, estilo vulcão.'],['Pizza de Brócolis','Brócolis, queijo e presunto.']],
+  'Lançamentos':[['Borda Vulcão','Pizza salgada com pontas da borda recheadas de chocolate.'],['Pizza de Brócolis','Brócolis, queijo e presunto.']],
   'Tradicionais':[['Mussarela','Molho de tomate, mussarela e orégano.'],['Calabresa','Calabresa fatiada, cebola e mussarela.'],['Portuguesa','Presunto, ovo, cebola, ervilha, azeitona e mussarela.'],['Frango com Catupiry','Frango desfiado temperado com Catupiry.'],['Marguerita','Mussarela, tomate e manjericão.'],['Bacon','Bacon crocante com mussarela.']],
   'Especiais':[['Quatro Queijos','Mussarela, provolone, parmesão e Catupiry.'],['Lombo com Catupiry','Lombo canadense fatiado com Catupiry.'],['Pepperoni','Pepperoni com mussarela.']],
-  'Doces':[['Chocolate','Chocolate ao leite derretido.'],['Brigadeiro','Chocolate com granulado.'],['Romeu e Julieta','Mussarela com goiabada.']]
+  'Doces':[['Chocolate','Chocolate ao leite derretido.'],['Brigadeiro','Chocolate com granulado.'],['Romeu e Julieta','Mussarela com goiabada.'],['Pizza de Chocottone','Chocottone em pedaços com creme de chocolate.']]
 };
 const OPTS = {
   tamanho:['Média','Grande','Família'],
@@ -493,8 +528,6 @@ function pizza(kind){
   ${crust}<circle cx="200" cy="200" r="160" fill="#b33220"/><circle cx="200" cy="200" r="154" fill="url(#q${id})"/>${t}${cuts}
   <circle cx="200" cy="200" r="182" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/></svg>`;
 }
-$('#heroPizza').innerHTML=pizza('hero');
-$('#pzVulcao').innerHTML=pizza('vulcao');
 $('#pzBrocolis').innerHTML=pizza('broc');
 
 /* faixa */
