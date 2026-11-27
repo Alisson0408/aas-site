@@ -289,11 +289,11 @@ footer a:hover{color:var(--gold)}
         </div>
       </article>
       <article class="lcard rv">
-        <div class="pz" id="pzBrocolis"></div>
+        <div class="pz ph"><img src="assets/brocolis.jpg" alt="Pizza de brócolis com queijo e presunto (imagem ilustrativa)" loading="lazy"></div>
         <div>
           <span class="tag">Novo</span>
           <h3>Pizza de Brócolis</h3>
-          <p>Brócolis com queijo derretido e pedaços de presunto, leve e cheia de sabor.</p>
+          <p>Brócolis com queijo derretido e pedaços de presunto, leve e cheia de sabor.<br><small style="font-size:12px;opacity:.7">Imagem ilustrativa</small></p>
           <button class="add" data-add="Pizza de Brócolis">+ Adicionar ao pedido</button>
         </div>
       </article>
@@ -528,7 +528,6 @@ function pizza(kind){
   ${crust}<circle cx="200" cy="200" r="160" fill="#b33220"/><circle cx="200" cy="200" r="154" fill="url(#q${id})"/>${t}${cuts}
   <circle cx="200" cy="200" r="182" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/></svg>`;
 }
-$('#pzBrocolis').innerHTML=pizza('broc');
 
 /* faixa */
 const words=['Borda Vulcão','Pizza de Brócolis','Retirada no balcão','Delivery','Pix, cartão ou dinheiro','Pronta em cerca de uma hora','Sob nova direção'];
