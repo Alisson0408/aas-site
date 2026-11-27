@@ -1,0 +1,10 @@
+{"trilha": 2,
+ "capa_dur": 0.5,
+ "capa": {"eyebrow":"ANTES DE PEDIR ORÇAMENTO","linhas":["Preço de site","não é só o layout."],"ouro":[1],"selo":"4 ITENS INCLUSOS","size":100},
+ "cenas": [
+ {"t":"texto","eyebrow":"SEXTA DE OFERTAS? ANTES DE COMPARAR","linhas":["Compare o preço","e o que vem junto."],"ouro":[1],"dur":2.3},
+ {"t":"lista","eyebrow":"NA AAS, JÁ VEM INCLUSO","itens":["Domínio próprio","Hospedagem","Entrega em 7 dias","4 rodadas de ajustes"],"dur":3.6},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["brasa-burger","adao-rosa-monteiro"],"por":1.1},
+ {"t":"numero","eyebrow":"PÁGINA DE VENDAS A PARTIR DE","grande":"R$ 600","linhas":["Tudo isso incluso.","Pix ou cartão."],"dur":2.6},
+ {"t":"cta","linhas":["Bom dia para tirar","seu site do papel."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.0}
+]}
