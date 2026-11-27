@@ -83,7 +83,9 @@ header.scrolled{background:#0f0b09cc;backdrop-filter:blur(14px);-webkit-backdrop
   -webkit-mask:radial-gradient(ellipse at 50% 50%,#000 60%,#0000 80%);mask:radial-gradient(ellipse at 50% 50%,#000 60%,#0000 80%)}
 .photo img{width:100%;height:100%;object-fit:cover;animation:zoom 20s ease-in-out infinite alternate}
 @keyframes zoom{from{transform:scale(1)}to{transform:scale(1.05)}}
-.pz.ph{aspect-ratio:1;overflow:hidden;-webkit-mask:radial-gradient(ellipse,#000 60%,#0000 80%);mask:radial-gradient(ellipse,#000 60%,#0000 80%)}
+.pz.ph{aspect-ratio:1;overflow:hidden;-webkit-mask:radial-gradient(circle closest-side,#000 74%,#0000 100%);mask:radial-gradient(circle closest-side,#000 74%,#0000 100%)}
+.pz.ph img{transform:scale(.96)}
+.launch .lcard{background:radial-gradient(circle at 134px 50%,#f0b94a55,#e0312f2e 125px,transparent 240px),linear-gradient(160deg,#221a14,#140f0b)}
 .pz.ph img{width:100%;height:100%;object-fit:cover}
 .gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:300px;gap:16px}
 .gal figure{margin:0;position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
@@ -220,6 +222,7 @@ footer a:hover{color:var(--gold)}
   .grid,.steps,.row2{grid-template-columns:minmax(0,1fr)}
   .lcard{grid-template-columns:minmax(0,1fr);text-align:center;padding:28px}
   .lcard .pz{width:200px;margin:auto}
+  .launch .lcard{background:radial-gradient(circle at 50% 128px,#f0b94a55,#e0312f2e 125px,transparent 240px),linear-gradient(160deg,#221a14,#140f0b)}
   .form{padding:24px}
   .nav .btn span{display:none}
   .nav .btn{padding:12px}
