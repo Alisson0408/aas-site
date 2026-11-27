@@ -1,0 +1,10 @@
+{"trilha": 0,
+ "capa_dur": 0.5,
+ "capa": {"eyebrow":"E SE DER PROBLEMA DEPOIS?","linhas":["Entregar o site","não é sumir."],"ouro":[1],"selo":"90 DIAS DE GARANTIA","size":104},
+ "cenas": [
+ {"t":"texto","eyebrow":"O MEDO DE QUEM CONTRATA","linhas":["O site ficou pronto.","Deu problema.","Ninguém responde."],"ouro":[2],"dur":2.4},
+ {"t":"numero","eyebrow":"NA AAS, DEPOIS DA ENTREGA","grande":"90 dias","linhas":["de garantia","com o site no ar."],"dur":2.6},
+ {"t":"lista","eyebrow":"A GARANTIA COBRE","itens":["Falhas de funcionamento","Bugs no código entregue","Links quebrados","Desvios do escopo"],"dur":3.8},
+ {"t":"portfolio","eyebrow":"PROJETOS EM DESTAQUE","projetos":["denise-resende","vanessa-oliveira"],"por":1.1},
+ {"t":"cta","linhas":["Seu site no ar.","E a gente por perto."],"ouro":[1],"botao":"PEÇA SEU ORÇAMENTO","rodape":"Link na bio  ·  WhatsApp (19) 98952-2187","dur":3.0}
+]}
