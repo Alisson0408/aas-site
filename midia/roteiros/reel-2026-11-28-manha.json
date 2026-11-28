@@ -1,0 +1,93 @@
+{
+ "trilha": 2,
+ "capa_dur": 0.5,
+ "capa": {
+  "eyebrow": "PLANO PARA O FIM DE SEMANA",
+  "linhas": [
+   "Começar pequeno",
+   "não é começar mal."
+  ],
+  "ouro": [
+   1
+  ],
+  "selo": "PÁGINA OU SITE?",
+  "size": 100
+ },
+ "cenas": [
+  {
+   "t": "texto",
+   "eyebrow": "O QUE TRAVA MUITA MARCA",
+   "linhas": [
+    "Esperar ter tudo pronto?",
+    "É adiar de novo."
+   ],
+   "ouro": [
+    1
+   ],
+   "dur": 2.5,
+   "size": 96
+  },
+  {
+   "t": "versus",
+   "eyebrow": "QUAL É O SEU PRÓXIMO PASSO?",
+   "lados": [
+    {
+     "rotulo": "Página de vendas",
+     "pre": "a partir de",
+     "grande": "R$ 600",
+     "itens": [
+      "Uma oferta",
+      "Um objetivo",
+      "Ótima para começar"
+     ],
+     "destaque": true
+    },
+    {
+     "rotulo": "Site institucional",
+     "pre": "a partir de",
+     "grande": "R$ 700",
+     "itens": [
+      "Várias páginas",
+      "Marca completa",
+      "Serviços e portfólio"
+     ],
+     "destaque": false
+    }
+   ],
+   "rodape": "Domínio e hospedagem inclusos.",
+   "dur": 5.2
+  },
+  {
+   "t": "portfolio",
+   "eyebrow": "PROJETOS EM DESTAQUE",
+   "projetos": [
+    "mesa-rosa",
+    "adao-rosa-monteiro"
+   ],
+   "por": 1.2
+  },
+  {
+   "t": "numero",
+   "eyebrow": "DECIDIU O PASSO?",
+   "grande": "7 dias",
+   "linhas": [
+    "e a sua marca",
+    "está no ar."
+   ],
+   "dur": 2.6
+  },
+  {
+   "t": "cta",
+   "linhas": [
+    "Seu próximo passo",
+    "começa no link da bio."
+   ],
+   "ouro": [
+    1
+   ],
+   "botao": "PEÇA SEU ORÇAMENTO",
+   "rodape": "Link na bio  ·  WhatsApp (19) 98952-2187",
+   "dur": 3.2
+  }
+ ]
+}
