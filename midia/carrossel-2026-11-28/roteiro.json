@@ -1,0 +1,61 @@
+{
+"slides": [
+{
+"t": "texto",
+"eyebrow": "MARCA PESSOAL · SALVE ESTE CHECKLIST",
+"linhas": [
+"Te indicaram.",
+"Abriram seu link.",
+"E o que viram lá?"
+],
+"ouro": [
+2
+],
+"size": 112,
+"sub": "4 respostas que o seu site precisa dar."
+},
+{
+"t": "check",
+"eyebrow": "RESPOSTA 1 DE 4",
+"sinal": "Quem é você.",
+"desc": "Seu nome, uma foto real e uma frase clara sobre o que você faz, logo na primeira tela.",
+"dica": "A seguir: para quem é o seu trabalho."
+},
+{
+"t": "check",
+"eyebrow": "RESPOSTA 2 DE 4",
+"sinal": "Para quem você trabalha.",
+"desc": "Quando a pessoa se reconhece no texto, ela continua lendo. Fale com um público, não com todo mundo.",
+"dica": "A seguir: como contratar você."
+},
+{
+"t": "check",
+"eyebrow": "RESPOSTA 3 DE 4",
+"sinal": "Como contratar você.",
+"desc": "Mentoria, consultoria, palestra, atendimento: cada formato explicado em poucas linhas.",
+"dica": "A seguir: o passo que vira contato."
+},
+{
+"t": "check",
+"eyebrow": "RESPOSTA 4 DE 4",
+"sinal": "Um botão para chamar.",
+"desc": "WhatsApp ou agenda sempre à vista, em todas as telas. Não faça a pessoa procurar o seu contato.",
+"dica": "A seguir: um exemplo real."
+},
+{
+"t": "portfolio",
+"eyebrow": "EXEMPLO REAL · PROJETO AAS",
+"projeto": "vanessa-oliveira",
+"legenda": "Site de marca pessoal criado pela AAS."
+},
+{
+"t": "cta",
+"linhas": [
+"Seu link pode",
+"responder tudo isso."
+],
+"botao": "PEÇA SEU ORÇAMENTO",
+"rodape": "Site a partir de R$ 700  ·  no ar em 7 dias"
+}
+]
+}
